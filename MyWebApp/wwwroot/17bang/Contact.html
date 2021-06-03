@@ -3,29 +3,235 @@
 <head>
     <meta charset="utf-8" />
     <link href="https://17bang.ren/Images/logo-big.ico" rel="shortcut icon " type="image/x-icon" media="screen" />
+    <link href="/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="../css/MyStyle.css" rel="stylesheet" />
+    <link href="../fons/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <style>
+
+        nav {
+            line-height: 48px;
+        }
+
+            nav > span {
+                line-height: 23.8px;
+            }
+
+        span {
+            text-align:center;
+            margin-bottom: 4px;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        a:link {
+            color: #959595;
+        }
+    </style>
     <title>联系方式录入 一起帮</title>
 </head>
 <body>
-    <header></header>
-    <main>
-        <h1> 联系方式录入 </h1>
-        <hr />
-        <form action="/" method="post">
-            <label>QQ<br /><input type="text" name="account" value="" placeholder="建议填写"/></label><br />
-            <label>微信<br /><input type="text" name="wechatID" value=""placeholder="建议填写" /></label><br />
-            <label>电话<br /><input type="text" name="phone" value=""placeholder="建议填写" /></label><br />
-            <label> 其他<br /><textarea name="other" placeholder="需要说明的情况，比如加QQ时验证问题的回答，否则别人加不了，这就尴尬了。以及你能够接受的其他联系方式"></textarea></label><br />
-            <input type="submit" name="name" value="提交" /><span> 成功激活后自动返回之前页面</span>
-        </form>
+
+    <header >
+        <nav class="navbar fixed-top navbar-light bg-light"style="height:60px">
+            <nav class="nav">
+                <div class="container  fixed-top">
+                    <div class="row">
+                        <div class="col">
+
+                            <img src="../Image/logo-big.ico" style="float:left;text-align:center" />
+
+                            <span style="line-height:48px;">
+                                <span style="font-size:18px;font-weight:600;">一起帮</span>
+                                <i>·</i>
+                                <span>网络互助平台</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                                    <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                                </svg>
+                            </span>
+
+                        </div>
+
+                        <div class="col pull-right">
+
+                            <nav class="nav">
+
+
+                                <a class="nav-link-s" href="#">
+
+
+                                    <i class="fa fa-question-circle"></i>
+                                    求助
+                                </a>
+
+                                <a class="nav-link-s" href="#">
+
+                                    <i class="fa fa-eye"></i>
+
+                                    督促
+                                </a>
+
+                                <a class="nav-link-s" href="#">
+
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journals" viewBox="0 0 16 16">
+                                        <path d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2z" />
+                                        <path d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0z" />
+                                    </svg>
+
+                                    文章
+                                </a>
+
+
+                                <a class="nav-link-s  dropdown-toggle" style="padding:0.3rem,0.5rem," data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                    </svg>
+                                    用户
+                                </a>
+                                <span class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <span class="dropdown-divider"></span>
+                                    <a class="dropdown-item" href="#">Separated link</a>
+
+                                </span>
+
+
+                                <a class="nav-link-s dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+
+                                    <i class="fa fa-tachometer"></i>
+
+                                    后台
+                                </a>
+                                <span class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <span class="dropdown-divider"></span>
+                                    <a class="dropdown-item" href="#">Separated link</a>
+                                </span>
+
+                            </nav>
+
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </nav>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="alert alert-secondary" style="top:60px" role="alert">
+                        <span><i class="fa fa-calendar"></i>  用户<a href="#">HUAHAIXIANGXIANG</a>使用了<a href="#">黑帽大师</a>  ③ 的邀请码进行注册，系统奖励<a href="#"> 黑帽大师</a> ③ <a href="#">帮帮点</a> 10点 </span>
+                        <span class="pull-right"><i class="fa fa-hand-o-right"></i><a href="#">全部消息</a></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+    <main style="position: relative;top:60px" >
+
+        <span class="pull-right" style="border-radius:0px 5px 0px 5px;width: 70px; height: 35px; position: relative; top: 5px; right: 100px; background-color: #a6ffe1"><i class="fa fa-share"></i><a href="#" style="line-height:35px">返回</a></span>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                            <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z" />
+                        </svg>联系方式录入
+                    </h2>
+                    <hr />
+                </div>
+
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">QQ：</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="建议填写">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">微信：</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="建议填写">
+                        </div>                        <div class="form-group">
+                            <label for="exampleFormControlInput1">电话：</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="还请谨慎填写">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">其他</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="需要说明的情况，比如加QQ时验证问题的回答"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" value="提交" style="background-color:#337ab7">提交</button>
+                        <span class="text-info" style="padding-left: 20px;">
+                            <span>
+                            <i class="fa fa-info-circle"></i>
+                            </span> 成功激活后自动返回<a href="prepage=%2fArticle%2f622">之前页面</a>
+                        </span>
+                    </form>
+                </div>
+                <div class="col-1">
+
+                </div>
+
+                <div class="col">
+                    <h3>
+                        <i class="fa fa-question-circle"></i>说明
+                    </h3>
+                    <ol>
+                        <li>Email非常重要，可用于重置密码、接受用户消息（可设置取消）等，强烈建议填写。</li>
+                        <li>Email填写之后系统稍后会发送一封确认邮件到该地址，请注意查收，建议将<a href="#">system@17help.net</a>加入白名单，以避免被当做垃圾邮件过滤掉。</li>
+                        <li>因为联系方式会公开显示，我们不建议你填写电话号码，以免个人信息被泄露。</li>
+                        <li>所以我们推荐使用QQ/微信等网络通信方式。</li>
+                        <li>
+                            注意填写QQ作为联系方式时，不要忘了留下“添加好友”的验证条件
+
+                        </li>
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <hr />
+        </div>
     </main>
-    <footer>
-        <span><a href="#">关于我们</a></span>
-        <span><a href="#">源站课堂</a></span>
-        <span><a href="#">常见问题</a></span>
-        <span><a href="#">意见建议</a></span>
-        <span><a href="#">历史通知</a></span>
-        <span><a href="#">友情捐赠</a></span>
-        <span><a href="#">诚邀合伙人</a></span>
+
+
+    <footer style=" position: relative;top:60px">
+        <div class="container">
+            <div class="row">
+                <div class="col-8">
+                    <span><a href="#">关于我们</a></span>|
+                    <span><a href="#">源站课堂</a></span>|
+                    <span><a href="#">常见问题</a></span>|
+                    <span><a href="#">意见建议</a></span>|
+                    <span><a href="#">历史通知</a></span>|
+                    <span><a href="#">友情捐赠</a></span>|
+                    <span><a href="#">诚邀合伙人</a></span>
+                </div>
+
+
+            </div>
+        </div>
+        <p style="position:relative;float:right; right:120px;">
+            <a href="#">
+                渝ICP备18007191号（备案）
+            </a>© 2021 - 自由 <img src="../Image/freeflying.ico" />
+        </p>
+        <span style="text-align:center; border-radius: 0px 5px 0px 5px; width: 50px; height: 50px; position: fixed; bottom: 113px; right: 100px; background-color: #a6ffe1 "><a href="#"><i class="fa fa-question-circle-o"></i><br />帮助</a></span>
+        <span style="text-align: center; border-radius: 0px 5px 0px 5px; width: 50px; height: 50px; position: fixed; bottom: 60px; right: 100px; background-color: #a6ffe1"><a href="#"><i class="fa fa-comment-o"></i><br />反馈</a></span>
+
     </footer>
 
 </body>
