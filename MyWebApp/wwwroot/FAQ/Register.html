@@ -3,24 +3,212 @@
 <head>
     <meta charset="utf-8" />
     <link href="https://17bang.ren/Images/logo-big.ico" rel="shortcut icon " type="image/x-icon" media="screen" />
+    <link href="/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="../css/MyStyle.css" rel="stylesheet" />
+    <link href="../fons/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
     <title>注册 一起帮</title>
+    <style>
+    </style>
 </head>
 <body>
-    <header></header>
-    <main>
-        <h1>注册</h1>
-        <hr />
-        <form action="/" method="post">
-            <label>邀请人：（* 必填，<a href="#">没有邀请人</a>）<br /> <input type="text" name="InviterName" value=""size="40" placeholder="他的用户名，模糊查询只能从头开始" /> </label><br />
-            <label>邀请码：（* 必填）<br /><input type="text" name="InviteCode" value=""size="40" placeholder="4位数字"/></label><br />
-            <label>用户名：（* 必填）<br /><input type="text" name="username" value="" size="40"/></label><br />
-            <label>密码：（* 必填）<br /><input type="password" name="password" value="" size="40"/></label><br />
-            <label>验证密码：（* 必填）<br /><input type="password" name="password" value=""size="40" placeholder="和密码相同"/></label><br />
-            <label>验证码：（* 必填）<br /><input type="text" name="captcha" value="" size="40"/></label><br />
-            <input type="submit" name="name" value="提交" />
-            <input type="reset" name="name" value="重置" />
-        </form>
+    <header>
+        <nav class="navbar fixed-top navbar-light bg-light" style="height:60px">
+            <nav class="nav">
+                <div class="container  fixed-top">
+                    <div class="row">
+                        <div class="col-7">
+
+                            <img src="../Image/logo-big.ico" style="float:left;text-align:center" />
+
+                            <span style="line-height:48px;">
+                                <span style="font-size:18px;font-weight:600;">一起帮</span>
+                                <i>·</i>
+                                <span>网络互助平台</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                                    <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                                </svg>
+                            </span>
+
+                        </div>
+
+                        <div class="col ">
+
+                            <nav class="nav">
+
+
+                                <a class="nav-link-s" href="#">
+
+
+                                    <i class="fa fa-question-circle"></i>
+                                    求助
+                                </a>
+
+                                <a class="nav-link-s" href="#">
+
+                                    <i class="fa fa-eye"></i>
+
+                                    督促
+                                </a>
+
+                                <a class="nav-link-s" href="#">
+
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journals" viewBox="0 0 16 16">
+                                        <path d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2z" />
+                                        <path d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0z" />
+                                    </svg>
+
+                                    文章
+                                </a>
+
+
+                                <a class="nav-link-s  dropdown-toggle" style="padding:0.3rem,0.5rem," data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                    </svg>
+                                    用户
+                                </a>
+                                <span class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <span class="dropdown-divider"></span>
+                                    <a class="dropdown-item" href="#">Separated link</a>
+
+                                </span>
+
+
+                                <a class="nav-link-s dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+
+                                    <i class="fa fa-tachometer"></i>
+
+                                    后台
+                                </a>
+                                <span class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <span class="dropdown-divider"></span>
+                                    <a class="dropdown-item" href="#">Separated link</a>
+                                </span>
+
+                            </nav>
+
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </nav>
+
+        <div class="container ">
+            <div class="row ">
+                <div class="col">
+                    <div class="alert alert-secondary" style="top:60px;padding: 0rem 0rem;" role="alert">
+                        <span><i class="fa fa-calendar"></i>  用户<a href="#">HUAHAIXIANGXIANG</a>使用了<a href="#">黑帽大师</a>  ③ 的邀请码进行注册，系统奖励<a href="#"> 黑帽大师</a> ③ <a href="#">帮帮点</a> 10点 </span>
+                        <span class="pull-right"><i class="fa fa-hand-o-right"></i><a href="#">全部消息</a></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+    <main style="margin-top:60px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12"><h1><i class="fa fa-registered"></i>注册</h1></div>
+            </div>
+            <hr />
+            <div class="row">
+
+                <div class="col-5">
+                    <form class="needs-validation;novalidate">
+
+                        <div style="background-color:#ffffe0;border-radius:5px 5px 5px 5px;padding-top:5px;border:dashed #eeeeee">
+                            <a href="#" style="float:right"> <i class="fa fa-question-circle"></i> 为什么需要邀请人</a>
+                            <div class="form-group" style="clear:both">
+                                <label for="formGroupExampleInput">邀请人：（* 必填，<a href="#">没有邀请人</a>）</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="他的用户名，模糊查询只能从头开始">
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">邀请码：（* 必填）</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="4位数字">
+                            </div>
+                            <i style="visibility:hidden">1</i>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">用户名：（* 必填）</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="登陆用户名，可修改，不能重复">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">密码：（* 必填）</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="不少于四个字符">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">验证密码：（* 必填）</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="和密码相同">
+                        </div>
+                        <label for="validationDefault05">验证密码：（* 必填）</label>
+
+                        <span class="form-row">
+                            <span class="col-md-3 mb-3" style="float:left">
+                                <input type="text" class="form-control" id="validationDefault05" required>
+
+                            </span>
+                            <span style="line-height:38px">
+                                点击输入框显示
+                            </span>
+                        </span>
+                        <button type="submit" class="btn btn-primary">提交</button>
+                        <button type="reset" class="btn btn-primary" style="background-color:#ffffff ;color:black">重置</button>
+                        <a href="../Log/On.html" class="pull-right"><i class="fa fa-sign-in"></i>登录</a>
+                     
+                    </form>
+                </div>
+                <div class="col-7">
+                    <h3><i class="fa fa-question-circle"></i> 说明</h3>
+                    <ol>
+                        <li>我们希望通过<a href="#">一起帮</a>，能直接解决大家在电脑操作 /软件使用/编程学习等方面的具体问题。</li>
+                        <li>现在互联网远程技术（比如QQ桌面共享）已经非常成熟，当我们再遇到上述问题，如果别人能直接远程给予帮助，岂不是好？</li>
+                        <li>当然，你也可以在你熟悉的领域去帮助别人。由此而形成我们这个“你帮他他帮我我帮你，大家一起帮”的网上互助社区平台。</li>
+                        <li>公平起见，我们还引入了 帮帮点/币/豆 三级概念，以记录和衡量社区成员的收获和贡献。</li>
+                        <li>赶快加入我们，赚取帮帮币吧！</li>
+                        <li><a href="#"><i class="fa fa-hand-o-right"></i>了解更多</a></li>
+                    </ol>
+                </div>
+
+            </div>
+            <hr />
+        </div>
+
     </main>
-    <footer></footer>
+    <footer style=" position: relative;top:60px">
+        <div class="container">
+            <div class="row">
+                <div class="col-8">
+                    <span><a href="#">关于我们</a></span>|
+                    <span><a href="#">源站课堂</a></span>|
+                    <span><a href="#">常见问题</a></span>|
+                    <span><a href="#">意见建议</a></span>|
+                    <span><a href="#">历史通知</a></span>|
+                    <span><a href="#" style="color:#487e49">友情捐赠</a></span>|
+                    <span><a href="#">诚邀合伙人</a></span>
+                </div>
+
+
+            </div>
+        </div>
+        <p style="position:relative;float:right; right:120px;">
+            <a href="#">
+                渝ICP备18007191号（备案）
+            </a>© 2021 - 自由 <img src="../Image/freeflying.ico" />
+        </p>
+        <span style="text-align:center; border-radius: 0px 5px 0px 5px; width: 50px; height: 50px; position: fixed; bottom: 113px; right: 100px; background-color: #a6ffe1 "><a href="#"><i class="fa fa-question-circle-o"></i><br />帮助</a></span>
+        <span style="text-align: center; border-radius: 0px 5px 0px 5px; width: 50px; height: 50px; position: fixed; bottom: 60px; right: 100px; background-color: #a6ffe1"><a href="#"><i class="fa fa-comment-o"></i><br />反馈</a></span>
+
+    </footer>
 </body>
 </html>
