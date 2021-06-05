@@ -63,3 +63,27 @@ if (isNaN(bCredit)) {
     }
 }
 console.log(grade);*/
+//用switch表示一起帮身份代号
+/*var user;
+var rank;
+switch (user) {
+    case 0:
+        rank = "访客";
+        break;
+    case 1:  
+        rank = "注册用户";
+        break;
+    case 2: 
+        rank = "文章发布者";
+        break;
+    case 3:   
+        rank = "管理员";
+        break;
+    case 4:    
+        rank = "超级管理员";
+        break;
+    default:
+        rank = "身份有误";
+        break;
+}
+console.log(rank);*/
