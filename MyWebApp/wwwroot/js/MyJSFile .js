@@ -37,6 +37,29 @@ var pBody = "<a href='http://17bang.ren' target=\"_blank\" > '源栈·一起帮<
 //计算用户剩余了多少帮帮豆（banlance）并用bool值显示他是否还有帮帮豆（isAvailable）
 
 //以上皆需设置变量（变量名见圆括号），并代入计算*/
-var sum, consume, count, banlance, isavailable;
+/*var sum, consume, count, banlance, isavailable;
 banlance = sum-consume * count;
-isavailable = banlance > 0;
+isavailable = banlance > 0;*/
+
+//写一段代码，能根据一起帮用户的帮帮点（bCredit）输出他对应的等级（可适度精简） 
+/*var bCredit = NaN;
+var grade;
+if (isNaN(bCredit)) {
+    grade = "错误";
+} else {
+    if (bCredit <= 10) {
+        grade = "入门";
+    } else if (bCredit <= 20) {
+        grade = "聚气";
+
+    } else if (bCredit <= 30) {
+        grade = "凝水";
+
+    } else if (bCredit <= 50) {
+        grade = "萌芽";
+
+    } else {
+        grade = "单叶"
+    }
+}
+console.log(grade);*/
