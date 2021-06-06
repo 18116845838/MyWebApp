@@ -19,7 +19,7 @@
 //    needRemote: null
 //}
 //用JavaScript变量pBody存储这行Html代码：
-    //< a href = 'http://17bang.ren' target = "_blank" > 源栈·一起帮</a>，助你实现 < span style = "font-size:16px;" > 编程</span > 梦想！
+//< a href = 'http://17bang.ren' target = "_blank" > 源栈·一起帮</a>，助你实现 < span style = "font-size:16px;" > 编程</span > 梦想！
 var pBody = "<a href='http://17bang.ren' target=\"_blank\" > '源栈·一起帮</a>，助你实现<span style=\"font - size: 16px;\" >编程</span>梦想！"
 //用一个变量替换“编程”，以便输出更多内容。比如：助你实现{ 职业 } 梦想、助你实现{ 人生 } 梦想 
 //var dream = "编程";
@@ -87,3 +87,39 @@ switch (user) {
         break;
 }
 console.log(rank);*/
+
+//显示一段数中不重复的值（仔细思考需求）
+
+/*var array = [1, 2, 11, 1, true, "", '', " ", ' ', ' ', " ", true, '123', '123', "1234", "1234"];
+
+for (var i = 0; i < array.length; i++) {
+    for (var j = i+1; j < array.length; j++) {
+        if (array[i]===array[j]) {
+            array.splice(j, 1);
+            j--;
+        }
+    }
+}
+console.log(array);
+*/
+/*var rows = 5, columns = rows * 2 - 1;
+var yh = [];
+for (var i = 0; i < rows; i++) {
+    yh[i] = [];
+    var lines = '';
+    for (var j = 0; j < columns; j++) {
+        if (i===0) {
+            yh[i][j] = j === rows - 1 ? 1 : ' ';
+        } else {
+            var perRows = i - 1,
+                perColumns = j - 1 >= 0 ? +yh[perRows][j - 1] :0,
+                nextColunms = j + 1 < columns - 1 ? +yh[perRows][j + 1] : 0;
+            
+            var current = perColumns + nextColunms;
+            yh[i][j] = current  ? current:" ";
+        }
+        lines += yh[i][j];
+    }
+
+    console.log(lines);
+}*/
