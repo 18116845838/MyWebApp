@@ -3,7 +3,7 @@
 //has8(number) ，可以判断number中是否带有数字8；
 //has6(number) ，可以判断number中是否带有数字6；
 //让get986()通过调用has9() / has8() / has6() ，能找出number以内有多少个数字包含：9或者8或6。
-function has9() {
+/*function has9() {
     var sum = 0;
     for (var i = 0; i < arguments.length; i++) {
         arguments[i] = arguments[i] + '';
@@ -47,4 +47,22 @@ function get986() {
     return sum;
 }
 
-console.log(get986(has9(19, 29, 39, 4), has8(1, 2, 5, 18,9), has6(1, 6,16, 5)));
+console.log(get986(has9(19, 29, 39, 4), has8(1, 2, 5, 18, 9), has6(1, 6, 16, 5)));*/
+
+//将之前“找出素数”的代码封装成一个函数findPrime(max) ，可以打印出max以内的所有素数。
+
+function findPrime(max) {
+    for (var i = 2; i <= max; i++) {
+        isPrime = true;
+        for (var j = 2; j < i; j++) {
+            if (i % j === 0) {
+                isPrime = false;
+                break;
+            }//else
+        }
+        if (isPrime) {
+            console.log(i);
+        }
+    }
+}
+findPrime(101);
