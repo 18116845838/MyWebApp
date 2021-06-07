@@ -49,9 +49,13 @@ function get986() {
 
 console.log(get986(has9(19, 29, 39, 4), has8(1, 2, 5, 18, 9), has6(1, 6, 16, 5)));*/
 
+
+
+
 //将之前“找出素数”的代码封装成一个函数findPrime(max) ，可以打印出max以内的所有素数。
 
-function findPrime(max) {
+
+/*function findPrime(max) {
     for (var i = 2; i <= max; i++) {
         isPrime = true;
         for (var j = 2; j < i; j++) {
@@ -65,4 +69,20 @@ function findPrime(max) {
         }
     }
 }
-findPrime(101);
+findPrime(101);*/
+
+//自行设计参数，将之前“累加求和”的代码封装成一个函数Sum() ，可以计算任意起始位置、任意步长（如：1, 3, 5……或者0, 5, 10, 15……）的等差数列之和。
+function sum(startNumber, stepSize, endNumber) {
+    var number = 0;
+
+    for (var i = startNumber; i < endNumber; i += stepSize) {
+        startNumber += stepSize;
+        if (startNumber<= endNumber) {
+           
+            number += startNumber;
+        }//else
+
+    }
+    return number;
+}
+console.log(sum(2, 49, 100));
