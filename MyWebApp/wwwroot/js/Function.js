@@ -3,12 +3,12 @@
 //has8(number) ，可以判断number中是否带有数字8；
 //has6(number) ，可以判断number中是否带有数字6；
 //让get986()通过调用has9() / has8() / has6() ，能找出number以内有多少个数字包含：9或者8或6。
-/*function has9() {
+function has9() {
     var sum = 0;
     for (var i = 0; i < arguments.length; i++) {
         arguments[i] = arguments[i] + '';
         for (var j = 0; j < arguments[i].length; j++) {
-            if (arguments[i][j] == 9) {
+            if (arguments[i][j] === '9') {
                 sum++;
             } //else
         }
@@ -20,7 +20,7 @@ function has8() {
     for (var i = 0; i < arguments.length; i++) {
         arguments[i] = arguments[i] + '';
         for (var j = 0; j < arguments[i].length; j++) {
-            if (arguments[i][j] == 8) {
+            if (arguments[i][j] === '8') {
                 sum++;
             }//else
         }
@@ -32,7 +32,7 @@ function has6() {
     for (var i = 0; i < arguments.length; i++) {
         arguments[i] = arguments[i] + '';
         for (var j = 0; j < arguments[i].length; j++) {
-            if (arguments[i][j] == 6) {
+            if (arguments[i][j] === '6') {
                 sum++;
             }//else
         }
@@ -47,7 +47,7 @@ function get986() {
     return sum;
 }
 
-console.log(get986(has9(19, 29, 39, 4), has8(1, 2, 5, 18, 9), has6(1, 6, 16, 5)));*/
+console.log(get986(has9(19, 29, 39, 4), has8(1, 2, 5, 18, 9), has6(1, 6, 16, 5)));
 
 
 
@@ -143,7 +143,7 @@ deleteDuplicated(arr);
 There are two ways to create a RegExp object: a literal notation and a constructor.To indicate strings, the parameters to the literal notation do not use 
 quotation marks while the parameters to the constructor function do use quotation - marks.So the following expressions create the same regular expression*/
 var str = 'hello,yuanzhan';
-function getanagram(str) {
+function getAnagram(str) {
     var Newstr = '';
 
     for (var i = 1; i <= str.length; i++) {
@@ -151,7 +151,7 @@ function getanagram(str) {
     }
     return Newstr;
 }
-console.log(getanagram(str));
+console.log(getAnagram(str));
 var text = 'There are two ways to create a RegExp object : a literal notation and a constructor. To indicate strings , the parameters to the literal notation do not use quotation marks while the parameters to the constructor function do use quotation-marks. So the following expressions create the same regular expression';
 function getWordCount(text) {
     var Count = 1;
@@ -169,3 +169,35 @@ function getWordCount(text) {
     return Count;
 }
 console.log(getWordCount(text));
+
+//使用“模拟名称空间”技术，构建一个函数函数yz.fei.get(number) ； 
+
+//yz.fei.get(number, handler)除number以外，还可以接受回调函数handler做参数，得到：0到number间有多少个满足handler条件的整数。
+
+/*回调函数handler能对number进行运算，并返回bool值的，比如has6()
+get()函数调用回调函数进行运算，只要回调函数运行结果为真，就累加计数
+最后返回累加值
+
+让yz.fei.get(number)调用实现之前“统计含9 / 8 / 6数字个数”的作业*/
+var yz = {};
+yz.fei = {};
+yz.fei.get = function (number, handler) {
+    var Count = 0;
+    for (var i = 0; i < number; i++) {
+        if (handler(i)) {
+            Count++;
+        }//else
+    }
+    return Count;
+};
+console.log(yz.fei.get(100, handler));
+
+function handler(number) {
+    number=number + '';
+    for (var i = 0; i <= number.length; i++) {
+        if (number[i] === '6' || number[i] === '8'||number[i] === '9') {
+            return true;
+        }//else
+    }
+    return false;
+}
