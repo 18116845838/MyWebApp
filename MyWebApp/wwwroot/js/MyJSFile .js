@@ -64,3 +64,30 @@ isavailable = banlance > 0;*/
     }
     console.log(array);
 }
+{
+    //使用正则表达式判断某个字符串:
+    //是否是合格的Email格式
+    //是否是小数（正负小数都可以）
+    //将所有以zyf - 开头的属性去掉zyf - （尽可能多的制造测试用例，比如：<a lzyf-old=''，或者：<span>zyf---+---fyz</span> ……）
+    let regexp = /^\s*\w+@{1}\w+\.{1}\w+\s*$/;
+    let str = "2811733392@qq.com";
+    console.log(regexp.test(str));// true
+    console.log(regexp.exec(str));
+    console.log(str.match(regexp));
+    console.log(str.search(regexp));//0
+
+    let isFolat = /^\s*-*\d+\.\d+\s*$/;
+    console.log(isFolat.test(-0.12));// true
+    console.log(isFolat.exec(-0.12));
+    console.log(isFolat.test(0.12));// true
+    console.log(isFolat.test("ww"));//false
+    console.log(isFolat.test(3));//false
+
+    let Element = /(?<=zyf-)\w+/;
+    console.log(Element.test("<a lzyf-old=''"));//false
+    console.log(Element.test("<span>zyf---+---fyz</span>"));//false
+    console.log(Element.test("<a lzyf-=''"));//false
+    console.log(Element.test("<a zyf-=''"));//false
+    console.log(Element.test("<a zyf-d=''"));// true
+
+}
