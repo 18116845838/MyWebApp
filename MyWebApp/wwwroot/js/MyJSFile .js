@@ -41,3 +41,26 @@ var pBody = "<a href='http://17bang.ren' target=\"_blank\" > '源栈·一起帮<
 banlance = sum-consume * count;
 isavailable = banlance > 0;*/
 
+//使用JavaScript内置字符串函数，处理 “‘源栈’：飞哥小班教学，线下免费收看” ：将“飞哥”改成“大神”，“线下”改成“线上”。
+{
+    let str = " 飞哥小班教学，线下免费收看";
+    str = str.replace("飞哥", "大神").replace("线上", "线下");
+
+    console.log(str);
+
+    //将数组['why', 'gIT', 'vs2019', 'community', 'VERSION']规范化，让所有元素：
+
+    //首字母大写开头，其他字母小写
+    //截去超过6个字符的部分，如'community'将变成'Commun'
+    let array = ['why', 'gIT', 'vs2019', 'community', 'VERSION'];
+
+    for (var i = 0; i < array.length; i++) {
+        let string = array[i];
+        string = string.toLowerCase();
+        array[i] = string[0].toUpperCase() + string.substring(1, string.length);
+        if (array[i].length > 6) {
+            array[i] = array[i].slice(0, 6);
+        }
+    }
+    console.log(array);
+}
