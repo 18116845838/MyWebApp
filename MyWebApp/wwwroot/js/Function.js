@@ -204,6 +204,19 @@
     }
 
 
+}
 
+    //创建一个函数getRandomArray(length, max) ，能返回一个长度不大于length，每个元素值不大于max的随机整数数组
+
+{
+    function getRandomArray(lenth, max) {
+
+        let array = [];
+        for (var i = 0; i < lenth; i++) {
+            array[i] = Math.round(Math.random() * max);
+        }
+        return array;
+    }
+    console.log(getRandomArray(10, 100));
 
 }
