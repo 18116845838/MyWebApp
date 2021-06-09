@@ -44,9 +44,8 @@ isavailable = banlance > 0;*/
 //使用JavaScript内置字符串函数，处理 “‘源栈’：飞哥小班教学，线下免费收看” ：将“飞哥”改成“大神”，“线下”改成“线上”。
 {
     let str = " 飞哥小班教学，线下免费收看";
-    str = str.replace("飞哥", "大神").replace("线上", "线下");
-
-    console.log(str);
+    str = str.replace("飞哥", "大神").replace("线下", "线上");
+ 
 
     //将数组['why', 'gIT', 'vs2019', 'community', 'VERSION']规范化，让所有元素：
 

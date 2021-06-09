@@ -206,7 +206,7 @@
 
 }
 
-    //创建一个函数getRandomArray(length, max) ，能返回一个长度不大于length，每个元素值不大于max的随机整数数组
+//创建一个函数getRandomArray(length, max) ，能返回一个长度不大于length，每个元素值不大于max的随机整数数组
 
 {
     function getRandomArray(lenth, max) {
@@ -218,5 +218,88 @@
         return array;
     }
     console.log(getRandomArray(10, 100));
+
+}
+//生成一个函数toChinese() ，可将传入的日期参数（如：new Date() ）转换成中文日期格式（如：2019年10月4日 16点54分）
+{
+    function toChinese(date) {
+        let year = date.getFullYear(),
+            month = (date.getMonth() + 1) + '',
+            day = date.getDate() + '',
+            hours = date.getHours() + '',
+            minutes = date.getMinutes() + '';
+        let dateTime = year + "年" + month + "月" + day + "日" + ' ' + hours + "时" + minutes + "分";
+        return dateTime;
+    }
+    console.log(toChinese(new Date()));
+    console.log(toChinese(new Date('2019/4/20')));
+}
+//生成一个函数addDays(number) ，可在当前日期的基础上增加number天 
+{
+    function addDays(number) {
+        let dateTime = new Date().setDate(new Date().getDate() + number);
+        dateTime = new Date(dateTime);
+        return dateTime;
+    }
+    console.log(addDays(33));
+}
+/*完成猜数字的游戏：
+
+弹出游戏玩法说明，等待用户点击“确认”，开始游戏；
+浏览器生成一个不大于1000的随机正整数；（Math.floor(Math.random() * 1000) ）
+用户输入猜测；
+如果用户没有猜对，浏览器比较后告知结果：“大了”或者“小了”。如果用户：
+只用了不到6次就猜到，弹出：碉堡了！
+只用了不到8次就猜到，弹出：666！
+用了8 - 10次猜到，弹出：猜到了。
+用了10次都还没猜对，弹出：^ (*￣(oo) ￣)^
+
+*/
+
+{
+    let start = confirm("下面要进行一次猜数字的游戏，请输入1000以内的数字，共有十次机会，请点击确认开始");
+    if (start) {
+        let number = Math.floor(Math.random() * 1000);
+        for (var i = 0; i < 10; i++) {
+            let input = +prompt();
+            if (!isNaN(input)&&i < 9) {
+                if (input < number) {
+                    alert("小了");
+                } else if (input > number) {
+                    alert("大了");
+                } else {
+                    if (i < 6) {
+                        alert("碉堡了！");
+                    } else if (i < 8) {
+                        alert("666！");
+                    } else {
+                        alert("猜到了");
+                    }
+                    break;
+                }
+            } else {
+                alert("^ (*￣(oo) ￣)^");
+                break;
+            }
+        }
+    }//else
+
+}
+//分别使用setInterval()使用setTimeout()实现：每隔1秒钟依次显示：第n周，源栈同学random人。（n逐次递增，random随机）
+{
+    
+    let n = 1;
+    //setInterval(function () {
+    //    let random = Math.floor(Math.random() * 1000);
+    //    console.log(`第${n++}周,源栈同学${random}人`);
+    //}, 1000);
+
+
+    //let getStudentNumber = function () {
+    //    let random = Math.floor(Math.random() * 1000);
+    //    console.log(`第${n++}周,源栈同学${random}人`);
+    //    setTimeout(getStudentNumber, 1000);
+    //}
+    //setTimeout(getStudentNumber, 1000);
 
 }
