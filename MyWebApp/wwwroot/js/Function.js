@@ -361,16 +361,27 @@
 }
 //参考用户资料页面，控制台显示出用户的：性别 / 出生年月 / 关注（关键字）/ 自我介绍
 {
-    let inputMessage = document.getElementsByTagName("input");
+    //let inputMessage = document.getElementsByTagName("input");
 
-    let userMessage = '';
-    for (let i = 0; i < inputMessage.length; i++) {
-        if (inputMessage[i].name ==="IsFemale" &&inputMessage[i].checked===true) {
-            userMessage += inputMessage[i].value + "那么、\n";
-            userMessage = document.getElementsByTagName("select")[0].value + "\n";
-        } //else
-        userMessage += inputMessage[i].value + "\n";
-    }
-    userMessage += document.getElementsByTagName("textarea")[0].value+"\n";
-    alert(userMessage);
+    //let userMessage = '';
+    //for (let i = 0; i < inputMessage.length; i++) {
+    //    if (inputMessage[i].name ==="IsFemale" &&inputMessage[i].checked===true) {
+    //        userMessage += inputMessage[i].value + "那么、\n";
+    //        userMessage = document.getElementsByTagName("select")[0].value + "\n";
+    //    } //else
+    //    userMessage += inputMessage[i].value + "\n";
+    //}
+    //userMessage += document.getElementsByTagName("textarea")[0].value+"\n";
+    //alert(userMessage);
+}
+//实现铃铛（没有学bootstrap的同学用文字代替）闪烁效果
+{
+    let smallBell = document.getElementsByClassName("bi bi-bell-fill");
+   
+    setInterval(function () {
+        smallBell[0].style = "color:rebeccapurple";
+    }, 1000);
+    setInterval(function () {
+        smallBell[0].style ="color:#1a1818"
+    },2000)
 }
