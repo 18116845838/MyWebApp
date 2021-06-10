@@ -358,6 +358,19 @@
             alert("密码和确认密码必须一致");
         }//else
     }
+}
+//参考用户资料页面，控制台显示出用户的：性别 / 出生年月 / 关注（关键字）/ 自我介绍
+{
+    let inputMessage = document.getElementsByTagName("input");
 
-
+    let userMessage = '';
+    for (let i = 0; i < inputMessage.length; i++) {
+        if (inputMessage[i].name ==="IsFemale" &&inputMessage[i].checked===true) {
+            userMessage += inputMessage[i].value + "那么、\n";
+            userMessage = document.getElementsByTagName("select")[0].value + "\n";
+        } //else
+        userMessage += inputMessage[i].value + "\n";
+    }
+    userMessage += document.getElementsByTagName("textarea")[0].value+"\n";
+    alert(userMessage);
 }
