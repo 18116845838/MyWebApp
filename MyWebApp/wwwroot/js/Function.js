@@ -315,14 +315,14 @@
     let problemCount = 0;
     for (let i = 0; i < reaward.length; i++) {
         let reawards = +(reaward[i].innerText[reaward[i].innerText.length - 2]);
-        let reawardBackground =document.getElementsByTagName("h4")[i].firstElementChild;//背景色
+        let reawardBackground = document.getElementsByTagName("h4")[i].firstElementChild;//背景色
         if (reawards > 1) {
             problemCount++;
         }//else
-        if (conclusion[i].innerText[conclusion[i].innerText.length - 1]==='0') {
+        if (conclusion[i].innerText[conclusion[i].innerText.length - 1] === '0') {
             conclusion[i].parentNode.parentElement.remove();
         } //else
-        if (reawardBackground.innerHTML==="协助中") {
+        if (reawardBackground.innerHTML === "协助中") {
             reawardBackground.style = "background-color: #516f79 !important";
         }  //else
 
@@ -334,12 +334,30 @@
     function getKeywordsCount(problemTitle) {
         let KeywordsCount = document.getElementsByTagName("h4");
         for (var i = 0; i < KeywordsCount.length; i++) {
-            
+
             if (KeywordsCount[i].innerText.indexOf(problemTitle) !== -1) {
-              return KeywordsCount[i].nextElementSibling.nextElementSibling.getElementsByClassName("badge rounded-pill bg-success").length;
+                return KeywordsCount[i].nextElementSibling.nextElementSibling.getElementsByClassName("badge rounded-pill bg-success").length;
             } //else
         }
-        return "没找到";     
+        return "没找到";
     }
     console.log(getKeywordsCount("python爬虫"));
+}
+//参考用户注册页面，显示错误提示：
+
+//密码的长度不能小于4
+//密码和确认密码必须一致
+{
+    function ConfirmPassword() {
+        let password = document.getElementById("password");
+        let ConfirmPassword = document.getElementById("ConfirmPassword");
+        if (password.value.length < 4) {
+            alert("密码的长度不能小于四");
+        }//else
+        if (ConfirmPassword.value !== password.value) {
+            alert("密码和确认密码必须一致");
+        }//else
+    }
+
+
 }
