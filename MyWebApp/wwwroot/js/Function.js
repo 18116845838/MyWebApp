@@ -262,7 +262,7 @@
         let number = Math.floor(Math.random() * 1000);
         for (var i = 0; i < 10; i++) {
             let input = +prompt();
-            if (!isNaN(input)&&i < 9) {
+            if (!isNaN(input) && i < 9) {
                 if (input < number) {
                     alert("小了");
                 } else if (input > number) {
@@ -287,7 +287,7 @@
 }
 //分别使用setInterval()使用setTimeout()实现：每隔1秒钟依次显示：第n周，源栈同学random人。（n逐次递增，random随机）
 {
-    
+
     let n = 1;
     //setInterval(function () {
     //    let random = Math.floor(Math.random() * 1000);
@@ -302,4 +302,44 @@
     //}
     //setTimeout(getStudentNumber, 1000);
 
+}
+//模拟求助首页，并：
+
+//统计有多少个悬赏大于1的求助
+//将状态为“协助中”的求助背景改成灰黑色
+//如果总结数为0，将其从DOM树中删除
+
+{
+    let reaward = document.getElementsByClassName("reaward");//悬赏
+    let conclusion = document.getElementsByClassName("fa fa-key");//总结
+    let problemCount = 0;
+    for (let i = 0; i < reaward.length; i++) {
+        let reawards = +(reaward[i].innerText[reaward[i].innerText.length - 2]);
+        let reawardBackground =document.getElementsByTagName("h4")[i].firstElementChild;//背景色
+        if (reawards > 1) {
+            problemCount++;
+        }//else
+        if (conclusion[i].innerText[conclusion[i].innerText.length - 1]==='0') {
+            conclusion[i].parentNode.parentElement.remove();
+        } //else
+        if (reawardBackground.innerHTML==="协助中") {
+            reawardBackground.style = "background-color: #516f79 !important";
+        }  //else
+
+    }
+    console.log(problemCount);
+}
+//写一个函数getKeywordsCount() ，可以统计某个求助使用了多少关键字
+{
+    function getKeywordsCount(problemTitle) {
+        let KeywordsCount = document.getElementsByTagName("h4");
+        for (var i = 0; i < KeywordsCount.length; i++) {
+            
+            if (KeywordsCount[i].innerText.indexOf(problemTitle) !== -1) {
+              return KeywordsCount[i].nextElementSibling.nextElementSibling.getElementsByClassName("badge rounded-pill bg-success").length;
+            } //else
+        }
+        return "没找到";     
+    }
+    console.log(getKeywordsCount("python爬虫"));
 }
