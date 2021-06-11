@@ -4,9 +4,21 @@
     <meta charset="utf-8" />
     <link href="https://17bang.ren/Images/logo-big.ico" rel="shortcut icon" type="image/x-icon" media="screen" />
     <link href="/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-    <link href="../css/MyStyle.css" rel="stylesheet" />
+    <!--<link href="../css/MyStyle.css" rel="stylesheet" />-->
     <link href="../fons/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
-    
+    <script>
+        // 参考求助首页侧边栏关键字，实现：当鼠标移动到关键字上，显示关键字被使用次数
+        window.onload = function () {
+            let keyWord = document.getElementsByClassName("col-lg")[0].getElementsByClassName("badge rounded-pill bg-success");
+            for (let i = 0; i < keyWord.length; i++) {
+
+                keyWord[i].addEventListener("mouseover", function (evern) {
+
+                    this.title = "已使用99次";
+                })
+            }
+        }
+    </script>
     <title>首页 一起帮</title>
 </head>
 <body>
@@ -201,7 +213,7 @@
                         <div style="margin-top:20px;" class="font-size-d">
                             <span>  <small class="font-size-s"><i class="fa fa-calendar "></i>2018年04月26日 15点04分</small></span>
                             <span class="pull-right">
-                                <a href="#" ><i class="fa fa-user-circle-o"></i>  1462556133 </a>
+                                <a href="#"><i class="fa fa-user-circle-o"></i>  1462556133 </a>
                                 <span>②</span>
                             </span>
                         </div>
@@ -359,7 +371,7 @@
                         <!--关键字部分-->
                         <div style="margin-top:10px;">
 
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400;font-size: 18px; margin-left:15px;">编程开发语言</span>
+                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400;font-size: 18px; margin-left:15px;" title="16">编程开发语言</span>
                             <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400;font-size: 18px;  margin-left:15px;">C#</span>
 
 
@@ -582,5 +594,6 @@
 
     <script src="../js/Function.js"></script>
 </body>
+
 
 </html>
