@@ -12,15 +12,29 @@
     <title></title>
 </head>
 <body>
-    
+
     <header></header>
     <main>
-        
+
         <button name="forward">前一页</button>
         <button name="back">后一页</button>
         <a href="http://17bang.ren">content</a>
         <input type="text" name="" value="" />
         <button name="skip">转到</button>
+        <div>
+            <label><input type="checkbox" name="name" value="" id="checkAll" />全选</label>
+            <label><input type="checkbox" name="name" value="" />1</label>
+            <label><input type="checkbox" name="name" value="" />2</label>
+            <label><input type="checkbox" name="name" value="" />3</label>
+            <label><input type="checkbox" name="name" value="" />4</label>
+            <label><input type="checkbox" name="name" value="" />5</label>
+            <label><input type="checkbox" name="name" value="" />6</label>
+            <label><input type="checkbox" name="name" value="" />7</label>
+            <label><input type="checkbox" name="name" value="" />8</label>
+            <label><input type="checkbox" name="name" value="" />9</label>
+
+        </div>
+
     </main>
     <footer></footer>
     <script>
@@ -31,7 +45,7 @@
         document.getElementsByName("back")[0].addEventListener("click", function (event) {
             history.back();
         });
-        //一个a标签，点击不会跳转到href指定页面，而是将href的值赋值给下面的一个文本框， 
+        //一个a标签，点击不会跳转到href指定页面，而是将href的值赋值给下面的一个文本框，
         document.getElementsByTagName("a")[0].addEventListener("click", function (event) {
             event.preventDefault();
             this.nextElementSibling.value = this.href;
@@ -39,6 +53,19 @@
         //一个“转到”按钮，点击该按钮页面可跳转到文本框指定的网址页面
         document.getElementsByName("skip")[0].addEventListener("click", function (event) {
             location.href = this.previousElementSibling.value;
+        })
+        //参考消息页面：完成勾选全选功能
+        document.getElementById("checkAll").addEventListener("click", function (event) {
+            if (this.checked) {
+                for (let i = 0; i < document.getElementsByTagName("input").length; i++) {
+                    document.getElementsByTagName("input")[i].checked = true;
+                }
+            } else {
+                for (let i = 0; i < document.getElementsByTagName("input").length; i++) {
+                    document.getElementsByTagName("input")[i].checked = false;
+                }
+            }
+
         })
     </script>
 </body>

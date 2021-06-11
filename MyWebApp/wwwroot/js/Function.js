@@ -385,3 +385,4 @@
         smallBell[0].style ="color:#1a1818"
     },2000)
 }
+
