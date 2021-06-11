@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <script src="../js/MyJSFile .js"></script>
-    <script src="../js/Function.js"></script>
+    <!--<script src="../js/Function.js"></script>-->
     <!--<script>
         var slogan = "键盘敲烂,月薪过万!";
         alert(slogan);
@@ -12,6 +12,34 @@
     <title></title>
 </head>
 <body>
-
+    
+    <header></header>
+    <main>
+        
+        <button name="forward">前一页</button>
+        <button name="back">后一页</button>
+        <a href="http://17bang.ren">content</a>
+        <input type="text" name="" value="" />
+        <button name="skip">转到</button>
+    </main>
+    <footer></footer>
+    <script>
+        //一个“前一页”按钮，点击可以跳到上一页；一个“下一页”按钮，点击可以跳到下一页；
+        document.getElementsByName("forward")[0].addEventListener("click", function (event) {
+            history.forward();
+        });
+        document.getElementsByName("back")[0].addEventListener("click", function (event) {
+            history.back();
+        });
+        //一个a标签，点击不会跳转到href指定页面，而是将href的值赋值给下面的一个文本框， 
+        document.getElementsByTagName("a")[0].addEventListener("click", function (event) {
+            event.preventDefault();
+            this.nextElementSibling.value = this.href;
+        });
+        //一个“转到”按钮，点击该按钮页面可跳转到文本框指定的网址页面
+        document.getElementsByName("skip")[0].addEventListener("click", function (event) {
+            location.href = this.previousElementSibling.value;
+        })
+    </script>
 </body>
 </html>
