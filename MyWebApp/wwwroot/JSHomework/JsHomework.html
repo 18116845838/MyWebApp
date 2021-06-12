@@ -80,7 +80,25 @@
             }
 
         })
+        //参考求助首页侧边栏“免费广告发布”弹出Modal，实现（不需要弹出Modal）：
+        //根据下拉列表选中项，填充“文字内容”和“链接”文本框
+        //勾选修改的checkbox，实现“文字内容”和“链接”文本框的禁用和启用
+        let textContent = document.getElementById("textContent");
+        let textLink = document.getElementById("textLink");
+        document.getElementById("checkbox").addEventListener("click", function () {
+            textContent.disabled = !this.checked;
+            textLink.disabled = !this.checked;
+        })
+
+        let select = document.getElementsByTagName("select")[0];
+        select.addEventListener("change", function (event) {
+            textContent.value = this.selectedOptions[0].innerText;
+            textLink.value = this.value;
+
+        })
        
+
+
     </script>
 </body>
 </html>
