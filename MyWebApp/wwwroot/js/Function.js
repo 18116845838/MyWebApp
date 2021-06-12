@@ -377,12 +377,12 @@
 //实现铃铛（没有学bootstrap的同学用文字代替）闪烁效果
 {
     let smallBell = document.getElementsByClassName("bi bi-bell-fill");
-   
+
     setInterval(function () {
         smallBell[0].style = "color:rebeccapurple";
     }, 1000);
     setInterval(function () {
-        smallBell[0].style ="color:#1a1818"
-    },2000)
+        smallBell[0].style = "color:#1a1818"
+    }, 2000)
 }
 

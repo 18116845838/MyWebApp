@@ -9,6 +9,7 @@
         var slogan = "键盘敲烂,月薪过万!";
         alert(slogan);
     </script>-->
+    <link href="../lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <title></title>
 </head>
 <body>
@@ -35,16 +36,29 @@
             之前用过的广告<br />
             <select>
                 <option value="http://www.17bang.ren">17bang</option>
-                <option value="https://localhost:44373/FAQ/Register.html" >注册</option>
+                <option value="https://localhost:44373/FAQ/Register.html">注册</option>
                 <option value="https://localhost:44373/Log/On.html">登录</option>
                 <option value="value" selected>使用过的广告</option>
             </select>
-            <label><input type="checkbox" name="name" value="" id="checkbox"/>修改</label><br />
+            <label><input type="checkbox" name="name" value="" id="checkbox" />修改</label><br />
             文字内容：（* 必填）<br />
-            <label><input type="text"  name="name" value="" placeholder="最多不超过24个字符" id="textContent"/></label><br />
+            <label><input type="text" name="name" value="" placeholder="最多不超过24个字符" id="textContent" /></label><br />
             链接：（* 必填）<br />
-            <label><input type="text" name="name" value=""placeholder="http或者https开头的网址" id="textLink" /></label><br />
+            <label><input type="text" name="name" value="" placeholder="http或者https开头的网址" id="textLink" /></label><br />
 
+        </div>
+        <hr />
+        <div>
+            <div id="div"></div>
+            <select id="primaryKeyword">
+                <option value="一级关键字">--1级关键字--</option>
+                <option value="编程开发语言">编程开发语言</option>
+                <option value="工具软件">工具软件</option>
+                <option value="操作系统">操作系统</option>
+            </select>
+            <select id="secondaryKeyword">
+                <option value="value">--二级关键字--</option>
+            </select>
         </div>
 
 
@@ -96,8 +110,71 @@
             textLink.value = this.value;
 
         })
-       
+        //参考发布求助，实现其关键字功能：
 
+        // 没有选择一级关键字，不能选择二级关键字
+        // 选择一级关键字后，二级关键字只能是一级关键字下的子集
+        //一级关键字和二级关键字被选中后，会显示在下拉列表上方
+        //  自定义关键字输入完成后（按空格键），输入的关键字显示在下拉列表上方
+        //后输入的关键字显示在前面
+
+
+        document.getElementById('primaryKeyword').addEventListener('change', function () {
+            let subset = document.getElementById("secondaryKeyword").getElementsByTagName("option");
+
+
+
+
+            let tools = ['VisualStudio', 'IDEA ', 'Word'];
+            let systems = ['Linux', 'Windows', 'Android']
+            let languages = ['c#', 'java', 'js', 'css'];
+
+            function Delete() {
+                while (subset.length > 1) {
+                    subset[subset.length - 1].remove();
+                }
+            }
+            function append(array) {
+                for (var i = 0; i < array.length; i++) {
+                    let option = document.createElement("option");
+
+                    let text = document.createTextNode(array[i]);
+                    option.appendChild(text);
+                    document.getElementById("secondaryKeyword").appendChild(option);
+                }
+
+            }
+
+            if (this.value == '一级关键字') {
+                Delete();
+            } else if (this.value == '编程开发语言') {
+                Delete();
+                append(languages);
+                add(this);
+            } else if (this.value == '工具软件') {
+                Delete();
+                append(tools);
+                add(this);
+            } else {
+                Delete();
+                append(systems);
+                add(this);
+            }
+        })
+        //添加标签
+        var add = function add() {
+            let span = document.createElement("span");
+            span.className = "badge badge-dark";
+            let text = arguments[0].value;
+            span.textContent = text;
+            span.onclick = function () {
+                this.remove();
+            }
+            document.getElementById('div').prepend(span);
+        }
+        document.getElementById("secondaryKeyword").addEventListener("change", function () {
+            add(document.getElementById("secondaryKeyword"));
+        });
 
     </script>
 </body>
