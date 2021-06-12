@@ -12,8 +12,6 @@
     <title></title>
 </head>
 <body>
-
-    <header></header>
     <main>
 
         <button name="forward">前一页</button>
@@ -32,11 +30,26 @@
             <label><input type="checkbox" name="name" value="" />7</label>
             <label><input type="checkbox" name="name" value="" />8</label>
             <label><input type="checkbox" name="name" value="" />9</label>
+        </div>
+        <div>
+            之前用过的广告<br />
+            <select>
+                <option value="http://www.17bang.ren">17bang</option>
+                <option value="https://localhost:44373/FAQ/Register.html" >注册</option>
+                <option value="https://localhost:44373/Log/On.html">登录</option>
+                <option value="value" selected>使用过的广告</option>
+            </select>
+            <label><input type="checkbox" name="name" value="" id="checkbox"/>修改</label><br />
+            文字内容：（* 必填）<br />
+            <label><input type="text"  name="name" value="" placeholder="最多不超过24个字符" id="textContent"/></label><br />
+            链接：（* 必填）<br />
+            <label><input type="text" name="name" value=""placeholder="http或者https开头的网址" id="textLink" /></label><br />
 
         </div>
 
+
+
     </main>
-    <footer></footer>
     <script>
         //一个“前一页”按钮，点击可以跳到上一页；一个“下一页”按钮，点击可以跳到下一页；
         document.getElementsByName("forward")[0].addEventListener("click", function (event) {
@@ -67,6 +80,7 @@
             }
 
         })
+       
     </script>
 </body>
 </html>

@@ -141,7 +141,7 @@
 
                         <div class="form-group">
                             <label for="formGroupExampleInput2">用户名：（* 必填）</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="登陆用户名，可修改，不能重复">
+                            <input type="text" class="form-control" id="userName" placeholder="登陆用户名，可修改，不能重复">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">密码：（* 必填）</label>
@@ -162,10 +162,10 @@
                                 点击输入框显示
                             </span>
                         </span>
-                        <button type="submit" class="btn btn-primary">提交</button>
+                        <button type="submit" id="submit" class="btn btn-primary">提交</button>
                         <button type="reset" class="btn btn-primary" style="background-color:#ffffff ;color:black">重置</button>
                         <a href="../Log/On.html" class="pull-right"><i class="fa fa-sign-in"></i>登录</a>
-                     
+
                     </form>
                 </div>
                 <div class="col-7">
@@ -211,14 +211,59 @@
 
     </footer>
     <script>
-        let password = document.getElementById("password");
-        let ConfirmPassword = document.getElementById("ConfirmPassword");
-        if (password.value.length < 4) {
-            alert("密码的长度不能小于四");
-        }//else
-        if (ConfirmPassword.value !== password.value) {
-            alert("密码和确认密码必须一致");
-        }//else
+        {
+            //let password = document.getElementById("password");
+            //let ConfirmPassword = document.getElementById("ConfirmPassword");
+            //if (password.value.length < 4) {
+            //  alert("密码的长度不能小于四");
+            //}//else
+            // if (ConfirmPassword.value !== password.value) {
+            //   alert("密码和确认密码必须一致");
+            //}//else
+        }
+
+        {
+            //参考注册页面：
+
+            //提交时，如果用户名重复（已有用户名用数组保存），阻止form提交，提示“用户名重复”。
+            //重新输入用户名，一旦输入用户名部分没有重复，“用户名重复”的提示消失
+            //当用户名或密码等有值时，关闭页面前弹出确认框
+            let array = ['spl', 'C#', 'js', 'css'];
+            let userName = document.getElementById("userName");
+            //阻止form提交
+            document.addEventListener('submit', function (event) {
+                for (var i = 0; i < array.length; i++) {
+                    if (array[i] == userName.value) {
+                        event.preventDefault();
+                    }//else
+                }
+            })
+            userName.onkeyup = function (event) {
+                for (var i = 0; i < array.length; i++) {
+                    if (array[i] == this.value) {
+                        let promptMessage = document.createElement('p');
+                        let value = document.createTextNode('用户名重复');
+                        promptMessage.appendChild(value);
+                        this.parentElement.appendChild(promptMessage);
+                        return;
+                    } else {
+                        if (this.parentElement.getElementsByTagName("p")[0] !== undefined) {
+                            this.parentElement.getElementsByTagName("p")[0].remove();
+                        }//else
+                    }
+                }
+            }
+
+
+
+            window.onbeforeunload = function (event) {
+                if (userName.value.length > 0 || document.getElementById("password").value.length>0) {
+                    return confirm("信息未保存");
+                }//else
+                
+            }
+        }
+
     </script>
 </body>
 </html>
