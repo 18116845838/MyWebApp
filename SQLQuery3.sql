@@ -19,11 +19,13 @@ CREATE TABLE [User]
 [UserName] NVARCHAR(10) NOT NULL,
 [Password] NVARCHAR(10) NOT NULL
 )
+
 CREATE TABLE [Keyword]
 (
 [Name] NVARCHAR(10) NOT NULL,
 [Used] INT NOT NULL
 )
+
 --为User表添加一列：邀请人（InvitedBy），类型为INT
 --将InvitedBy类型修改为NVARCHAR(10)
 --删除列Inv
@@ -33,3 +35,25 @@ ALTER TABLE [User]
 ALTER COLUMN [InvitedBy] NVARCHAR(10);
 
 ALTER TABLE [User] DROP COLUMN [INvitedBy];
+
+-- 观察“一起帮”的发布求助功能，试着建立表Problem，包含：
+
+--    Id
+--    Title（标题）
+--    Content（正文）
+--    NeedRemoteHelp（需要远程求助）
+--    Reward（悬赏）
+--    PublishDateTime（发布时间）……
+
+--请为这些列选择合适的数据类型。
+
+CREATE TABLE [Problem]
+(
+Id INT NOT NULL PRIMARY KEY,
+Title TEXT NOT NULL,
+Content TEXT ,
+NeedRemoteHelp BIT,
+Reward INT,
+PUblishDateTime DATETIME
+)
+
