@@ -179,3 +179,46 @@ WHERE EXISTS (SELECT *FROM Problem WHERE Id>10)
   WHERE Used%2<>0
   ROLLBACK
   COMMIT
+
+--  在User表上的基础上：
+--    添加Id列，让Id成为主键
+--    添加约束，让UserName不能重复
+DELETE [User]	
+ALTER TABLE [User]  NOCHECK CONSTRAINT ALL
+ALTER TABLE [User]  CHECK CONSTRAINT ALL
+ALTER TABLE [User]
+
+ADD  CONSTRAINT PK PRIMARY KEY(Id)
+INSERT [User](Id,UserName,[Password])VALUES(NULL,'',12334)
+ALTER TABLE [User]
+--ADD Id INT
+
+--UPDATE [User] SET Id=1
+--WHERE UserName=N'Admin'
+--ALTER COLUMN Id INT NOT NULL
+ADD CONSTRAINT PK_Ids PRIMARY KEY(id)
+
+
+ALTER TABLE [User] NOCHECK CONSTRAINT ALL;
+ALTER TABLE [User] CHECK CONSTRAINT ALL;
+ALTER TABLE [User]
+ADD CONSTRAINT UE_UserName UNIQUE(UserName)
+SELECT * FROM [User]
+
+
+--在Problem表的基础上：
+
+--    为NeedRemoteHelp添加NOT NULL约束，再删除NeedRemoteHelp上NOT NULL的约束
+--    添加自定义约束，让Reward不能小于10
+ALTER TABLE Problem NOCHECK CONSTRAINT ALL
+ALTER TABLE Problem
+--DELETE  Problem
+--ALTER COLUMN NeedRemoteHelp BIT NOT NULL
+ALTER COLUMN NeedRemoteHelp BIT NULL
+SELECT * FROM Problem
+ALTER TABLE Problem
+ADD CONSTRAINT CK_Reward CHECK(Reward>10)
+INSERT Problem(Id,Title,Content,Reward,PUblishDateTime,NeedRemoteHelp)
+VALUES(1,2,2,12,'1999-10-10',1)
+
+
