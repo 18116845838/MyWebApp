@@ -221,4 +221,105 @@ ADD CONSTRAINT CK_Reward CHECK(Reward>10)
 INSERT Problem(Id,Title,Content,Reward,PUblishDateTime,NeedRemoteHelp)
 VALUES(1,2,2,12,'1999-10-10',1)
 
+-- 观察一起帮的“关键字”功能，新建Keyword表，要求带一个自增的主键Id，起始值为10，步长为5；并存入若干条数据
+--将User表中Id列修改为可存储GUID的类型，并存入若干条包含GUID值的数据
+DROP TABLE Keyword
+
+CREATE TABLE Keyword
+(
+Id INT IDENTITY(10,5) PRIMARY KEY, 
+[Name] NVARCHAR(10)
+)
+INSERT Keyword([Name]) VALUES('C#');
+INSERT Keyword([Name]) VALUES('CSS');
+INSERT Keyword([Name]) VALUES('sql');
+DELETE Keyword
+SELECT * FROM Keyword
+SET IDENTITY_INSERT Keyword ON
+SET IDENTITY_INSERT Keyword OFF
+ALTER TABLE Keyword
+--DROP COLUMN Id  
+--DROP [PK__Keyword__3214EC070A822F73]
+ADD  Id CHAR(40) 
+
+INSERT Keyword(Id,[Name]) VALUES(NEWID(),'C#');
+INSERT Keyword(Id,[Name])  VALUES(NEWID(),'CSS');
+INSERT Keyword(Id,[Name])  VALUES(NEWID(),'SQL');
+--Problem表已有Id列，如何给该列加上IDENTITY属性？
+
+--在Problem中插入不同作者（Author）不同悬赏（Reward）的若干条数据，以便能完成以下操作： 
+--ADD Author NVARCHAR(10)
+INSERT Problem(Id,Title,Content,Reward,NeedRemoteHelp,Author)
+VALUES(15,N'C#进阶',N'.....',16,1,N'飞哥')
+INSERT Problem(Id,Title,Content,Reward,NeedRemoteHelp,Author)
+VALUES(16,N'JS语法',N'.....',66,1,N'飞哥')
+INSERT Problem(Id,Title,Content,Reward,NeedRemoteHelp,Author)
+VALUES(17,N'CSS浮动',N'.....',77,1,N'小鱼')
+INSERT Problem(Id,Title,Content,Reward,NeedRemoteHelp,Author)
+VALUES(18,N'C#基础',N'.....',25,1,N'飞哥')
+INSERT Problem(Id,Title,Content,Reward,NeedRemoteHelp,Author)
+VALUES(19,N'JAVA环境搭配',N'.....',101,1,N'飞哥')
+INSERT Problem(Id,Title,Content,Reward,NeedRemoteHelp,Author)
+VALUES(20,N'SQL语法',N'.....',123,1,N'小鱼')
+INSERT Problem(Id,Title,Content,Reward,NeedRemoteHelp,Author)
+VALUES(21,N'JS事件',N'.....',196,1,N'小鱼')
+INSERT Problem(Id,Title,Content,Reward,NeedRemoteHelp,Author)
+VALUES(22,N'JS回调函数',N'.....',67,1,N'小鱼')
+INSERT Problem(Id,Title,Content,Reward,NeedRemoteHelp,Author)
+VALUES(23,N'JS回调函数',N'.....',4,1,N'大鱼')
+INSERT Problem(Id,Title,Content,Reward,NeedRemoteHelp,Author)
+VALUES(24,N'JS回调函数',N'.....',3,1,N'大鱼')
+INSERT Problem(Id,Title,Content,Reward,NeedRemoteHelp,Author)
+VALUES(25,N'JS回调函数',N'.....',9,1,N'大鱼')
+INSERT Problem(Id,Title,Content,Reward,NeedRemoteHelp,Author)
+VALUES(26,N'JS回调函数',N'.....',NULL,1,NULL)
+INSERT Problem(Id,Title,Content,Reward,NeedRemoteHelp,Author)
+VALUES(27,N'JS回调函数',N'.....',NULL,1,NULL)
+INSERT Problem(Id,Title,Content,Reward,NeedRemoteHelp,Author)
+VALUES(28,N'JS回调函数',N'.....',NULL,1,NULL)
+
+-- 查找出Author为“飞哥”的、Reward最多的3条求助
+
+SELECT TOP 3 * FROM Problem
+WHERE Author=N'飞哥' 
+ORDER BY Reward DESC
+
+--所有求助，先按作者“分组”，然后在“分组”中按悬赏从大到小排序
+
+SELECT  Author, SUM(Reward) AS [Reward] FROM Problem
+GROUP BY Author 
+ORDER BY SUM(Reward) DESC
+--查找并统计出每个作者的：求助数量、悬赏总金额和平均值
+SELECT AUthor ,COUNT(*) AS [Count] FROM Problem
+GROUP BY Author
+SELECT AUthor ,SUM(Reward) AS [Sum] FROM Problem
+GROUP BY Author
+SELECT AUthor ,AVG(Reward) AS [Avg] FROM Problem
+GROUP BY Author
+
+--找出平均悬赏值少于10的作者并按平均值从小到大排序
+--ALTER TABLE Problem
+--DROP CONSTRAINT CK_Reward
+SELECT Author, AVG(Reward) AS [Reward] FROM Problem
+GROUP BY Author
+--HAvING AVG(Reward)<10
+ORDER BY AVG(Reward) ASC
+
+--以Problem中的数据为基础，使用SELECT INTO，
+--新建一个Author和Reward都没有NULL值的新表
+--NewProblem （把原Problem里Author或Reward为NULL值的数据删掉） 
+BEGIN TRANSACTION
+SELECT * INTO NewProblem FROM Problem
+WHERE NOT Author  IS NULL AND NOT Reward IS NULL
+ROLLBACK
+COMMIT
+SELECT * FROM Problem
+SELECT * FROM NewProblem
+--使用INSERT SELECT, 将Problem中Reward为NULL的行再次插入到NewProblem中
+BEGIN TRANSACTION
+INSERT NewProblem
+SELECT * FROM Problem
+WHERE Author  IS NULL AND  Reward IS NULL
+ROLLBACK
+COMMIT 
 
