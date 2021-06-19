@@ -323,3 +323,55 @@ WHERE Author  IS NULL AND  Reward IS NULL
 ROLLBACK
 COMMIT 
 
+-- 新建表Message(Id, FromUser, ToUser, UrgentLevel, Kind, HasRead, IsDelete, Content)，使用该表和SQL语句，证明：
+--    唯一约束依赖于唯一索引
+--    主键上可以是非聚集索引
+--并利用“执行计划”图演示说明：Scan、Seek和Lookup的使用和区别。
+
+USE [17bang]
+CREATE TABLE [Message]
+(
+Id INT IDENTITY(1,1) PRIMARY KEY,
+FromUser NVARCHAR(10),
+ToUser NVARCHAR(10),
+UrgentLevel INT,
+Kind NVARCHAR(10),
+HasRead BIT,
+isDelete BIT,
+Content TEXT
+)
+
+INSERT [Message](FromUser,ToUser,UrgentLevel,Kind,HasRead,isDelete,Content)
+VALUES(N'飞哥',N'自由飞',1,NULL,1,1,N'......')
+INSERT [Message](FromUser,ToUser,UrgentLevel,Kind,HasRead,isDelete,Content)
+VALUES(N'大飞哥',N'自由飞',1,NULL,1,1,N'......')
+INSERT [Message](FromUser,ToUser,UrgentLevel,Kind,HasRead,isDelete,Content)
+VALUES(N'小鱼',N'自由飞',1,NULL,1,1,N'......')
+
+--删除主键约束
+ALTER TABLE [Message]
+DROP CONSTRAINT [PK__Message__3214EC07AF2B02FF]
+--添加唯一聚集索引
+CREATE CLUSTERED INDEX IX_Message_Kind ON [Message](Kind)
+--在主键上面添加非聚集索引
+ALTER TABLE [Message]
+ADD CONSTRAINT PK_ID PRIMARY KEY(Id)
+CREATE INDEX IX_Message_ID ON[Message](Id)
+DROP INDEX [Message].IX_Message_ID 
+
+--添加唯一约束
+ALTER TABLE [Message]
+ADD CONSTRAINT UQ_Message_FromUser UNIQUE(FromUser);
+--建立唯一索引
+CREATE UNIQUE INDEX IX_Message_FromUser ON[Message](FromUser)
+SELECT [name],[type] FROM sys.indexes
+WHERE OBJECT_ID=OBJECT_ID('Message')
+
+CREATE CLUSTERED INDEX IX_Message_ID ON[Message](Id)
+CREATE INDEX IX_Message_TOUser ON[Message](ToUser)
+CREATE INDEX IX_Message_IsDelete ON[Message](isDelete)
+
+--当在所有表中查询某一个非聚集索引的数据时，会进行lookup再次查询
+SELECT * FROM [Message]
+WHERE Id=3
+--WHERE FromUser LIKE N'%飞%'
