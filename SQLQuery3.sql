@@ -375,3 +375,28 @@ CREATE INDEX IX_Message_IsDelete ON[Message](isDelete)
 SELECT * FROM [Message]
 WHERE Id=3
 --WHERE FromUser LIKE N'%飞%'
+
+--建立主表
+
+CREATE TABLE Teacher
+(
+Id INT PRIMARY KEY IDENTITY(1,1),
+[Name] NVARCHAR(10)
+)
+--建立从表并添加外键约束
+
+CREATE TABLE Student
+(
+--级联 在主表被删除是自动删除所有从表数据 ON DELETE CASCADE
+Id INT IDENTITY(1,1) PRIMARY KEY CONSTRAINT FK_Teacher_ID REFERENCES teacher(Id) ON DELETE CASCADE,
+  
+[name] NVARCHAR(10)
+)
+DROP TABLE Student
+--添加外键约束
+
+ALTER TABLE Student
+--ALTER COLUMN [name] INT 
+--ADD TeacherID INT
+ADD CONSTRAINT FK_Teacher_ID FOREIGN KEY(ID) REFERENCES Teacher(Id) ON UPDATE SET NULL
+--DROP COLUMN TeacherID 
