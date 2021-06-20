@@ -400,3 +400,156 @@ ALTER TABLE Student
 --ADD TeacherID INT
 ADD CONSTRAINT FK_Teacher_ID FOREIGN KEY(ID) REFERENCES Teacher(Id) ON UPDATE SET NULL
 --DROP COLUMN TeacherID 
+
+--观察并模拟17bang项目中的：
+
+--    用户资料，新建用户资料（Profile）表，和User形成1:1关联（有无约束？）。用SQL语句演示：
+
+--        新建一个填写了用户资料的注册用户
+
+BEGIN TRANSACTION
+CREATE TABLE [Profile]
+(
+[UserID] INT PRIMARY KEY CLUSTERED  CONSTRAINT FK_User_ID FOREIGN KEY REFERENCES [User](ID) ON DELETE CASCADE, 
+Gender BIT ,
+Birthday DATE,
+SelfIntroduction NVARCHAR(400)
+)
+ROLLBACK
+COMMIT
+USE [17bang]
+SELECT * FROM [User]
+SELECT * FROM [Profile]
+
+--        通过Id查找获得某注册用户及其用户资料
+
+UPDATE [User] SET [Password]=4321
+WHERE Id=1
+INSERT [User] (Id, UserName,[Password]) VALUES(2, N'飞哥',123456)
+INSERT [User] (Id, UserName,[Password]) VALUES(3, N'小鱼',1234564)
+INSERT [User] (Id, UserName,[Password]) VALUES(4, N'张志民',1234567)
+--
+INSERT [Profile](UserID,Gender,Birthday,SelfIntroduction)
+VALUES(0,NULL,'1970-1-1',N'......')
+INSERT [Profile](UserID,Gender,Birthday,SelfIntroduction)
+VALUES(1,NULL,'1970-1-1',N'......')
+INSERT [Profile](UserID,Gender,Birthday,SelfIntroduction)
+VALUES(2,1,'1970-1-1',N'......')
+INSERT [Profile](UserID,Gender,Birthday,SelfIntroduction)
+VALUES(3,1,'1970-1-1',N'......')
+INSERT [Profile](UserID,Gender,Birthday,SelfIntroduction)
+VALUES(4,1,'1970-1-1',N'......')
+
+SELECT * FROM [User],[Profile]
+WHERE Id=1 AND [UserID]=1
+--        删除某个Id的注册用户
+
+BEGIN TRANSACTION
+DELETE [User]
+WHERE Id=1
+ROLLBACK
+COMMIT
+--帮帮点说明：新建Credit表，可以记录用户的每一次积分获得过程，即
+--：某个用户，在某个时间，因为某某原因，获得若干积分 
+CREATE TABLE Creait
+(
+[UserID] INT,
+[DateTime] DATETIME,
+Access NVARCHAR(30),
+Integral INT 
+)
+BEGIN TRANSACTION
+ALTER TABLE Creait
+ADD CONSTRAINT FK_Creait_User_ID FOREIGN KEY(UserID) REFERENCES [User](Id) ON DELETE CASCADE
+ROLLBACK
+COMMIT
+
+INSERT Creait([UserID],[DATETIME],Access,Integral) VALUES(0,'2020-10-10',N'点赞',10)
+INSERT Creait([UserID],[DATETIME],Access,Integral) VALUES(0,'2020-10-10',N'评论',20)
+INSERT Creait([UserID],[DATETIME],Access,Integral) VALUES(0,'2020-10-10',N'点赞',10)
+INSERT Creait([UserID],[DATETIME],Access,Integral) VALUES(2,'2020-10-10',N'发布文章',40)
+INSERT Creait([UserID],[DATETIME],Access,Integral) VALUES(2,'2020-10-10',N'发布求助',30)
+INSERT Creait([UserID],[DATETIME],Access,Integral) VALUES(3,'2020-10-10',N'点赞',10)
+INSERT Creait([UserID],[DATETIME],Access,Integral) VALUES(4,'2020-10-10',N'评论',20)
+INSERT Creait([UserID],[DATETIME],Access,Integral) VALUES(3,'2020-10-10',N'点赞',10)
+SELECT * FROM Creait
+
+ --发布求助，在Problem和User之间建立1:n关联（含约束）。用SQL语句演示：
+
+ --   某用户发布一篇求助，
+ --   将该求助的作者改成另外一个用户
+ --   删除该用户
+ SELECT * FROM Problem
+ ALTER TABLE Problem
+ADD UserID INT CONSTRAINT FK_Problem_User_ID FOREIGN KEY REFERENCES [User](Id) ON DELETE CASCADE 
+ --DROP COLUMN UserID
+ INSERT Problem (Id,Title,Content,Reward,PUblishDateTime,NeedRemoteHelp,Author,UserID)
+ VALUES (29,N'sql表之间的关系',N'....',100,'2021-4-19',1,N'飞哥',2)
+ BEGIN TRANSACTION
+ --UPDATE Problem SET UserID=3
+ DELETE Problem
+ WHERE Id=29
+ ROLLBACK
+ COMMIT
+
+  --求助列表：新建Keyword表，和Problem形成n:n关联（含约束）。用SQL语句演示：
+
+  SELECT * FROM Keyword
+  SELECT * FROM [User]
+  TRUNCATE TABLE Keyword
+ALTER TABLE Keyword
+--ALTER COLUMN Id INT NOT NULL
+ADD CONSTRAINT PK_KeyID  PRIMARY KEY(Id) 
+
+INSERT Keyword(Id,[Name]) VALUES(1,N'C#');
+INSERT Keyword(Id,[Name]) VALUES(2,N'SQL');
+INSERT Keyword(Id,[Name]) VALUES(3,N'Js');
+INSERT Keyword(Id,[Name]) VALUES(4,N'CSS');
+--新建一张表用来建立关系
+
+CREATE TABLE Problem2Keyword
+(
+ProblemID INT,
+KeywordID INT
+)
+
+ALTER TABLE Problem2Keyword
+--ADD CONSTRAINT FK_ProblemID FOREIGN KEY(ProblemID) REFERENCES Problem(ID) ON DELETE CASCADE
+ADD CONSTRAINT FK_KeywordID FOREIGN KEY(KeywordID) REFERENCES Keyword(Id) ON DELETE CASCADE
+
+INSERT Problem2Keyword(ProblemID,KeywordID) VALUES(15,1)
+INSERT Problem2Keyword(ProblemID,KeywordID) VALUES(15,2)
+INSERT Problem2Keyword(ProblemID,KeywordID) VALUES(15,3)
+INSERT Problem2Keyword(ProblemID,KeywordID) VALUES(16,3)
+INSERT Problem2Keyword(ProblemID,KeywordID) VALUES(17,4)
+INSERT Problem2Keyword(ProblemID,KeywordID) VALUES(18,1)
+INSERT Problem2Keyword(ProblemID,KeywordID) VALUES(20,2)
+INSERT Problem2Keyword(ProblemID,KeywordID) VALUES(21,3)
+INSERT Problem2Keyword(ProblemID,KeywordID) VALUES(22,3)
+INSERT Problem2Keyword(ProblemID,KeywordID) VALUES(23,3)
+INSERT Problem2Keyword(ProblemID,KeywordID) VALUES(24,3)
+INSERT Problem2Keyword(ProblemID,KeywordID) VALUES(25,3)
+INSERT Problem2Keyword(ProblemID,KeywordID) VALUES(25,1)
+INSERT Problem2Keyword(ProblemID,KeywordID) VALUES(25,1)
+INSERT Problem2Keyword(ProblemID,KeywordID) VALUES(25,1)
+
+  --  查询获得：某求助使用了多少关键字，某关键字被多少求助使用
+
+SELECT KeywordID ,COUNT(KeywordID) AS Problem FROM Problem2Keyword
+GROUP BY KeywordID
+SELECT ProblemID,COUNT(ProblemID) AS Keyword FROM Problem2Keyword
+GROUP BY ProblemID
+
+  --  发布了一个使用了若干个关键字的求助
+INSERT Problem2Keyword(ProblemID,KeywordID) VALUES(26,1)
+INSERT Problem2Keyword(ProblemID,KeywordID) VALUES(26,2)
+INSERT Problem2Keyword(ProblemID,KeywordID) VALUES(26,3)
+INSERT Problem2Keyword(ProblemID,KeywordID) VALUES(26,4)
+
+  --  该求助不再使用某个关键字
+  --  删除该求助
+  --  删除某关键字
+DELETE Problem2Keyword
+  WHERE ProblemID =26 
+  --AND KeywordID=4
+SELECT * FROM Problem2Keyword
