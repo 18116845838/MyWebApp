@@ -548,8 +548,101 @@ INSERT Problem2Keyword(ProblemID,KeywordID) VALUES(26,4)
 
   --  该求助不再使用某个关键字
   --  删除该求助
-  --  删除某关键字
+
 DELETE Problem2Keyword
   WHERE ProblemID =26 
   --AND KeywordID=4
+    --  删除某关键字
+DELETE Problem
+WHERE Id= 4
 SELECT * FROM Problem2Keyword
+SELECT * FROM Keyword
+
+--联表查出求助的标题和作者用户名 
+SELECT * FROM Problem
+SELECT * FROM [User]
+SELECT u.Id,p.Title,p.Author FROM Problem p
+JOIN [User] u
+ON P.UserID=u.Id
+
+--查找并删除从未发布过求助的用户
+BEGIN TRANSACTION
+DELETE u FROM [User] u
+LEFT JOIN Problem P
+ON u.Id=p.UserID
+WHERE Title IS NULL
+ROLLBACK
+COMMIT
+
+--用一句SELECT显示出用户和他的邀请人用户名
+ALTER TABLE [User]
+ADD INVITEDBY INT 
+SELECT *FROM [user]U1 JOIN [User] U2
+ON U1.Id=u2.Id
+
+--17bang的关键字有“一级”“二级”和其他“普通（三）级”的区别：
+--    请在表Keyword中添加一个字段，记录这种关系
+--    然后用一个SELECT语句查出所有普通关键字的上一级、以及上上一级的关键字名称，比如：
+
+SELECT k1.[Name],k2.[Name],k3.[Name] FROM Keyword K1 
+LEFT JOIN Keyword K2 ON K1.Grade= K2.Id
+LEFT JOIN Keyword K3 ON K2.Grade =k3.Id
+
+
+ALTER TABLE Keyword
+ADD Grade INT
+
+SELECT *FROM Keyword
+INSERT Keyword(Id,[Name],Grade) VALUES (5,N'编程语言',NULL)
+INSERT Keyword(Id,[Name],Grade) VALUES (6,N'开发工具',NULL)
+INSERT Keyword(Id,[Name],Grade) VALUES (7,N'VS',6)
+INSERT Keyword(Id,[Name],Grade) VALUES (8,N'HB',6)
+INSERT Keyword(Id,[Name],Grade) VALUES (9,N'VSCODE',6)
+INSERT Keyword(Id,[Name],Grade) VALUES (12,N'事务',30)
+INSERT Keyword(Id,[Name],Grade) VALUES (11,N'JOIN',30)
+INSERT Keyword(Id,[Name],Grade) VALUES (30,N'三级关键字',NULL)
+
+
+--17bang中除了求助（Problem），还有意见建议（Suggest）和文章（Article），
+--他们都包含Title、Content、PublishTime和Auhthor四个字段，但是：
+--    建议和文章没有悬赏（Reward）
+--    建议多一个类型：Kind NVARCHAR(20)）
+--    文章多一个分类：Category INT）
+--请按上述描述建表。然后，用一个SQL语句显示某用户发表的求助、建议和文章的Title、Content，并按PublishTime降序排列 
+USE [17bang]
+CREATE TABLE Suggest
+(
+Title NVARCHAR(20),
+Content NVARCHAR(400),
+PublishTime DATETIME ,
+Kind NVARCHAR (20),
+AuhthorID INT CONSTRAINT FK_Suggest_AuhthorID FOREIGN KEY REFERENCES [User](Id)
+
+)
+CREATE TABLE Article
+(
+Title NVARCHAR(20),
+Content NVARCHAR(400),
+PublishTime DATETIME ,
+Category INT,
+AuhthorID INT CONSTRAINT FK_Article_AuhthorID FOREIGN KEY REFERENCES [User](Id)
+
+)
+SELECT * FROM Article
+SELECT * FROM Suggest
+
+select * from (
+SELECT P.Title,p.Content,p.PUblishDateTime,p.UserID FROM Problem P
+--WHERE p.UserID=2
+UNION ALL
+SELECT A.Title,a.Content,a.PublishTime,A.AuhthorID FROM Article A
+--WHERE A.AuhthorID=2
+UNION ALL
+SELECT s.Title,s.Content,s.PublishTime,S.AuhthorID FROM Suggest S
+--WHERE s.AuhthorID=2
+) T
+Where T.UserID=2
+ORDER BY T.PUblishDateTime DESC
+
+
+
