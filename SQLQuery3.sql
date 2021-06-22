@@ -644,5 +644,79 @@ SELECT s.Title,s.Content,s.PublishTime,S.AuhthorID FROM Suggest S
 Where T.UserID=2
 ORDER BY T.PUblishDateTime DESC
 
+ --为求助添加一个发布时间（TPublishTime），使用子查询：
+
+ USE [17bang]
+ SELECT * FROM Problem
+ ALTER TABLE Problem
+ ADD TPublishTime DATETIME
+
+ --   删除每个作者悬赏最低的求助
+
+ BEGIN TRANSACTION
+DELETE Problem
+WHERE Reward IN (
+SELECT MIN(Reward) FROM Problem  WHERE Author IS NOT NULL GROUP BY UserID
+)
+  ROLLBACK
+  COMMIT
+
+   --   找到从未成为邀请人的用户
+   SELECT Author FROM Problem
+  
+   SELECT * FROM  [User] 
+   SELECT * FROM  [User] U1
+   WHERE Id NOT IN(
+   SELECT INVITEDBY FROM [User]U2
+	WHERE INVITEDBY IS NOT NULL 
+   )
+
+ --   如果一篇求助的关键字大于3个，将它的悬赏值翻倍
+ BEGIN TRANSACTION
+ UPDATE Problem SET Reward*=2
+ WHERE Id IN
+ (
+	SELECT ProblemID FROM Problem2Keyword
+	GROUP BY ProblemID
+	HAVING COUNT(ProblemID)>3
+	)
+	ROLLBACK
+	COMMIT
+	 SELECT * FROM Problem
+	 SELECT * FROM Problem2Keyword
+	 SELECT * FROM Keyword
+
+ --   查出所有发布一篇以上（不含一篇）文章的用户信息
+ SELECT * FROM [User]
+ WHERE ID IN(
+ SELECT UserID FROM Problem
+ GROUP BY UserID
+ HAVING  COUNT(UserID)>1
+ )
+
+ --   查找每个作者最近发布的一篇文章
+ Use [17bang]
+
+ SELECT * FROM Problem P1
+ WHERE PUblishDateTime IN
+ (
+ SELECT MAX(PUblishDateTime) FROM Problem P2
+ WHERE p1.Author=P2.Author
+ )
+ --   查出每一篇求助的悬赏都大于5个帮帮币的作者
+
+SELECT Author   FROM Problem p2
+GROUP BY Author
+HAVING MIN(Reward)>5
+
+
+
+   --测试
+  SELECT * FROM Problem p1
+WHERE Reward=(
+SELECT MIN(Reward) FROM Problem p2
+WHERE P1.Author=p2.Author
+--GROUP BY (Author)
+)
 
 
