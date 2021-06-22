@@ -718,5 +718,69 @@ SELECT MIN(Reward) FROM Problem p2
 WHERE P1.Author=p2.Author
 --GROUP BY (Author)
 )
+	
+	SELECT ROW_NUMBER ()
+	OVER(
+	PARTITION BY Reward
+	ORDER BY Reward )
+	FROM Problem
+SELECT TOP  2 * FROM Problem p1 
+UNION ALL SELECT * FROM Problem p2 
 
+ --分别使用派生表和CTE，查询求助表（表中只有一列整体的发布时间，没有年月的列），以获得：
 
+ --   一起帮每月各发布了求助多少篇
+ SELECT COUNT(*) Number, [month],[year] FROM(
+ SELECT 
+ MONTH(PUblishDateTime)[month],
+ YEAR(PUblishDateTime)[year]
+ FROM Problem
+ ) myp
+ GROUP BY myp.[month],myp.[year]
+
+ GO
+ WITH MYP
+ AS(
+ SELECT MONTH(PUblishDateTime)[month],
+ YEAR(PUblishDateTime)[year]
+ FROM Problem
+ ) 
+ SELECT COUNT(*),[month],[year] FROM MYP
+ GROUP BY MYP.[month],MYP.[year]
+ --   每个作者，每月发布的，悬赏最多的3篇
+
+ SELECT * FROM (
+	 SELECT *,ROW_NUMBER() OVER(
+	 PARTITION BY MONTH(PUblishDateTime),YEAR(PUblishDateTime),Author
+	 ORDER BY Reward
+	 ) GID FROM Problem
+ ) amyp
+
+ WITH AMYP
+ AS(
+	 SELECT * ,ROW_NUMBER() OVER(
+	  PARTITION BY MONTH(PUblishDateTime),YEAR(PUblishDateTime),Author
+	 ORDER BY Reward) GID FROM Problem
+ )
+ SELECT * FROM AMYP
+ --   每月发布的求助中，悬赏最多的3篇
+
+ SELECT * FROM 
+ (
+	 SELECT *, ROW_NUMBER() OVER
+	 ( PARTITION BY MONTH(PUblishDateTime),YEAR(PUblishDateTime)
+	 ORDER BY Reward) GID FROM Problem
+ ) myrp
+ WHERE myrp.GID<=3
+ GO
+ WITH MYRP
+ AS(
+	 SELECT *, ROW_NUMBER() OVER
+	 (
+	 PARTITION BY MONTH(PUblishDateTime),YEAR(PUblishDateTime)
+	 ORDER BY Reward
+	 ) GID FROM Problem
+ )
+ SELECT * FROM MYRP
+ WHERE MYRP.GID<=3
+ --   分别按发布时间和悬赏数量进行分页查询的结果
