@@ -709,6 +709,111 @@ SELECT Author   FROM Problem p2
 GROUP BY Author
 HAVING MIN(Reward)>5
 
+-- 创建求助的应答表 TResponse(Id, Content, AuthorId, ProblemId, CreateTime)
+CREATE TABLE TResponse
+(
+	Id INT IDENTITY(1,1),
+	Content NVARCHAR(MAX),
+	AuthorID INT CONSTRAINT FK_Tesponse_UserID FOREIGN KEY REFERENCES [User](Id) ON DELETE CASCADE,
+	ProblemID INT CONSTRAINT FK_Tesponse_ProblemID FOREIGN KEY REFERENCES Problem(Id) ON DELETE CASCADE,
+	CreateTime DATETIME
+)
+--然后生成一个视图VResponse(ResponseId, Content, AuthorId, AuthorName, ProblemId, ProblemTitle, CreateTime)，要求该视图：
+--    能展示应答作者的用户名、应答对应求助的标题和作者用户名
+--    只显示求助悬赏值大于5的数据
+--    已被加密
+--    保证其使用的基表结构无法更改
+
+BEGIN TRAN
+GO
+ALTER VIEW VResponse
+(ResponseId, Content, AuthorId, AuthorName, ProblemId, ProblemTitle, CreateTime)
+WITH SCHEMABINDING,ENCRYPTION
+AS SELECT 
+	TR.Id,
+	TR.Content,
+	TR.AuthorID,
+	UT.UserName,
+	TR.ProblemID,
+	P.Title,
+	TR.CreateTime
+	FROM dbo.TResponse TR
+	JOIN dbo.Problem P ON TR.ProblemID =P.Id
+	JOIN dbo.[User] UT ON UT.Id =TR.AuthorID
+	JOIN dbo.[User] UP ON UP.Id= P.UserID
+	WHERE P.Reward >5
+	GO
+	ROLLBACK
+	COMMIT
+
+	SELECT * FROM VResponse
+	SELECT * FROM Problem
+--演示：在VResponse中插入一条数据，却不能在视图中显示
+INSERT VResponse(Content,AuthorId,ProblemId,CreateTime)
+VALUES(N'3333',2,19,'2020-12-19')
+INSERT VResponse(Content,AuthorId,ProblemId,CreateTime)
+VALUES(N'3333',3,21,'2020-12-19')
+--修改VResponse，让其能避免上述情形
+GO
+ALTER VIEW VResponse
+(ResponseId, Content, AuthorId, AuthorName, ProblemId, ProblemTitle, CreateTime)
+WITH SCHEMABINDING,ENCRYPTION
+AS SELECT 
+	TR.Id,
+	TR.Content,
+	TR.AuthorID,
+	UT.UserName,
+	TR.ProblemID,
+	P.Title,
+	TR.CreateTime
+	FROM dbo.TResponse TR
+	JOIN dbo.Problem P ON TR.ProblemID =P.Id
+	JOIN dbo.[User] UT ON UT.Id =TR.AuthorID
+	JOIN dbo.[User] UP ON UP.Id= P.UserID
+	WHERE P.Reward >5
+	WITH CHECK OPTION
+	GO
+		SELECT * FROM VResponse
+--创建视图VProblemKeyword(ProblemId, ProblemTitle, ProblemReward, KeywordAmount)，要求该视图：
+
+--    能反映求助的标题、使用关键字数量和悬赏
+
+GO
+ALTER VIEW VProblemKeyword(ProblemId, ProblemTitle, ProblemReward, KeywordAmount)
+WITH SCHEMABINDING 
+AS SELECT 
+p.Id,p.Title,p.Reward,COUNT_BIG(*) [COUNT]
+FROM dbo.Problem2Keyword P2K
+JOIN dbo.Problem p ON P2K.ProblemID= p.Id
+GROUP BY p.Id,p.Title,p.Reward
+GO
+
+
+
+
+--    在ProblemId上有一个唯一聚集索引
+--    在ProblemReward上有一个非聚集索引
+CREATE UNIQUE CLUSTERED INDEX IX_VProblemKeyword_ProblemId 
+ON VProblemKeyword(ProblemId)
+
+CREATE UNIQUE INDEX IX_VProblemKeyword_ProblemReward
+ON VProblemKeyword(ProblemReward)
+DROP  INDEX  VProblemKeyword.IX_VProblemKeyword_ProblemReward
+SELECT * FROM Keyword
+SELECT * FROM Problem2Keyword
+--在基表中插入/删除数据，观察VProblemKeyword是否相应的发生变化
+BEGIN TRAN
+DELETE Problem
+WHERE id=31
+ROLLBACK
+INSERT Problem
+VALUES(30,N'视图添加option',N'ENCRYPTION',55,'2021-6-22',1,N'飞哥',2,NULL)
+INSERT Problem2Keyword
+VALUES(30,2)
+
+
+SELECT * FROM   VProblemKeyword
+SELECT * FROM   Problem2Keyword
 
 
    --测试
