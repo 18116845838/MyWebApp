@@ -927,3 +927,29 @@ ORDER BY Reward
 OFFSET 0 ROWS
 FETCH NEXT 4 ROWS ONLY  
 
+--用户发布一篇悬赏币若干的求助（TProblem），他（TReigister）的帮帮币（BMoney）
+--也会相应减少，但他的帮帮币总额不能少于0分：请综合使用TRY...CATCH和事务完成上述需求。 
+
+SELECT * FROM BangMoney
+--创建BangMoney表--添加约束
+CREATE TABLE BangMoney
+(
+ID INT NOT NULL PRIMARY KEY,
+Amount INT ,
+Balace INT CONSTRAINT CK_BangMoney_Balace CHECK (Balace>=0),
+UserID INT CONSTRAINT FK_USERID FOREIGN KEY REFERENCES [user](Id) ON DELETE CASCADE,
+)
+UPDATE BangMoney SET Balace = 100
+
+BEGIN TRY
+	BEGIN TRANSACTION
+	INSERT BangMoney VALUES(3,+10,-110,2)
+	COMMIT
+END TRY
+BEGIN CATCH
+	ROLLBACK;
+	THROW;
+END CATCH
+
+DBCC USEROPTIONS
+SELECT @@TRANCOUNT
