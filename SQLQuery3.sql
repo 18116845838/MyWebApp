@@ -1099,9 +1099,9 @@ PRINT @max
 	ELSE 
 	RETURN 2
 
-
-	EXEC UserRegister N'zai此测试' ,123455, 2,1233
-
+	DECLARE @i INT
+	  EXEC @i= UserRegister N'zai此测试' ,125, 2,1233
+	  PRINT @i
 	SELECT * FROM BangMoney
 	SELECT * FROM TRegister
 	SELECT * FROM TMessage
@@ -1120,3 +1120,40 @@ ID INT PRIMARY KEY IDENTITY(1,1),
 )
 DECLARE @INVITERNAME NVARCHAR(20)= SELECT UserName FROM [User] WHERE ID = 2
 PRINT @INVITERNAME
+
+
+--确保Peoblem有发布时间（PublishTime） 和最后更新时间（LatestUpdateTime）两列，创建触发器实现
+
+--1更新一条数据，自动将当前时间计入该行数据的LatestUpdateTime
+  SELECT * FROM Problem
+  ALTER TABLE Problem
+  ADD LatestUpdateTime DATETIME
+
+ALTER  TRIGGER TR_Problem	
+ON Problem    
+ AFTER  UPDATE 
+AS 
+UPDATE Problem SET LatestUpdateTime = GETDATE()
+FROM Problem p JOIN INSERTED i ON P.id= i.id
+SELECT  * FROM INSERTED
+
+UPDATE Problem SET  Reward =15
+WHERE id =105
+--2插入一条数据，自动将当前时间计入该行数据的PublishTime（提示 ：inserted伪表）
+
+ALTER TRIGGER TR_INS_Problem
+ON Problem
+AFTER INSERT 
+AS UPDATE Problem SET PUblishDateTime=GETDATE()
+FROM Problem p JOIN INSERTED i ON P.id =i.id
+--SELECT * FROM INSERTED
+
+INSERT Problem VALUES(117,N'DML触发器',N'INSERTED伪表',100,NULL,1,NULL,NULL,NULL,NULL)
+
+SELECT * FROM Problem
+SELECT * FROM INSERTED
+ROLLBACK
+COMMIT
+
+
+  

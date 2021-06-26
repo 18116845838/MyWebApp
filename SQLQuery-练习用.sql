@@ -237,3 +237,8 @@ SET NOCOUNT OFF
 DECLARE @Q INT 
 EXECUTE @Q= T 80
 SELECT @Q
+
+--得到返回值方法	
+	DECLARE @i INT
+	  EXEC @i= UserRegister N'zai此测试' ,125, 2,1233
+	  PRINT @i 
