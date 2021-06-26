@@ -160,3 +160,80 @@ ALTER TABLE tbname ENABLE TRIGGER trigname
 --禁用恢复某个表上的所有触发器
 ALTER TABLE tbname DISABLE TRIGGER all
 ALTER TABLE tbname ENABLE TRIGGER all
+
+--常用变量全局
+print @@VERSION--版本号查看
+PRINT @@IDENTITY--查看最后一个插入的自增列值
+print @@ROWCOUNT--查看看上一次影响的行数
+
+
+--变量的声明
+DECLARE @name NVARCHAR(20) ;
+SET @name = N'飞哥'
+PRINT @name
+
+DECLARE @name NVARCHAR(20) = N'feige'
+PRINT @name
+
+--if 不加begin end 就只影响一行
+IF(@name IS NULL) 
+	BEGIN 
+		PRINT 'NULL'
+	END
+ELSE
+	PRINT 'NOT NULL'
+--循环
+	DECLARE @num INT =0 
+WHILE(@num<50)
+BEGIN 
+	SET @num+=1;
+	PRINT FLOOR(RAND()*1000)
+END 
+PRINT CHARINDEX(N'栈',N'源栈欢迎您',-1) 
+PRINT GETDATE()
+
+PRINT DATEPART(hour,GETDATE())
+
+GO
+--普通函数
+	CREATE FUNCTION RANDINT(@max INT)
+RETURNS INT 
+AS 
+BEGIN 
+	RETURN @max
+END
+go
+PRINT dbo.RANDINT (100)
+	--表值函数返回单行
+	Go
+	CREATE FUNCTION NUMCOUNT(@i INT)
+	RETURNS TABLE
+	RETURN SELECT TOP (@i) * FROM Problem
+	go
+SELECT * FROM NUMCOUNT(5)
+Go
+--函数返回表值
+CREATE FUNCTION TAB(@i INT,@n NVARCHAR(20))
+RETURNS @t TABLE([id] INT,[name] NVARCHAR(20))
+AS 
+BEGIN 
+	INSERT @t VALUES(@i,@n)
+	RETURN 
+END
+go
+SELECT * FROM TAB(1,N'飞哥')
+--存储过程
+GO
+ ALTER PROCEDURE T
+@i INT --,
+--@j INT OUTPUT
+AS
+SET NOCOUNT ON 
+UPDATE Problem SET Reward += 5
+SELECT * FROM  Problem WHERE Reward>@i
+RETURN(SELECT COUNT(*) FROM Problem WHERE Reward >@i)
+SET NOCOUNT OFF
+
+DECLARE @Q INT 
+EXECUTE @Q= T 80
+SELECT @Q

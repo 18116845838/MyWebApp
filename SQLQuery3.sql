@@ -969,5 +969,73 @@ SELECT * FROM Problem
 BEGIN TRANSACTION
 UPDATE Problem SET NeedRemoteHelp =1 WHERE ID=99
 
-PRINT @@IDENTITY
-print @@rowcount
+
+    --打印如下所示的等腰三角形： 
+
+    --      1
+
+    --    333
+
+    --  55555
+
+    --7777777
+
+DECLARE @i INT=1
+DECLARE @count INT = 3
+while(@i<=7)
+	BEGIN 
+	PRINT SPACE(@count)+REPLICATE(@i,@i)
+	SET @i+=2
+	SET @count -=1
+	END
+
+    --TProblem中：
+    --    找出所有周末发布的求助（添加CreateTime列，如果还没有的话）
+	SELECT * FROM Problem
+	WHERE DATEPART(dw,PUblishDateTime)=1
+
+    --    找出每个作者所有求助悬赏的平均值，精确到小数点后两位
+	SELECT Author, CONVERT(DECIMAL(6,2), SUM(Reward*1.00)/COUNT(Reward))	FROM Problem
+	GROUP BY Author
+
+    --    有一些标题以test、[test]后者Test-开头的求助，找打他们并把这些前缀都换成大写
+	INSERT Problem(Id,Title,Content,NeedRemoteHelp,Reward,PUblishDateTime) VALUES
+	(114,N'test当前',N'我是正文',0,10,'2020/1/1')
+	INSERT Problem(Id,Title,Content,NeedRemoteHelp,Reward,PUblishDateTime) VALUES
+	(110,N'【test】当前',N'我是正文',0,10,'2020/1/1')
+	INSERT Problem(Id,Title,Content,NeedRemoteHelp,Reward,PUblishDateTime) VALUES
+	(112,N'【test】-当前',N'我是正文',0,10,'2020/1/1')
+	INSERT Problem(Id,Title,Content,NeedRemoteHelp,Reward,PUblishDateTime) VALUES
+	(113,N'test-当前',N'我是正文',0,10,'2020/1/1')
+	SELECT * FROM Problem
+	BEGIN TRAN 
+	UPDATE Problem SET Title = REPLACE(Title,N'test',N'TEXT')
+		SELECT * FROM Problem
+
+	BEGIN TRANSACTION
+	UPDATE Problem SET Title =
+	CASE 
+		WHEN SUBSTRING([Title],1,4) = N'test' THEN ( N'TEST'+ SUBSTRING([Title],5,LEN(Title)-4) )
+		WHEN SUBSTRING(Title,1,6) = N'【TexT】' THEN N'【TEST】'+SUBSTRING(Title,7,LEN(Title)-6) 
+		WHEN SUBSTRING(Title,1,4) = N'Text'  THEN N'TEST'+SUBSTRING(Title,5,LEN(Title)-4) 
+		ELSE TITLE
+	END
+	
+
+
+	PRINT @@TRANCOUNT
+	ROLLBACK
+	COMMIT
+
+    --定义一个函数RANDINT(INT max)，可以取0-max之间的最大值
+CREATE FUNCTION RANDINT(@max INT)
+RETURNS INT 
+AS 
+BEGIN 
+	RETURN @max
+END
+PRINT dbo.RANDINT (100)
+
+DECLARE @max INT 
+EXECUTE @max= RANDINT 100
+PRINT @max
