@@ -1039,3 +1039,84 @@ PRINT dbo.RANDINT (100)
 DECLARE @max INT 
 EXECUTE @max= RANDINT 100
 PRINT @max
+	
+	 --编写存储过程“一起帮用户注册”，包含以下逻辑：
+
+  --  检查用户名是否重复。如果重复，返回错误代码：1
+
+  --  检查用户名密码是否符合“长度不小于4位”的要求。如果不符合，返回错误代码：2
+
+  --  如果有邀请人：
+  --      检查邀请人是否存在，如果不存在，返回错误代码：10
+  --      检查邀请码是否正确，如果邀请码不正确，返回错误代码：11
+  --  将用户名、密码和邀请人存入数据库（TRegister）
+  --  给邀请人增加10个帮帮点积分
+  --  通知邀请人（TMessage中生成一条数据）某人使用了他作为邀请人。
+  ALTER PROCEDURE UserRegister
+  @USERNAME NVARCHAR(20),
+  @PASSWORD NVARCHAR(20),
+  @INVITERID  INT ,
+  @INVITERCODE NVARCHAR(20)
+  AS 
+	IF(LEN(@PASSWORD)>4)
+	BEGIN 
+		IF(EXISTS(SELECT UserName  FROM [User] WHERE UserName = @USERNAME))
+			BEGIN 
+				RETURN 1
+			END
+			ELSE
+			BEGIN
+					DECLARE @invitedbycode NCHAR(20) =(SELECT INVITEDBYCODE FROM [User] WHERE ID =@INVITERID)
+					IF(@invitedbycode IS NULL)
+					BEGIN
+						RETURN 10
+					END
+					ELSE
+					BEGIN 
+						BEGIN TRY
+						BEGIN TRAN
+								IF(@invitedbycode=@INVITERCODE)
+								BEGIN 
+								INSERT TRegister VALUES(@USERNAME,@PASSWORD,@INVITERID)
+
+								DECLARE @Balace  INT =  (SELECT TOP 1 Balace FROM BangMoney
+								WHERE UserID = 2 ORDER BY Id DESC)
+								INSERT BangMoney (ID,Amount,Balace,UserID) 
+								VALUES(8,10,@Balace+10,@INVITERID)
+
+								DECLARE @INVITERNAME NVARCHAR(20)= (SELECT UserName FROM [User] WHERE ID = @INVITERID)
+								INSERT TMessage([Message]) VALUES (@USERNAME+N'使用了'+@INVITERNAME+N'作为邀请人')
+								END
+								COMMIT
+						END TRY
+						BEGIN CATCH
+							ROLLBACK;
+							THROW;
+						END CATCH
+						end
+					END
+			END
+	ELSE 
+	RETURN 2
+
+
+	EXEC UserRegister N'zai此测试' ,123455, 2,1233
+
+	SELECT * FROM BangMoney
+	SELECT * FROM TRegister
+	SELECT * FROM TMessage
+
+ CREATE TABLE TRegister
+ ( 
+ UserName NVARCHAR(20),
+ [PASSWORD] NVARCHAR(20),
+ INVITERID INT
+ )
+
+CREATE TABLE TMessage
+(
+ID INT PRIMARY KEY IDENTITY(1,1),
+[MESSAGE] NVARCHAR(500)
+)
+DECLARE @INVITERNAME NVARCHAR(20)= SELECT UserName FROM [User] WHERE ID = 2
+PRINT @INVITERNAME
