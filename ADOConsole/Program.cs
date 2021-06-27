@@ -14,7 +14,7 @@ namespace ADOConsole
 			//内容：
 
 
-			//		列表页呈现（包括：过滤 / 分页）
+
 			//		批量标记Message为已读
 			#endregion
 			//string name = Console.ReadLine();
@@ -49,17 +49,56 @@ namespace ADOConsole
 			//string content = Console.ReadLine();
 			//int NeedRemoteHelp = int.Parse(Console.ReadLine());
 			//int Reward = int.Parse(Console.ReadLine());
+			//using (DbConnection connection =new SqlConnection(connectionString))
+			//{
+			//	connection.Open();
+			//	DbCommand dbCommand = new SqlCommand();
+			//	dbCommand.Connection = connection;
+			//	//dbCommand.CommandText = $"INSERT Problem(Id,Title,Content,NeedRemoteHelp,Reward) VALUES({id},N'{title}',N'{content}',{NeedRemoteHelp},{Reward})";
+			//	dbCommand.CommandText = $"UPDATE Problem SET Reward = 101 WHERE ID >100 ";
+			//	dbCommand.ExecuteNonQuery();
+			//}
+			//		单页呈现
+			//using (DbConnection connection =new SqlConnection(connectionString))
+			//{
+			//	connection.Open();
+			//	DbCommand command = new SqlCommand();
+			//	command.Connection = connection;
+			//	command.CommandText = "SELECT * FROM Problem";
+			//	DbDataReader dbDataReader = command.ExecuteReader();
+			//	while (dbDataReader.Read())
+			//	{
+			//		for (int i = 0; i < dbDataReader.FieldCount; i++)
+			//		{
+			//			Console.Write(dbDataReader[i]+"     ");
+			//		}
+			//		Console.WriteLine();
+			//	}
+			//}
+			//		列表页呈现（包括：过滤 / 分页）
+			Console.WriteLine("选择跳转到第几页");
+			int option = int.Parse(Console.ReadLine());
 			using (DbConnection connection =new SqlConnection(connectionString))
 			{
 				connection.Open();
 				DbCommand dbCommand = new SqlCommand();
 				dbCommand.Connection = connection;
-				//dbCommand.CommandText = $"INSERT Problem(Id,Title,Content,NeedRemoteHelp,Reward) VALUES({id},N'{title}',N'{content}',{NeedRemoteHelp},{Reward})";
-				dbCommand.CommandText = $"UPDATE Problem SET Reward = 101 WHERE ID >100 ";
-				dbCommand.ExecuteNonQuery();
-			}
 
-			//		单页呈现
+				dbCommand.CommandText = $"SELECT *FROM" +
+					$"( SELECT *, ROW_NUMBER() OVER(ORDER BY ID ) DID FROM Problem) pp " +
+					$"WHERE pp.DID BETWEEN {option*3-2} AND {option*3} ";
+				DbDataReader dbDataReader = dbCommand.ExecuteReader();
+				while (dbDataReader.Read())
+				{
+					for (int i = 0; i < dbDataReader.FieldCount; i++)
+					{
+						Console.Write(dbDataReader[i]+"     ");
+					}
+					Console.WriteLine();
+				}
+
+			}
 		}
 	}
+
 }
