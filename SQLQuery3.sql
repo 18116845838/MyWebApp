@@ -1028,12 +1028,14 @@ while(@i<=7)
 	COMMIT
 
     --定义一个函数RANDINT(INT max)，可以取0-max之间的最大值
+	GO
 CREATE FUNCTION RANDINT(@max INT)
 RETURNS INT 
 AS 
 BEGIN 
 	RETURN @max
 END
+GO
 PRINT dbo.RANDINT (100)
 
 DECLARE @max INT 
@@ -1052,6 +1054,7 @@ PRINT @max
   --  将用户名、密码和邀请人存入数据库（TRegister）
   --  给邀请人增加10个帮帮点积分
   --  通知邀请人（TMessage中生成一条数据）某人使用了他作为邀请人。
+  GO
   ALTER PROCEDURE UserRegister
   @USERNAME NVARCHAR(20),
   @PASSWORD NVARCHAR(20),
@@ -1118,8 +1121,8 @@ CREATE TABLE TMessage
 ID INT PRIMARY KEY IDENTITY(1,1),
 [MESSAGE] NVARCHAR(500)
 )
-DECLARE @INVITERNAME NVARCHAR(20)= SELECT UserName FROM [User] WHERE ID = 2
-PRINT @INVITERNAME
+--DECLARE @INVITERNAME NVARCHAR(20)= SELECT UserName FROM [User] WHERE ID = 2
+--PRINT @INVITERNAME
 
 
 --确保Peoblem有发布时间（PublishTime） 和最后更新时间（LatestUpdateTime）两列，创建触发器实现
@@ -1128,7 +1131,7 @@ PRINT @INVITERNAME
   SELECT * FROM Problem
   ALTER TABLE Problem
   ADD LatestUpdateTime DATETIME
-
+  GO
 ALTER  TRIGGER TR_Problem	
 ON Problem    
  AFTER  UPDATE 
@@ -1140,7 +1143,7 @@ SELECT  * FROM INSERTED
 UPDATE Problem SET  Reward =15
 WHERE id =105
 --2插入一条数据，自动将当前时间计入该行数据的PublishTime（提示 ：inserted伪表）
-
+GO
 ALTER TRIGGER TR_INS_Problem
 ON Problem
 AFTER INSERT 
@@ -1155,5 +1158,3 @@ SELECT * FROM INSERTED
 ROLLBACK
 COMMIT
 
-
-  
