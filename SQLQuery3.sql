@@ -1084,8 +1084,8 @@ PRINT @max
 
 								DECLARE @Balace  INT =  (SELECT TOP 1 Balace FROM BangMoney
 								WHERE UserID = 2 ORDER BY Id DESC)
-								INSERT BangMoney (ID,Amount,Balace,UserID) 
-								VALUES(8,10,@Balace+10,@INVITERID)
+								INSERT BangMoney (Amount,Balace,UserID) 
+								VALUES(10,@Balace+10,@INVITERID)
 
 								DECLARE @INVITERNAME NVARCHAR(20)= (SELECT UserName FROM [User] WHERE ID = @INVITERID)
 								INSERT TMessage([Message]) VALUES (@USERNAME+N'使用了'+@INVITERNAME+N'作为邀请人')
@@ -1103,9 +1103,10 @@ PRINT @max
 	RETURN 2
 
 	DECLARE @i INT
-	  EXEC @i= UserRegister N'zai此测试' ,125, 2,1233
+	  EXEC @i= UserRegister N'2021年6月27日此测试' ,12555, 2,1233
 	  PRINT @i
 	SELECT * FROM BangMoney
+
 	SELECT * FROM TRegister
 	SELECT * FROM TMessage
 
@@ -1157,4 +1158,8 @@ SELECT * FROM Problem
 SELECT * FROM INSERTED
 ROLLBACK
 COMMIT
-SELECT TPublishTime FROM Problem WHERE ID =1000
+SELECT * FROM [User]
+--WHERE [UserName]=N'飞哥
+--';UPDATE [User] SET [Password] = N'qwerasd' ; --
+--'
+
