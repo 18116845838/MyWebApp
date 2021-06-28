@@ -16,10 +16,10 @@ namespace ADOConsole
 
 
 			//		批量标记Message为已读
-			#endregion
+
 			//string name = Console.ReadLine();
 			//string password = Console.ReadLine();
-			string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=17bang;Integrated Security=True;";
+			//string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=17bang;Integrated Security=True;";
 			//using (DbConnection dbConnection=new SqlConnection(connectionString))
 			//{
 			//	dbConnection.Open();
@@ -76,28 +76,47 @@ namespace ADOConsole
 			//	}
 			//}
 			//		列表页呈现（包括：过滤 / 分页）
-			Console.WriteLine("选择跳转到第几页");
-			int option = int.Parse(Console.ReadLine());
-			using (DbConnection connection =new SqlConnection(connectionString))
+			//Console.WriteLine("选择跳转到第几页");
+			//int option = int.Parse(Console.ReadLine());
+			//using (DbConnection connection =new SqlConnection(connectionString))
+			//{
+			//	connection.Open();
+			//	DbCommand dbCommand = new SqlCommand();
+			//	dbCommand.Connection = connection;
+
+			//	dbCommand.CommandText = $"SELECT *FROM" +
+			//		$"( SELECT *, ROW_NUMBER() OVER(ORDER BY ID ) DID FROM Problem) pp " +
+			//		$"WHERE pp.DID BETWEEN {option*3-2} AND {option*3} ";
+			//	DbDataReader dbDataReader = dbCommand.ExecuteReader();
+			//	while (dbDataReader.Read())
+			//	{
+			//		for (int i = 0; i < dbDataReader.FieldCount; i++)
+			//		{
+			//			Console.Write(dbDataReader[i]+"     ");
+			//		}
+			//		Console.WriteLine();
+			//	}
+
+			//}
+			#endregion
+			#region 用“参数化查询”改写之前拼接的SQL代码
+			//用事务完成帮帮币的交易
+			string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=17bang;Integrated Security=True;";
+			string id = Console.ReadLine();
+			using (DbConnection dbConnection =new SqlConnection(connectionString))
 			{
-				connection.Open();
-				DbCommand dbCommand = new SqlCommand();
-				dbCommand.Connection = connection;
-
-				dbCommand.CommandText = $"SELECT *FROM" +
-					$"( SELECT *, ROW_NUMBER() OVER(ORDER BY ID ) DID FROM Problem) pp " +
-					$"WHERE pp.DID BETWEEN {option*3-2} AND {option*3} ";
-				DbDataReader dbDataReader = dbCommand.ExecuteReader();
-				while (dbDataReader.Read())
-				{
-					for (int i = 0; i < dbDataReader.FieldCount; i++)
-					{
-						Console.Write(dbDataReader[i]+"     ");
-					}
-					Console.WriteLine();
-				}
-
+				dbConnection.Open();
+				DbCommand command = new SqlCommand();
+				command.Connection = dbConnection;
+				command.CommandText = $"SELECT * FROM Problem WHERE ID = {id}";
+				//DbParameter pId = new SqlParameter("@id", id);
+				//command.Parameters.Add(pId);
+				DbDataReader dbDataReader = command.ExecuteReader();
+				dbDataReader.Read();
+				Console.WriteLine($"{dbDataReader[0]}+{dbDataReader[1]}");
 			}
+			#endregion
+
 		}
 	}
 

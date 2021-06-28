@@ -1160,6 +1160,5 @@ ROLLBACK
 COMMIT
 SELECT * FROM [User]
 --WHERE [UserName]=N'飞哥
---';UPDATE [User] SET [Password] = N'qwerasd' ; --
+--';UPDATE Problem SET Reward = 100 ; --
 --'
-
