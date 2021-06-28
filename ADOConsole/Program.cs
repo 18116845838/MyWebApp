@@ -100,20 +100,58 @@ namespace ADOConsole
 			//}
 			#endregion
 			#region 用“参数化查询”改写之前拼接的SQL代码
-			//用事务完成帮帮币的交易
 			string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=17bang;Integrated Security=True;";
-			string id = Console.ReadLine();
-			using (DbConnection dbConnection =new SqlConnection(connectionString))
+			//int id = int.Parse(Console.ReadLine());
+			//using (DbConnection dbConnection =new SqlConnection(connectionString))
+			//{
+			//	dbConnection.Open();
+			//	DbCommand command = new SqlCommand();
+			//	command.Connection = dbConnection;
+			//	command.CommandText = "SELECT * FROM Problem WHERE ID = @id";
+			//	DbParameter pId = new SqlParameter("@id", id);
+			//	command.Parameters.Add(pId);
+			//	DbDataReader dbDataReader = command.ExecuteReader();
+
+			//	while (dbDataReader.Read())
+			//	{
+			//		for (int i = 0; i < dbDataReader.FieldCount; i++)
+			//		{
+			//			Console.WriteLine(dbDataReader[i]);
+			//		}
+			//	}
+			//}
+			//用事务完成帮帮币的交易
+			int amount =int.Parse(Console.ReadLine());
+			int balace =int.Parse(Console.ReadLine());
+			int userId =int.Parse(Console.ReadLine());
+			using (DbConnection connection =new SqlConnection(connectionString))
 			{
-				dbConnection.Open();
-				DbCommand command = new SqlCommand();
-				command.Connection = dbConnection;
-				command.CommandText = $"SELECT * FROM Problem WHERE ID = {id}";
-				//DbParameter pId = new SqlParameter("@id", id);
-				//command.Parameters.Add(pId);
-				DbDataReader dbDataReader = command.ExecuteReader();
-				dbDataReader.Read();
-				Console.WriteLine($"{dbDataReader[0]}+{dbDataReader[1]}");
+				connection.Open();
+				IDbCommand dbCommand = new SqlCommand();
+				dbCommand.Connection = connection;
+				using (IDbTransaction transaction =connection.BeginTransaction())
+				{
+					try
+					{
+						dbCommand.Transaction = transaction;
+						dbCommand.CommandText = $"INSERT BangMoney  VALUES(@amount,@balace,@userId)";
+						DbParameter dbamount = new SqlParameter("@amount",amount);
+						DbParameter dbbalace = new SqlParameter("@balace", balace);
+						DbParameter dbuserId = new SqlParameter("@userId", userId);
+
+						dbCommand.Parameters.Add(dbamount);
+						dbCommand.Parameters.Add(dbbalace);
+						dbCommand.Parameters.Add(dbuserId);
+						dbCommand.ExecuteNonQuery();
+						transaction.Commit();
+
+					}
+					catch (Exception)
+					{
+						transaction.Rollback();
+						throw;
+					}
+				}
 			}
 			#endregion
 
