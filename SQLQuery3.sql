@@ -1103,7 +1103,7 @@ PRINT @max
 	RETURN 2
 
 	DECLARE @i INT
-	  EXEC @i= UserRegister N'2021年6月27日此测试' ,12555, 2,1233
+	  EXEC @i= UserRegister N'2021年10月10日此测试' ,12555, 2,1233
 	  PRINT @i
 	SELECT * FROM BangMoney
 
@@ -1159,6 +1159,7 @@ SELECT * FROM INSERTED
 ROLLBACK
 COMMIT
 SELECT * FROM [User]
+WHERE ID IN (1,2,3,4,5,6)
 --WHERE [UserName]=N'飞哥
 --';UPDATE [User] SET [Password] = N'zxcvvb' ; --
 --'

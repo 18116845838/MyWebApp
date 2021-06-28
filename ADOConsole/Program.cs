@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+
 namespace ADOConsole
 {
 	class Program
@@ -121,40 +122,51 @@ namespace ADOConsole
 			//	}
 			//}
 			//用事务完成帮帮币的交易
-			int amount =int.Parse(Console.ReadLine());
-			int balace =int.Parse(Console.ReadLine());
-			int userId =int.Parse(Console.ReadLine());
-			using (DbConnection connection =new SqlConnection(connectionString))
-			{
-				connection.Open();
-				IDbCommand dbCommand = new SqlCommand();
-				dbCommand.Connection = connection;
-				using (IDbTransaction transaction =connection.BeginTransaction())
-				{
-					try
-					{
-						dbCommand.Transaction = transaction;
-						dbCommand.CommandText = $"INSERT BangMoney  VALUES(@amount,@balace,@userId)";
-						DbParameter dbamount = new SqlParameter("@amount",amount);
-						DbParameter dbbalace = new SqlParameter("@balace", balace);
-						DbParameter dbuserId = new SqlParameter("@userId", userId);
+			//int amount =int.Parse(Console.ReadLine());
+			//int balace =int.Parse(Console.ReadLine());
+			//int userId =int.Parse(Console.ReadLine());
+			//using (DbConnection connection =new SqlConnection(connectionString))
+			//{
+			//	connection.Open();
+			//	IDbCommand dbCommand = new SqlCommand();
+			//	dbCommand.Connection = connection;
+			//	using (IDbTransaction transaction =connection.BeginTransaction())
+			//	{
+			//		try
+			//		{
+			//			dbCommand.Transaction = transaction;
+			//			dbCommand.CommandText = $"INSERT BangMoney  VALUES(@amount,@balace,@userId)";
+			//			DbParameter dbamount = new SqlParameter("@amount",amount);
+			//			DbParameter dbbalace = new SqlParameter("@balace", balace);
+			//			DbParameter dbuserId = new SqlParameter("@userId", userId);
 
-						dbCommand.Parameters.Add(dbamount);
-						dbCommand.Parameters.Add(dbbalace);
-						dbCommand.Parameters.Add(dbuserId);
-						dbCommand.ExecuteNonQuery();
-						transaction.Commit();
+			//			dbCommand.Parameters.Add(dbamount);
+			//			dbCommand.Parameters.Add(dbbalace);
+			//			dbCommand.Parameters.Add(dbuserId);
+			//			dbCommand.ExecuteNonQuery();
+			//			transaction.Commit();
 
-					}
-					catch (Exception)
-					{
-						transaction.Rollback();
-						throw;
-					}
-				}
-			}
+			//		}
+			//		catch (Exception)
+			//		{
+			//			transaction.Rollback();
+			//			throw;
+			//		}
+			//	}
+			//}
+
 			#endregion
+			Dbhelper dbhelper = new Dbhelper();
+			int id = 5;
+			string cmd = "SELECT * FROM Problem WHERE ID = @id";
+			IDataParameter[] dbDataParameter = new SqlParameter[] {
+				new SqlParameter("@id",117)
+			};
+			//IDataParameter Parameter = new SqlParameter("@id", 6);
 
+
+			IDbCommand[] commands = new IDbCommand[dbDataParameter.Length];
+			Console.WriteLine(dbhelper.Insert(cmd, dbDataParameter)); 
 		}
 	}
 
