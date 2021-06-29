@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
@@ -210,9 +211,13 @@ namespace ADOConsole
 
 			//创建强类型对象
 			_17bang bang = new _17bang();
-
+			
 			MyMessageTableAdapter myMessageTableAdapter = new MyMessageTableAdapter();
 			MyMessageDataTable myMessages = myMessageTableAdapter.GetData();
+			Console.WriteLine(myMessages.StateColumn.MaxLength);
+			Console.WriteLine(myMessages.AsEnumerable().Where(m => m.IsStateNull()));
+			//OrderedEnumerableRowCollection<DataTable> rows= myMessages.AsEnumerable().Where(m => m.IsStateNull());
+
 		}
 	}
 
