@@ -2,6 +2,9 @@
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Linq;
+using ADOConsole._17bangTableAdapters;
+using static ADOConsole._17bang;
 
 namespace ADOConsole
 {
@@ -156,17 +159,60 @@ namespace ADOConsole
 			//}
 
 			#endregion
-			Dbhelper dbhelper = new Dbhelper();
-			int id = 5;
-			string cmd = "SELECT * FROM Problem WHERE ID = @id";
-			IDataParameter[] dbDataParameter = new SqlParameter[] {
-				new SqlParameter("@id",117)
-			};
-			//IDataParameter Parameter = new SqlParameter("@id", 6);
+			#region DbHelper
+			//Dbhelper dbhelper = new Dbhelper();
+			//int id = 5;
+			//string cmd = "SELECT * FROM Problem WHERE ID = @id";
+			//IDataParameter[] dbDataParameter = new SqlParameter[] {
+			//	new SqlParameter("@id",117)
+			//};
+			////IDataParameter Parameter = new SqlParameter("@id", 6);
 
 
-			IDbCommand[] commands = new IDbCommand[dbDataParameter.Length];
-			Console.WriteLine(dbhelper.Insert(cmd, dbDataParameter)); 
+			//IDbCommand[] commands = new IDbCommand[dbDataParameter.Length];
+			//Console.WriteLine(dbhelper.Insert(cmd, dbDataParameter)); 
+			#endregion
+			//dataTable and dataset
+			//DataTable dataTable = new DataTable("Userto");
+			//dataTable.Columns.Add("id", typeof(int));
+			//dataTable.Columns.Add("name", typeof(string));
+			//dataTable.Rows.Add(1, "飞哥");
+			//dataTable.Rows.Add(2, "大飞哥");
+			//dataTable.Rows.Add(3, "小于");
+			//DataSet dataSet = new DataSet();
+			//dataSet.Tables.Add(dataTable);
+			//object id = dataTable.AsEnumerable()
+			//	.Where(t => t["id"].ToString() == "3")
+			//	.FirstOrDefault()?["name"];
+			//Console.WriteLine(id);
+
+			//dataAdapter
+			//string querystring = "SELECT * FROM Problem";
+			////已经有数据了
+			////string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=17bang;Integrated Security=True;";
+			//SqlConnection dbConnection = new SqlConnection(connectionString);
+			//IDbDataAdapter adapter = new SqlDataAdapter(querystring,dbConnection);
+			//DataSet dataSet = new DataSet();
+			//adapter.Fill(dataSet);
+
+			//dataSet.Tables[0].Rows[0]["Title"] = "链接对象";
+			//SqlCommand upDatecmd = new SqlCommand(
+			//	"UPDATE PRoblem SET [Title]= @Title WHERE ID = @id", dbConnection
+			//	);
+			//SqlParameter pTltle = new SqlParameter("@Title", SqlDbType.NVarChar);
+			//pTltle.SourceColumn = "Title";//指定参数数据来源列
+			//upDatecmd.Parameters.Add(pTltle);
+			//SqlParameter pid = new SqlParameter("@id", SqlDbType.Int);
+			//pid.SourceColumn = "id";//指定参数数据来源列
+			//upDatecmd.Parameters.Add(pid);
+			//((SqlDataAdapter)adapter).UpdateCommand = upDatecmd;
+			//adapter.Update(dataSet);
+
+			//创建强类型对象
+			_17bang bang = new _17bang();
+
+			MyMessageTableAdapter myMessageTableAdapter = new MyMessageTableAdapter();
+			MyMessageDataTable myMessages = myMessageTableAdapter.GetData();
 		}
 	}
 

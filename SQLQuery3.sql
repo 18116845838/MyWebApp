@@ -1163,3 +1163,20 @@ WHERE ID IN (1,2,3,4,5,6)
 --WHERE [UserName]=N'飞哥
 --';UPDATE [User] SET [Password] = N'zxcvvb' ; --
 --'
+CREATE TABLE MyMessage
+(
+Id INT IDENTITY(1,1) PRIMARY KEY,
+[Message] NVARCHAR(MAX) NULL,
+[State] BIT NULL 
+)
+UPDATE MyMessage SET [State]=NULL
+INSERT MyMessage([Message]) VALUES(N'')
+INSERT MyMessage([Message]) VALUES(N'')
+INSERT MyMessage([Message]) VALUES(N'')
+INSERT MyMessage([Message]) VALUES(N'')
+INSERT MyMessage([Message]) VALUES(N'')
+INSERT MyMessage([Message]) VALUES(N'')
+INSERT MyMessage([Message]) VALUES(N'')
+INSERT MyMessage([Message]) VALUES(N'')
+INSERT MyMessage([Message]) VALUES(N'')
+SELECT * FROM MyMessage
