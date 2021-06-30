@@ -5,6 +5,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using ADOConsole._17bangTableAdapters;
+using Microsoft.EntityFrameworkCore;
 using static ADOConsole._17bang;
 
 namespace ADOConsole
@@ -13,7 +14,7 @@ namespace ADOConsole
 	{
 		static void Main(string[] args)
 		{
-			
+
 
 		}
 	}
