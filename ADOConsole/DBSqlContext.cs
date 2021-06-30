@@ -8,10 +8,10 @@ namespace ADOConsole
 {
 	class DBSqlContext :DbContext
 	{
-		//public DbSet<student> Students { get;set; }
+		public DbSet<User> Users { get; set; }
 		protected override void OnConfiguring(DbContextOptionsBuilder dbContext )
-		{ 
-			string connectonStr = @"Data Source = (localdb)\ProjectsV13; Initial Catalog = 17bang; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False";
+		{
+			string connectonStr = @"Data Source = (localdb)\ProjectsV13; Initial Catalog = 17bang; Integrated Security = True; ";
 			dbContext.UseSqlServer(connectonStr);
 			base.OnConfiguring(dbContext);
 

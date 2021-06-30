@@ -14,6 +14,10 @@ namespace ADOConsole
 	{
 		static void Main(string[] args)
 		{
+			#region  使用EF的API直接建库建表删库
+			//HomeWork._17bangWork.EFAPI();
+			#endregion
+
 
 
 		}
