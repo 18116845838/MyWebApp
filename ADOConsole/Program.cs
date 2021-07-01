@@ -20,8 +20,10 @@ namespace ADOConsole
 			#region  使用Migration工具建库建表
 
 			#endregion
-
-
+			#region 能够在EF core上配置成功Logger到Debug窗口
+			//能够在EF6上配置成功Logger到控制台
+			HomeWork._17bangWork.GetLogMessage();
+			#endregion
 
 		}
 	}

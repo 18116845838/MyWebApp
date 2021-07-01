@@ -18,6 +18,25 @@ namespace ADOConsole.HomeWork
 			//db.EnsureDeleted();
 			db.Migrate();
 		}
+		#region 能够在EF core上配置成功Logger到Debug窗口
+		public static void GetLogMessage()
+		{
+			DBSqlContext sqlContext = new DBSqlContext();
+
+			User user = new User
+			{
+				Name = "张志民",
+				Age = 21,
+				Password = "123456",
+				Enroll = DateTime.Now,
+				IsFemale = true,
+				CreateTime = DateTime.Now
+			};
+			sqlContext.Users.Add(user);
+			sqlContext.SaveChanges();
+		}
+		#endregion
+
 
 
 	}

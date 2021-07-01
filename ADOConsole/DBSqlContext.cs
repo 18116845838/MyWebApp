@@ -12,7 +12,10 @@ namespace ADOConsole
 		protected override void OnConfiguring(DbContextOptionsBuilder dbContext )
 		{
 			string connectonStr = @"Data Source = (localdb)\ProjectsV13; Initial Catalog = 17bang; Integrated Security = True; ";
-			dbContext.UseSqlServer(connectonStr);
+			dbContext.UseSqlServer(connectonStr)
+				.EnableSensitiveDataLogging()
+				.LogTo((id, level) => level == Microsoft.Extensions.Logging.LogLevel.Debug, log => Console.WriteLine(log))
+				;
 			base.OnConfiguring(dbContext);
 
 		}

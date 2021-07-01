@@ -20,9 +20,9 @@ namespace ADOConsole
 		//    将改动同步到数据库
 		//	回退数据库到FailedTry添加之前
 		#endregion
+		[Key]
 
 		public int Id { get; set; }
-		[Key]
 		[MaxLength(256)]
 		[Column("UserName")]
 		public string Name { get; set; }
