@@ -22,8 +22,9 @@ namespace ADOConsole
 			#endregion
 			#region 能够在EF core上配置成功Logger到Debug窗口
 			//能够在EF6上配置成功Logger到控制台
-			HomeWork._17bangWork.GetLogMessage();
+			//HomeWork._17bangWork.GetLogMessage();
 			#endregion
+			HomeWork._17bangWork.Update_User();
 
 		}
 	}
