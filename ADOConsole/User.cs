@@ -1,10 +1,15 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace ADOConsole
 {
+	[Table("Register")]
+	[Index("CreateTime", IsUnique = false)]
+
 	class User
 	{
 		#region MyRegion
@@ -17,12 +22,16 @@ namespace ADOConsole
 		#endregion
 
 		public int Id { get; set; }
+		[Key]
 		[MaxLength(256)]
+		[Column("UserName")]
 		public string Name { get; set; }
 		public int Age { get; set; }
 		public DateTime Enroll { get; set; }
 		public bool IsFemale { get; set; }
+		[Required]
 		public string Password { get; set; }
+		[NotMapped]
 		public int FailedTry { get; set; }
 		public DateTime CreateTime { get; set; }
 		#region 分别使用OnModelCreating()和Data Annotations，完成以下配置：

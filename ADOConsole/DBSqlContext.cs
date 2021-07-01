@@ -18,15 +18,15 @@ namespace ADOConsole
 		}
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<User>().ToTable("Register")
-				.Property(u=>u.Name).HasColumnName("UserName");
-			modelBuilder.Entity<User>(u=> {
-				u.Property(m => m.Password).IsRequired();
-				u.HasKey(m => m.Name);
-				u.Ignore(m => m.FailedTry);
-				u.HasIndex(m => m.CreateTime);
-				u.HasCheckConstraint("CK_CreateTime", "CreateTime>'2000-1-1'");
-				}) ;
+			//modelBuilder.Entity<User>().ToTable("Register")
+			//	.Property(u=>u.Name).HasColumnName("UserName");
+			//modelBuilder.Entity<User>(u=> {
+			//	u.Property(m => m.Password).IsRequired();
+			//	u.HasKey(m => m.Name);
+			//	u.Ignore(m => m.FailedTry);
+			//	u.HasIndex(m => m.CreateTime);
+			//	u.HasCheckConstraint("CK_CreateTime", "CreateTime>'2000-1-1'");
+			//	}) ;
 		}
 	}
 }
