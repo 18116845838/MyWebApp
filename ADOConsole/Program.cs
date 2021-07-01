@@ -17,6 +17,9 @@ namespace ADOConsole
 			#region  使用EF的API直接建库建表删库
 			//HomeWork._17bangWork.EFAPI();
 			#endregion
+			#region  使用Migration工具建库建表
+
+			#endregion
 
 
 

@@ -16,5 +16,6 @@ namespace ADOConsole
 			base.OnConfiguring(dbContext);
 
 		}
+
 	}
 }

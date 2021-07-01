@@ -21,5 +21,21 @@ namespace ADOConsole
 		public DateTime Enroll { get; set; }
 		public bool IsFemale { get; set; }
 
+		public int FailedTry { get; set; }
+		#region 分别使用OnModelCreating()和Data Annotations，完成以下配置：
+
+		//   将之前的User类名改为Register，但仍然能对应表User
+		//将之前的User属性Name改成UserName，但仍然能对应表User的列Name
+		//将Name的长度限制为256
+
+		//Password不能为空
+		//将User表的主键设置在Name列上
+
+		//User类中的属性FailedTry不用存储到数据库中
+		//给CreateTime属性添加一个非聚集唯一索引
+
+		//CreateTime不能小于2000年1月1日
+		#endregion
+
 	}
 }
