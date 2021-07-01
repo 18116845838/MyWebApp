@@ -40,7 +40,6 @@ namespace ADOConsole.HomeWork
 		#region 利用EF，插入3个User对象
 		//通过主键找到其中一个User对象
 		//修改该User对象的Name属性，将其同步到数据库
-		//不加载User对象，仅凭其Id用一句Update SQL语句完成上题
 		//删除该用户
 		public static void Update_User()
 		{
@@ -77,8 +76,12 @@ namespace ADOConsole.HomeWork
 			//sqlContext.Add(user2);
 
 			//sqlContext.Find<User>(4).Name= "小张";
-			User user = sqlContext.Find<User>(4);
-			sqlContext.Remove<User>(user);
+			//User user = sqlContext.Find<User>(4);
+			//sqlContext.Remove<User>(user);
+			//不加载User对象，仅凭其Id用一句Update SQL语句完成上题
+			User user = new User { Id = 3 };
+			sqlContext.Attach<User>(user);
+			user.Name = "大张";
 			sqlContext.SaveChanges();
 		}
 
