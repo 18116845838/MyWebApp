@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace ADOConsole
@@ -16,12 +17,14 @@ namespace ADOConsole
 		#endregion
 
 		public int Id { get; set; }
+		[MaxLength(256)]
 		public string Name { get; set; }
 		public int Age { get; set; }
 		public DateTime Enroll { get; set; }
 		public bool IsFemale { get; set; }
-
+		public string Password { get; set; }
 		public int FailedTry { get; set; }
+		public DateTime CreateTime { get; set; }
 		#region 分别使用OnModelCreating()和Data Annotations，完成以下配置：
 
 		//   将之前的User类名改为Register，但仍然能对应表User

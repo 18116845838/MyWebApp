@@ -4,14 +4,16 @@ using ADOConsole;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ADOConsole.Migrations
 {
     [DbContext(typeof(DBSqlContext))]
-    partial class DBSqlContextModelSnapshot : ModelSnapshot
+    [Migration("20210701005516_Add_User_CreateTime-NOClustered")]
+    partial class Add_User_CreateTimeNOClustered
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,7 +31,7 @@ namespace ADOConsole.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreateTime")
+                    b.Property<DateTime>("CreateTiem")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("Enroll")
@@ -47,11 +49,9 @@ namespace ADOConsole.Migrations
 
                     b.HasKey("Name");
 
-                    b.HasIndex("CreateTime");
+                    b.HasIndex("CreateTiem");
 
                     b.ToTable("Register");
-
-                    b.HasCheckConstraint("CK_CreateTime", "CreateTime>'2000-1-1'");
                 });
 #pragma warning restore 612, 618
         }
