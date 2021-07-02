@@ -86,7 +86,31 @@ namespace ADOConsole.HomeWork
 		}
 
 		#endregion
+		#region  利用Linq to EntityFramework，实现方法：
 
+		//		GetBy(IList<ProblemStatus> exclude, bool hasSummary, bool descByPublishTime)，该方法可以根据输入参数：
+
+		//    IList<ProblemStatus> exclude：不显示（排除）某些状态的求助
+		//	bool hasReward：只显示已有总结的求助（如果传入值为true的话）
+		//    bool descByPublishTime：按发布时间正序还是倒序
+
+		//参考：求助列表（不显示/只显示）和文章列表（正序/倒序）
+
+		//实现方法：GetMessage()，靠将消息列表：
+
+		//    所有未读在已读前面
+		//	未读和已读各自按生成时间排序
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="exclude">求助文章集合</param>
+		/// <param name="hasSummary">只显示有总结数的集合</param>
+		/// <param name="descByPublishTime">true正序，false倒序</param>
+		public static void GetBy(IList<ProblemStatus> exclude, bool hasSummary, bool descByPublishTime)
+		{ 
+
+		}
+		#endregion
 
 
 	}
