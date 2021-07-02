@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ADOConsole.HomeWork
@@ -94,21 +95,46 @@ namespace ADOConsole.HomeWork
 		//	bool hasReward：只显示已有总结的求助（如果传入值为true的话）
 		//    bool descByPublishTime：按发布时间正序还是倒序
 
-		//参考：求助列表（不显示/只显示）和文章列表（正序/倒序）
 
-		//实现方法：GetMessage()，靠将消息列表：
 
-		//    所有未读在已读前面
-		//	未读和已读各自按生成时间排序
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="exclude">求助文章集合</param>
-		/// <param name="hasSummary">只显示有总结数的集合</param>
+		/// <param name="exclude">求助文章想要显示的状态</param>
+		/// <param name="hasSummary">只显示有总结的求助</param>
 		/// <param name="descByPublishTime">true正序，false倒序</param>
-		public static void GetBy(IList<ProblemStatus> exclude, bool hasSummary, bool descByPublishTime)
-		{ 
+		public static IQueryable<Problem> GetBy(IList<ProblemStatus> exclude, bool hasSummary, bool descByPublishTime = true)
+		{
+			DBSqlContext dBSqlContext = new DBSqlContext();
+			IQueryable<Problem> queryable = dBSqlContext.Problems;
+			foreach (var item in exclude)
+			{
+				queryable = queryable.Where(q => q.ProblemStrtus != item);
+			}
+			if (hasSummary)
+			{
+				queryable = queryable.Where(q => q.Reward>0);
+			}//else nothing
+			if (descByPublishTime)
+			{
+				queryable =queryable.OrderBy(q=>q.PublishTime);
+			}
+			else
+			{
+				queryable = queryable.OrderByDescending(q => q.PublishTime);
+			}
 
+			return queryable;
+		}
+
+		//实现方法：GetMessage()，靠将消息列表：
+		//    所有未读在已读前面
+		//	未读和已读各自按生成时间排序
+		public static IQueryable<Message> GetMessage()
+		{
+			DBSqlContext dBSqlContext = new DBSqlContext();
+			IQueryable<Message> messages  = dBSqlContext.Messages;
+			return  messages = messages.OrderBy(m => m.IsRead).ThenByDescending(m=>m.DateTime);
 		}
 		#endregion
 

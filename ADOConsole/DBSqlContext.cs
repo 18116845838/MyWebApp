@@ -10,7 +10,7 @@ namespace ADOConsole
 	{
 		public DbSet<User> Users { get; set; }
 		public DbSet<Problem> Problems { get; set; }
-		public DbSet<ProblemStatus> ProblemStatuses { get; set; }
+		public DbSet<Message> Messages { get; set; }
 		protected override void OnConfiguring(DbContextOptionsBuilder dbContext )
 		{
 			string connectonStr = @"Data Source = (localdb)\ProjectsV13; Initial Catalog = 17bang; Integrated Security = True; ";
