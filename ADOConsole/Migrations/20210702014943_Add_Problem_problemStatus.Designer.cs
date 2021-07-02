@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ADOConsole.Migrations
 {
     [DbContext(typeof(DBSqlContext))]
-    [Migration("20210702013621_Add_Problem_ProblemStatus")]
-    partial class Add_Problem_ProblemStatus
+    [Migration("20210702014943_Add_Problem_problemStatus")]
+    partial class Add_Problem_problemStatus
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,6 +31,9 @@ namespace ADOConsole.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ProblemStatusID")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("PublishTime")
                         .HasColumnType("datetime2");
 
@@ -38,6 +41,8 @@ namespace ADOConsole.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProblemStatusID");
 
                     b.ToTable("Problems");
                 });
@@ -52,9 +57,6 @@ namespace ADOConsole.Migrations
                     b.Property<string>("HaveReward")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProblemID")
-                        .HasColumnType("int");
-
                     b.Property<string>("ToAssistInThe")
                         .HasColumnType("nvarchar(max)");
 
@@ -62,8 +64,6 @@ namespace ADOConsole.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProblemID");
 
                     b.ToTable("ProblemStatuses");
                 });
@@ -103,15 +103,15 @@ namespace ADOConsole.Migrations
                     b.ToTable("Register");
                 });
 
-            modelBuilder.Entity("ADOConsole.ProblemStatus", b =>
+            modelBuilder.Entity("ADOConsole.Problem", b =>
                 {
-                    b.HasOne("ADOConsole.Problem", "Problem")
+                    b.HasOne("ADOConsole.ProblemStatus", "ProblemStatus")
                         .WithMany()
-                        .HasForeignKey("ProblemID")
+                        .HasForeignKey("ProblemStatusID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Problem");
+                    b.Navigation("ProblemStatus");
                 });
 #pragma warning restore 612, 618
         }

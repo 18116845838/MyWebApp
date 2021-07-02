@@ -10,5 +10,7 @@ namespace ADOConsole
 		public string Title { get; set; }
 		public string Content { get; set; }
 		public DateTime PublishTime { get; set; }
+		public ProblemStatus ProblemStatus { get; set; }
+		public int ProblemStatusID { get; set; }
 	}
 }
