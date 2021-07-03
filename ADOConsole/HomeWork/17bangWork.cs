@@ -113,11 +113,11 @@ namespace ADOConsole.HomeWork
 			}
 			if (hasSummary)
 			{
-				queryable = queryable.Where(q => q.Reward>0);
+				queryable = queryable.Where(q => q.Reward > 0);
 			}//else nothing
 			if (descByPublishTime)
 			{
-				queryable =queryable.OrderBy(q=>q.PublishTime);
+				queryable = queryable.OrderBy(q => q.PublishTime);
 			}
 			else
 			{
@@ -133,11 +133,13 @@ namespace ADOConsole.HomeWork
 		public static IQueryable<Message> GetMessage()
 		{
 			DBSqlContext dBSqlContext = new DBSqlContext();
-			IQueryable<Message> messages  = dBSqlContext.Messages;
-			return  messages = messages.OrderBy(m => m.IsRead).ThenByDescending(m=>m.DateTime);
+			IQueryable<Message> messages = dBSqlContext.Messages;
+			return messages = messages.OrderBy(m => m.IsRead).ThenByDescending(m => m.DateTime);
 		}
 		#endregion
-
+		//	观察一起帮的功能，思考并
+		//Email和User有一对一的关系，参照课堂演示，在数据库上建立User外键引用Email的映射
+		//按继承映射：Problem/Article/Suggest以及他们的父类Content
 
 	}
 }

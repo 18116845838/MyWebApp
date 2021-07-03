@@ -25,8 +25,15 @@ namespace ADOConsole
 			//HomeWork._17bangWork.GetLogMessage();
 			#endregion
 			//HomeWork._17bangWork.Update_User();
-			HomeWork._17bangWork.GetMessage();
-
+			#region 调用GetMessage()，靠将消息列表：
+			//    所有未读在已读前面
+			//	未读和已读各自按生成时间排序
+			//HomeWork._17bangWork.GetMessage();
+			#endregion
+			DBSqlContext dBSqlContext = new DBSqlContext();
+			var db =  dBSqlContext.Database;
+			db.EnsureDeleted();
+			db.EnsureCreated();
 
 
 		}

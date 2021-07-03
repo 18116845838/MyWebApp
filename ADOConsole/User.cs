@@ -34,6 +34,8 @@ namespace ADOConsole
 		[NotMapped]
 		public int FailedTry { get; set; }
 		public DateTime CreateTime { get; set; }
+		public int EmailId { get; set; }
+		public Email Email { get; set; }
 		#region 分别使用OnModelCreating()和Data Annotations，完成以下配置：
 
 		//   将之前的User类名改为Register，但仍然能对应表User
