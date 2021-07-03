@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ADOConsole._17bangren;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -16,13 +17,10 @@ namespace ADOConsole
 		[Description("待协助")]
 		assist
 	}
-	class Problem
+	class Problem :Content
 	{
-		public int Id { get; set; }
-		public string Title { get; set; }
-		public string Content { get; set; }
-		public DateTime PublishTime { get; set; }
-		public int ProblemStatusID { get; set; }
+		public string List { get; set; }
+		public string Question { get;set; }
 
 		public int Reward { get; set; }
 		public ProblemStatus ProblemStrtus { get; set; }

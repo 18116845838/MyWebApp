@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
+using ADOConsole._17bangren;
 using ADOConsole._17bangTableAdapters;
 using Microsoft.EntityFrameworkCore;
 using static ADOConsole._17bang;
@@ -34,7 +35,6 @@ namespace ADOConsole
 			var db =  dBSqlContext.Database;
 			db.EnsureDeleted();
 			db.EnsureCreated();
-
 
 		}
 	}

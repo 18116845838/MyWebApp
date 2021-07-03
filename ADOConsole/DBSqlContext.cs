@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ADOConsole._17bangren;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,6 +13,7 @@ namespace ADOConsole
 		public DbSet<Problem> Problems { get; set; }
 		public DbSet<Message> Messages { get; set; }
 		public DbSet<Email> Emails { get; set; }
+		public DbSet<Content> Contents { get; set; }
 		protected override void OnConfiguring(DbContextOptionsBuilder dbContext )
 		{
 			string connectonStr = @"Data Source = (localdb)\ProjectsV13; Initial Catalog = 17bang; Integrated Security = True; ";
