@@ -33,9 +33,11 @@ namespace ADOConsole
 			#endregion
 			DBSqlContext dBSqlContext = new DBSqlContext();
 			var db =  dBSqlContext.Database;
-			db.EnsureDeleted();
-			db.EnsureCreated();
-
+			//db.EnsureDeleted();
+			//db.EnsureCreated();
+			#region 帮帮币交易
+			Bmoney.BmoneyDeal(3, 4, 100);
+			#endregion
 		}
 	}
 
