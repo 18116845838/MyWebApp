@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Practice", "Practice\Practi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ADOConsole", "ADOConsole\ADOConsole.csproj", "{72632A67-8CD6-41F2-A573-D04D4CF848E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FECore", "FECore\FECore.csproj", "{A26C6EC8-17B6-4278-B092-261735046E14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FECore", "FECore\FECore.csproj", "{A26C6EC8-17B6-4278-B092-261735046E14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramwork", "EntityFramwork\EntityFramwork.csproj", "{C60570CB-77C0-4F41-90CA-8EB38E46797D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{A26C6EC8-17B6-4278-B092-261735046E14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A26C6EC8-17B6-4278-B092-261735046E14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A26C6EC8-17B6-4278-B092-261735046E14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C60570CB-77C0-4F41-90CA-8EB38E46797D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C60570CB-77C0-4F41-90CA-8EB38E46797D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C60570CB-77C0-4F41-90CA-8EB38E46797D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C60570CB-77C0-4F41-90CA-8EB38E46797D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
