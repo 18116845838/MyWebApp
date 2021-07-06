@@ -15,6 +15,7 @@ namespace ADOConsole
 		public DbSet<Email> Emails { get; set; }
 		public DbSet<Content> Contents { get; set; }
 		public DbSet<Bmoney> Bmoneys { get; set; }
+		public DbSet<Keyword> Keywords { get; set; }
 		protected override void OnConfiguring(DbContextOptionsBuilder dbContext )
 		{
 			string connectonStr = @"Data Source = (localdb)\ProjectsV13; Initial Catalog = 17bang; Integrated Security = True; ";

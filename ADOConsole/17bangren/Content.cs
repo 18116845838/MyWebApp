@@ -14,5 +14,7 @@ namespace ADOConsole._17bangren
 		public string Title { get; set; }
 
 		public string Body { get; set; }
+
+		public List<Keyword> Keywords { get; set; }
 	}
 }
