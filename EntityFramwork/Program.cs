@@ -27,9 +27,12 @@ namespace EntityFramwork
 			//User user = dbContext.Users.Find(1);
 			//user.Name="大飞哥";
 
+			//dbContext.Set<User>.
 
-			dbContext.SaveChanges();
-			Console.ReadKey();
+				dbContext.Users.Add(new User { Id = 5, Name = "dainzi", IsFemale = false, Password = "12345", Wallet = 100, Email = new Email { Id = 5 } });
+				dbContext.SaveChanges();
+				Console.ReadKey();
+
 
 		}
 		static void ConsructDb()

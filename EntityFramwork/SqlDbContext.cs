@@ -15,8 +15,12 @@ namespace EntityFramwork
 			Database.Log = Console.WriteLine;
 		}
 		public DbSet<User> Users { get; set; }
+		//public DbSet<Email> Emails { get; set; }
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
+			modelBuilder.Entity<User>().HasRequired(u=>u.Email)
+				.WithRequiredDependent(s=>s.User)
+				;
 			//modelBuilder.Entity<User>().Map(
 			//	m =>
 
@@ -24,12 +28,12 @@ namespace EntityFramwork
 			//		m.ToTable("Register");
 			//	}
 			//	);
-			modelBuilder.Entity<User>().Property(m => m.Name).HasColumnName("UserName");
-			modelBuilder.Entity<User>().Property(m => m.Name).HasMaxLength(256);
-			modelBuilder.Entity<User>().Property(m => m.Password).IsRequired();
-			//modelBuilder.Entity<User>().HasKey(m => m.Name);
-			modelBuilder.Entity<User>().Ignore(m => m.FailedTry);
-			modelBuilder.Entity<User>().HasIndex(m => m.CreateTime);
+			//modelBuilder.Entity<User>().Property(m => m.Name).HasColumnName("UserName");
+			//modelBuilder.Entity<User>().Property(m => m.Name).HasMaxLength(256);
+			//modelBuilder.Entity<User>().Property(m => m.Password).IsRequired();
+			////modelBuilder.Entity<User>().HasKey(m => m.Name);
+			//modelBuilder.Entity<User>().Ignore(m => m.FailedTry);
+			//modelBuilder.Entity<User>().HasIndex(m => m.CreateTime);
 			//modelBuilder.Entity<User>().Property(m=>m.CreateTime).c;
 			//base.OnModelCreating(modelBuilder);
 		}

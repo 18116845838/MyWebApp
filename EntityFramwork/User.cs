@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EntityFramwork
 {
 	[Table("Register")]
-	public class User
+	public class User	
 	{
 		//   将之前的User类名改为Register，但仍然能对应表User
 		//将之前的User属性Name改成UserName，但仍然能对应表User的列Name
@@ -30,7 +30,7 @@ namespace EntityFramwork
 		public int FailedTry { get; set; }
 		[Index(IsClustered =false)]
 		public DateTime? CreateTime { get; set; }
-		public int? EmailId { get; set; }
+		public Email Email { get; set; }
 		public int Wallet { get; set; }
 	}
 }

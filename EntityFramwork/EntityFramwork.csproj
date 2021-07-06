@@ -53,15 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202107050858193_CreateTable.cs" />
-    <Compile Include="Migrations\202107050858193_CreateTable.designer.cs">
-      <DependentUpon>202107050858193_CreateTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107051122429_Alter_TableName.cs" />
-    <Compile Include="Migrations\202107051122429_Alter_TableName.designer.cs">
-      <DependentUpon>202107051122429_Alter_TableName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Email.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlDbContext.cs" />
@@ -70,14 +62,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202107050858193_CreateTable.resx">
-      <DependentUpon>202107050858193_CreateTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107051122429_Alter_TableName.resx">
-      <DependentUpon>202107051122429_Alter_TableName.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
