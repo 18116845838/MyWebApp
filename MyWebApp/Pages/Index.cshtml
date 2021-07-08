@@ -1,17 +1,30 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
-    int sum = 15;
+    string funk = "i";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
-@functions{
-    int max(int sum)
+
+@*//利用循环分支，实现如下图所示的页面效果：
+    //新建 / Task / History / Month 页面，利用表格，输出按月按周组织的任意一个月份的日历。可参考：一起帮·任务历史月表*@
+
+<div style="text-align:center;letter-spacing:15px">
+    @for (int i = 0; i < 5; i++)
     {
-        return sum;
+       
+        if (i % 2 == 0)
+        {
+            <p style="color:red">@funk</p>
+        }
+        else
+        {
+            <p style="color:blue">@funk</p>
+
+        }
+        funk =funk+"ii";
     }
-}
+</div>
