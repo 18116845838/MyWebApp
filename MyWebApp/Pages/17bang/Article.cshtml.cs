@@ -11,6 +11,7 @@ namespace MyWebApp.Pages._17bang
     {
         public void OnGet()
         {
+
         }
     }
 }

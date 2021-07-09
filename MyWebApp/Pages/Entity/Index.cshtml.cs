@@ -4,25 +4,27 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using E = MyWebApp.Pages.Article;
-namespace MyWebApp.Pages._17bang
+using E= MyWebApp.Pages.Article;
+
+namespace MyWebApp.Pages.Entitiy
 {
-    public class ProblemModel : PageModel
+    public class IndexModel : PageModel
     {
         public Repositories.Repositories repositories;
-        public IList<E.Content> Contents { get; set; }
+        public IList<E.Content> Articles { get; set; }
         public int Count { get; set; }
         public int PageSize = 2;
         public int PageIndex { get; set; }
-		public ProblemModel()
+        public IndexModel()
 		{
             repositories = new Repositories.Repositories();
-        }
+		}
         public void OnGet()
         {
-            PageIndex = Convert.ToInt32(Request.Query["pageIndex"][0]);
-            Count = repositories.GetCount();
-            Contents = repositories.Get(PageIndex, PageSize);
+			PageIndex = Convert.ToInt32(Request.Query["pageIndex"][0]);
+			Count = repositories.GetCount();
+            Articles = repositories.Get(PageIndex,PageSize);
+      
         }
     }
 }

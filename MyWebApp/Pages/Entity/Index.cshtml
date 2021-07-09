@@ -1,0 +1,21 @@
+﻿@page
+@model MyWebApp.Pages.Entitiy.IndexModel
+@{
+    int PageInsex = Model.PageIndex;
+}
+
+@foreach (var item in Model.Articles)
+{
+    <div>
+        <small>@item.PublishTime.ToString("yyyy年MM月dd日 hh时mm分")</small>
+        <p style="float:right">作者：<a href="#">@item.Author.Name</a></p>
+        <h3><a href="/Entity?Id=@item.Id">@item.Title</a></h3>
+        <p>@item.Body</p>
+        <b>关键字：</b>
+        @foreach (var keyword in item.Keywords)
+        {
+            <span class="badge badge-dark">@keyword.Name</span>
+        }
+    </div>
+}
+

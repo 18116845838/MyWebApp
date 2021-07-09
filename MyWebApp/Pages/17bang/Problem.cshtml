@@ -2,7 +2,11 @@
 @model MyWebApp.Pages._17bang.ProblemModel
 @{
     Layout = "Layout/_Dual";
+    int previous = Model.PageIndex;
+    int next = Model.Count / Model.PageSize;
+
 }
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +28,8 @@
                     })
                 }
             }
+
+
         </script>
         <title>首页 一起帮</title>
     }
@@ -63,207 +69,78 @@
                         </span>
                     </form>
                     <!--内容部分-->
-                    <div>
+                    @*按课堂演示，继续完成：
+                        求助/文章/意见建议单页的呈现
+                        根据总的数据和每页显示多少页，计算出一共应有多少页，并以此显示实际应有多少个的分页链接
+                        分页连接中添加一个“上一页”和“下一页”链接，点击可转到当前页面的上一页/下一页*@
+                    @foreach (var item in Model.Contents)
+                    {
                         <div style="margin-top:20px;" class="font-size-d">
-                            <span>  <small class="font-size-s"><i class="fa fa-calendar "></i>2018年04月26日 15点04分</small></span>
+                            <span>  <small class="font-size-s"><i class="fa fa-calendar "></i>@item.PublishTime.ToString("yyyy年MM月dd日 hh时mm分")</small></span>
                             <span class="pull-right">
-                                <a href="#"><i class="fa fa-user-circle-o"></i>  1462556133 </a>
+                                <a href="#"><i class="fa fa-user-circle-o"></i>@item.Author.Name</a>
                                 <span>②</span>
                             </span>
                         </div>
                         <h4>
                             <span class="badge rounded-pill bg-success" style=" background-color: #5bc0de !important;color:#fff ;font-weight:400">协助中</span>
-                            <a href="#" style="color:black">Winform里控件绑定数据源就会报错</a>
+                            <a href="#" style="color:black">@item.Title</a>
                         </h4>
                         <!--正文部分-->
-                        <div>
-                            <p>......</p>
-                        </div>
-                        <div>
-                            <span class="fa fa-tags">
-                            </span>
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400">Java</span>
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400">多线程</span>
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400">编程开发语言</span>
-                        </div>
-
+                        <p>@item.Body</p>
                         <div>
                             <span class="reaward">
                                 <svg style="color:#858508" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin" viewBox="0 0 16 16">
                                     <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z" />
                                     <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                                     <path fill-rule="evenodd" d="M8 13.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z" />
-
                                 </svg>
-                                悬赏:3
+                                悬赏:@item.Reward
                             </span>
-
                             <span class="fa fa-heart" style="color:red; margin-left:16px">
                                 <a href="#">应答</a>
-                                <span style="color:black">4</span>
+                                <span style="color:black">@item.Answer</span>
                             </span>
-
-
                             <span class="fa fa-key" style=" margin-left:16px">
                                 <span><a href="#">总结</a></span>
-                                <span>1</span>
+                                <span>@item.Summary</span>
                             </span>
+                        </div>
+                        @foreach (var keyword in item.Keywords)
+                        {
+                            <span class="badge badge-dark">@keyword.Name</span>
+                        }
+                    }
+                    <div style="margin-top:30px">
+                        <div class="btn-group me-2" role="group" aria-label="First group">
+
+                            @if (Model.PageIndex > 1)
+                            {
+                                previous = Model.PageIndex - 1;
+                            }
+                            <a class="btn btn-outline-primary" href="/17bang/Problem?PageIndex=@previous" role="button">上一页</a>
+
+                            @for (int i = 0; i < Model.Count / Model.PageSize; i++)
+                            {
+                                <a class="btn btn-outline-primary" href="/17bang/Problem?PageIndex=@(i+1)" role="button">@(i+1)</a>
+
+                            }
+
+                            <a class="btn btn-outline-primary" href="/17bang/Problem?PageIndex=@(Model.PageIndex+1)" id="next" role="button">下一页</a>
+                            @if (Model.PageIndex == next)
+                            {
+                                <script>
+                                    document.getElementById("next").remove();
+                                </script>
+                            }
                         </div>
                     </div>
 
 
-                    <!--内容二-->
-                    <div>
-                        <div style="margin-top:20px;" class="font-size-d">
-                            <span>  <small class="font-size-s"><i class="fa fa-calendar "></i>2018年04月26日 15点04分</small></span>
-                            <span class="pull-right">
-                                <a href="#"><i class="fa fa-user-circle-o"></i>  1462556133 </a>
-                                <span>②</span>
-                            </span>
-                        </div>
-                        <h4>
-                            <span class="badge rounded-pill bg-success" style=" background-color: #5bc0de !important;color:#fff ;font-weight:400">协助中</span>
-                            <a href="#" style="color:black"> python爬虫不能够得到网址</a>
-                        </h4>
-
-                        <div>
-                            <p>想十年之后最希望的场景：帮助更多：被应试教育抛弃被劣质教育荒废的同学为野生程序猿正名 ，让源栈的同学可以骄傲的行走在阳光之下！从低端码农向高端人才培养迈进做那种想起来就让你热泪盈眶的事。最不能接受的场景：关门倒闭了像某内某鸟一样，顶风臭十里两害相权，哪怕我教室还是这么十来个学生，但每个学生都学有所成，至少觉得学费还值，不怨我飞哥，也就OK了。关键是人：同志，你在哪儿？一般的公司，是一个利益共同体。但做教育，我希望而且必须保证，源栈是一个理想共同体。在今天的社会，还能不能找到这样的人，找到很多很多这样的人？ ……</p>
-
-                        </div>
-                        <div>
-                            <span class="fa fa-tags">
-                            </span>
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400">多线程</span>
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400">编程开发语言</span>
-                        </div>
-
-                        <div>
-                            <span class="reaward">
-                                <svg style="color:#858508" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin" viewBox="0 0 16 16">
-                                    <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z" />
-                                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                    <path fill-rule="evenodd" d="M8 13.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z" />
-
-                                </svg>
-                                悬赏:2
-                            </span>
-
-                            <span class="fa fa-heart" style="color:red; margin-left:16px">
-                                <a href="#">应答</a>
-                                <span style="color:black">4</span>
-                            </span>
 
 
-                            <span class="fa fa-key" style=" margin-left:16px">
-                                <span><a href="#">总结</a></span>
-                                <span>3</span>
-                            </span>
-                        </div>
-                    </div>
 
-
-                    <div>
-                        <div style="margin-top:20px;" class="font-size-d">
-                            <span>  <small class="font-size-s"><i class="fa fa-calendar "></i>2018年04月26日 15点04分</small></span>
-                            <span class="pull-right">
-                                <a href="#"><i class="fa fa-user-circle-o"></i>  1462556133 </a>
-                                <span>②</span>
-                            </span>
-                        </div>
-                        <h4>
-                            <span class="badge rounded-pill bg-success" style=" background-color: #5bc0de !important;color:#fff ;font-weight:400">待协助</span>
-                            <a href="#" style="color:black"> 西安大专应届生找个JAVA开发的工作，有没有推荐的</a>
-                        </h4>
-
-                        <div>
-                            <p>本人3个月后毕业，自学3年JAVA，对J2EE的一整套开发体系非常熟悉，OA类的项目做的比较多。荣获第八届蓝桥杯JAVA C组个人赛全国一等奖，之后去上海实习几个月，因为一些原因必须回西安发展，但是投简历无数，要么没有音信，要么第一轮面试结束没有消息，要么学历不过关--。智联上西安的JAVA校招几乎没有，1个月过去了，还是没有工作，我都不求工资，只求有长远发展，不会的我都愿意学，但是不想去那种混日子的公司，要有激情，有创新，有热血的公司。有没有推荐的，或者那位大神觉得我可以内推一下我，至少给个面试机会……</p>
-                        </div>
-                        <div>
-                            <span class="fa fa-tags">
-                            </span>
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400">Java</span>
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400">多线程</span>
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400">编程开发语言</span>
-                        </div>
-
-                        <div>
-                            <span class="reaward">
-                                <svg style="color:#858508" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin" viewBox="0 0 16 16">
-                                    <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z" />
-                                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                    <path fill-rule="evenodd" d="M8 13.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z" />
-
-                                </svg>
-                                悬赏:1
-                            </span>
-
-                            <span class="fa fa-heart" style="color:red; margin-left:16px">
-                                <a href="#">应答</a>
-                                <span style="color:black">4</span>
-                            </span>
-
-
-                            <span class="fa fa-key" style=" margin-left:16px">
-                                <span><a href="#">总结</a></span>
-                                <span>2</span>
-                            </span>
-                        </div>
-                    </div>
-
-
-                    <!--内容三-->
-
-
-                    <div>
-                        <div style="margin-top:20px;" class="font-size-d">
-                            <span>  <small class="font-size-s"><i class="fa fa-calendar "></i>2018年04月26日 15点04分</small></span>
-                            <span class="pull-right">
-                                <a href="#"><i class="fa fa-user-circle-o"></i>  1462556133 </a>
-                                <span>②</span>
-                            </span>
-                        </div>
-                        <h4>
-                            <span class="badge rounded-pill bg-success" style=" background-color: #5bc0de !important;color:#fff ;font-weight:400">待协助</span>
-                            <a href="#" style="color:black"> 工作快一年，对下份工作的选择</a>
-                        </h4>
-
-                        <div>
-                            <p>去年6月份毕业的，今年换工作，目前有两家意向度比较高的offer,一家是大公司，一家是创业公司，不知道现在应该如何选择，请大佬给点意见……</p>
-                        </div>
-                        <div>
-                            <span class="fa fa-tags">
-                            </span>
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400">Java</span>
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400">多线程</span>
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400">编程开发语言</span>
-                        </div>
-
-                        <div>
-                            <span class="reaward">
-                                <svg style="color:#858508" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin" viewBox="0 0 16 16">
-                                    <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z" />
-                                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                    <path fill-rule="evenodd" d="M8 13.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z" />
-
-                                </svg>
-                                悬赏:0
-                            </span>
-
-                            <span class="fa fa-heart" style="color:red; margin-left:16px">
-                                <a href="#">应答</a>
-                                <span style="color:black">4</span>
-                            </span>
-
-
-                            <span class="fa fa-key" style=" margin-left:16px">
-                                <span><a href="#">总结</a></span>
-                                <span>0</span>
-                            </span>
-                        </div>
-                    </div>
                 </div>
-
-
                 <!--侧边栏-->
                 <div class="col-lg">
                     <div style="border-radius:5px 5px 5px 5px;padding-top:5px;border:1px dashed #eeeeee">
@@ -470,7 +347,7 @@
 
     </main>
 
-    <script src="../js/Function.js"></script>
+    @*<script src="../js/Function.js"></script>*@
 </body>
 
 
