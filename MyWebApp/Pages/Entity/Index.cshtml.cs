@@ -21,10 +21,10 @@ namespace MyWebApp.Pages.Entitiy
 		}
         public void OnGet()
         {
-			PageIndex = Convert.ToInt32(Request.Query["pageIndex"][0]);
+			//PageIndex = Convert.ToInt32(Request.Query["pageIndex"][0]);
 			Count = repositories.GetCount();
-            Articles = repositories.Get(PageIndex,PageSize);
-      
-        }
+			Articles = repositories.Get(PageIndex, PageSize);
+
+		}
     }
 }

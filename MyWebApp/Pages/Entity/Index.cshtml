@@ -17,5 +17,19 @@
             <span class="badge badge-dark">@keyword.Name</span>
         }
     </div>
+
+
 }
 
+@*    演示说明原生Html的img标签和TagHelper的img的区别
+    以下a标签TagHelper会生成什么原生a标签，为什么：*@
+
+    @*<a asp-page = "/FAQ/" > FAQ页面 </a> 会到Faq下面的Index页面
+     <a asp-page = "/FAQ/User/" > FAQ页面 </a>会到User页面
+      <a asp-page = "/FAQ/User/" asp-fragment = "credit" > FAQ页面 </a>会到User页面
+           <a asp-page = "/FAQ/User/" asp-route-on = "credit" > FAQ页面 </a>会到User页面，因为route指定
+           <a asp-page="/FAQ/Credit" asp-route-on="creadit">content</a>
+           <a asp-page="/FAQ/Credit" asp-fragment="creadit">content</a>*@
+<img src="/Image/freeflying.ico" alt="Alternate Text" />
+<img src="/Image/freeflying.ico" alt="Alternate Text" asp-append-version="true" />
+@*区别在在于一个是普通的img，一个后面有参数，有参数的会每次刷新的时候都从新检查，没参数的可能会使用缓存*@
