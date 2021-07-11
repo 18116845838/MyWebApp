@@ -17,7 +17,7 @@
 
 </head>
 <body>
-    
+
     <main style="margin-top: 60px;">
 
         <div class="container">
@@ -42,116 +42,134 @@
                             </div>
                             <label>性别：</label>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                <label class="form-check-label" for="inlineRadio1">男</label>
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" value="true" asp-for="NewUser.IsMale">
+                                    男
+                                </label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                <label class="form-check-label" for="inlineRadio2">女</label>
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" value="false" asp-for="NewUser.IsMale">
+                                    女
+                                </label>
                             </div><br />
                             <label>生日：<br /></label><br />
-                            <div class="d-flex">
-                                <div class="btn-group">
+                            <div style="display:flex;height:34px;" >
+
+                                <select class="form-control" asp-for="Year" asp-items="Model.YearSelectLists">
+                                </select>
+
+                                <span class="input-group-text">年</span>
+
+                                <select class="form-control" asp-for="Month" asp-items="Model.MonthSelectLists">
+                                </select>
+                                <span class="input-group-text">月</span>
 
 
-                                    <div class="input-group-append">
-                                        <button type="button" class="btn btn-outline-secondary" style=" border-radius:5px 0px 0px 5px;">Action</button>
-                                        <button style=" border-radius:0px 0px 0px 0px;" type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
-                                            <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <div class="dropdown-menu " style=" border-radius:0px 0px 0px 0px;">
-                                            <a class="dropdown-item" href="#">2016</a>
-                                            <a class="dropdown-item" href="#">2015</a>
-                                            <a class="dropdown-item" href="#">2014</a>
-                                            <a class="dropdown-item" href="#">2013</a>
-                                            <a class="dropdown-item" href="#">2012</a>
-                                            <a class="dropdown-item" href="#">2011</a>
-                                            <a class="dropdown-item" href="#">2010</a>
-                                            <a class="dropdown-item" href="#">2009</a>
-                                            <a class="dropdown-item" href="#">2008</a>
-                                            <a class="dropdown-item" href="#">2007</a>
-                                            <a class="dropdown-item" href="#">2006</a>
-                                            <a class="dropdown-item" href="#">2005</a>
-                                            <a class="dropdown-item" href="#">2004</a>
-                                            <a class="dropdown-item" href="#">2003</a>
-                                            <a class="dropdown-item" href="#">2002</a>
-                                            <a class="dropdown-item" href="#">2001</a>
-                                            <a class="dropdown-item" href="#">2000</a>
-                                            <a class="dropdown-item" href="#">1999</a>
-                                            <a class="dropdown-item" href="#">1998</a>
-                                            <a class="dropdown-item" href="#">1997</a>
-                                            <a class="dropdown-item" href="#">1996</a>
-                                            <a class="dropdown-item" href="#">1995</a>
-                                            <a class="dropdown-item" href="#">1994</a>
-                                            <a class="dropdown-item" href="#">1993</a>
-                                            <a class="dropdown-item" href="#">1992</a>
-                                            <a class="dropdown-item" href="#">1991</a>
-                                            <a class="dropdown-item" href="#">1990</a>
-                                            <a class="dropdown-item" href="#">1899</a>
-                                            <a class="dropdown-item" href="#">1898</a>
-                                            <a class="dropdown-item" href="#">1897</a>
-                                            <a class="dropdown-item" href="#">1896</a>
-                                        </div>
-                                    </div>
+                                <select class="form-control" asp-for="Constellation" asp-items="Model.ConstellationSelectLists">
+                                </select>
 
-                                    <span class="input-group-addon" style=" border-radius:0px 0px 0px 0px;">年</span>
+                                <span class="input-group-text">星座</span><br />
 
-                                    <div class="input-group-append" style="float:left">
-                                        <button type="button" class="btn btn-outline-secondary" style=" border-radius:0px 0px 0px 0px;">Action</button>
-                                        <button style=" border-radius:0px 0px 0px 0px;" type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
-                                            <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <div class="dropdown-menu">
+                            </div>
 
-                                            <a class="dropdown-item" href="#">1</a>
-                                            <a class="dropdown-item" href="#">2</a>
-                                            <a class="dropdown-item" href="#">3</a>
-                                            <a class="dropdown-item" href="#">4</a>
-                                            <a class="dropdown-item" href="#">5</a>
-                                            <a class="dropdown-item" href="#">6</a>
-                                            <a class="dropdown-item" href="#">7</a>
-                                            <a class="dropdown-item" href="#">8</a>
-                                            <a class="dropdown-item" href="#">9</a>
-                                            <a class="dropdown-item" href="#">10</a>
-                                            <a class="dropdown-item" href="#">11</a>
-                                            <a class="dropdown-item" href="#">12</a>
-
-                                        </div>
-                                    </div>
-
-                                    <span class="input-group-addon" style=" border-radius:0px 0px 0px 0px;">月</span>
-                                    <div class="input-group">
-
+                            @*<div class="d-flex">
+                                    <div class="btn-group">
                                         <div class="input-group-append">
-                                            <button type="button" class="btn btn-outline-secondary">Action</button>
-                                            <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
+                                            <button type="button" class="btn btn-outline-secondary" style=" border-radius:5px 0px 0px 5px;">Action</button>
+                                            <button style=" border-radius:0px 0px 0px 0px;" type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <div class="dropdown-menu "  style=" border-radius:0px 0px 0px 0px;">
+                                                <a class="dropdown-item" href="#">2016</a>
+                                                <a class="dropdown-item" href="#">2015</a>
+                                                <a class="dropdown-item" href="#">2014</a>
+                                                <a class="dropdown-item" href="#">2013</a>
+                                                <a class="dropdown-item" href="#">2012</a>
+                                                <a class="dropdown-item" href="#">2011</a>
+                                                <a class="dropdown-item" href="#">2010</a>
+                                                <a class="dropdown-item" href="#">2009</a>
+                                                <a class="dropdown-item" href="#">2008</a>
+                                                <a class="dropdown-item" href="#">2007</a>
+                                                <a class="dropdown-item" href="#">2006</a>
+                                                <a class="dropdown-item" href="#">2005</a>
+                                                <a class="dropdown-item" href="#">2004</a>
+                                                <a class="dropdown-item" href="#">2003</a>
+                                                <a class="dropdown-item" href="#">2002</a>
+                                                <a class="dropdown-item" href="#">2001</a>
+                                                <a class="dropdown-item" href="#">2000</a>
+                                                <a class="dropdown-item" href="#">1999</a>
+                                                <a class="dropdown-item" href="#">1998</a>
+                                                <a class="dropdown-item" href="#">1997</a>
+                                                <a class="dropdown-item" href="#">1996</a>
+                                                <a class="dropdown-item" href="#">1995</a>
+                                                <a class="dropdown-item" href="#">1994</a>
+                                                <a class="dropdown-item" href="#">1993</a>
+                                                <a class="dropdown-item" href="#">1992</a>
+                                                <a class="dropdown-item" href="#">1991</a>
+                                                <a class="dropdown-item" href="#">1990</a>
+                                                <a class="dropdown-item" href="#">1899</a>
+                                                <a class="dropdown-item" href="#">1898</a>
+                                                <a class="dropdown-item" href="#">1897</a>
+                                                <a class="dropdown-item" href="#">1896</a>
+                                            </div>
+                                        </div>
+
+                                        <span class="input-group-addon" style=" border-radius:0px 0px 0px 0px;">年</span>
+
+                                        <div class="input-group-append" style="float:left">
+                                            <button type="button" class="btn btn-outline-secondary" style=" border-radius:0px 0px 0px 0px;">Action</button>
+                                            <button style=" border-radius:0px 0px 0px 0px;" type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
                                                 <span class="sr-only">Toggle Dropdown</span>
                                             </button>
                                             <div class="dropdown-menu">
 
-                                                <a class="dropdown-item" href="#">白羊座 </a>
-                                                <a class="dropdown-item" href="#">金牛座 </a>
-                                                <a class="dropdown-item" href="#">双子座 </a>
-                                                <a class="dropdown-item" href="#">巨蟹座 </a>
-                                                <a class="dropdown-item" href="#">狮子座 </a>
-                                                <a class="dropdown-item" href="#">处女座 </a>
-                                                <a class="dropdown-item" href="#">天平座 </a>
-                                                <a class="dropdown-item" href="#">天蝎座 </a>
-                                                <a class="dropdown-item" href="#">射手座 </a>
-                                                <a class="dropdown-item" href="#">魔蝎座 </a>
-                                                <a class="dropdown-item" href="#">水瓶座 </a>
-                                                <a class="dropdown-item" href="#">双鱼座 </a>
+                                                <a class="dropdown-item" href="#">1</a>
+                                                <a class="dropdown-item" href="#">2</a>
+                                                <a class="dropdown-item" href="#">3</a>
+                                                <a class="dropdown-item" href="#">4</a>
+                                                <a class="dropdown-item" href="#">5</a>
+                                                <a class="dropdown-item" href="#">6</a>
+                                                <a class="dropdown-item" href="#">7</a>
+                                                <a class="dropdown-item" href="#">8</a>
+                                                <a class="dropdown-item" href="#">9</a>
+                                                <a class="dropdown-item" href="#">10</a>
+                                                <a class="dropdown-item" href="#">11</a>
+                                                <a class="dropdown-item" href="#">12</a>
+
                                             </div>
                                         </div>
-                                        <span class="input-group-addon" style=" border-radius:0px 5px 5px 0px;">星座</span>
+
+                                        <span class="input-group-addon" style=" border-radius:0px 0px 0px 0px;">月</span>
+                                        <div class="input-group">
+
+                                            <div class="input-group-append">
+                                                <button type="button" class="btn btn-outline-secondary">Action</button>
+                                                <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <div class="dropdown-menu">
+
+                                                    <a class="dropdown-item" href="#">白羊座 </a>
+                                                    <a class="dropdown-item" href="#">金牛座 </a>
+                                                    <a class="dropdown-item" href="#">双子座 </a>
+                                                    <a class="dropdown-item" href="#">巨蟹座 </a>
+                                                    <a class="dropdown-item" href="#">狮子座 </a>
+                                                    <a class="dropdown-item" href="#">处女座 </a>
+                                                    <a class="dropdown-item" href="#">天平座 </a>
+                                                    <a class="dropdown-item" href="#">天蝎座 </a>
+                                                    <a class="dropdown-item" href="#">射手座 </a>
+                                                    <a class="dropdown-item" href="#">魔蝎座 </a>
+                                                    <a class="dropdown-item" href="#">水瓶座 </a>
+                                                    <a class="dropdown-item" href="#">双鱼座 </a>
+                                                </div>
+                                            </div>
+                                            <span class="input-group-addon" style=" border-radius:0px 5px 5px 0px;">星座</span>
+                                        </div>
                                     </div>
+                                </div>*@
 
 
-                                </div>
-
-
-
-                            </div>
                             <label>关键字：（* 使用空格分隔）<br /></label><br />
 
                             <div class="input-group mb-3 ">

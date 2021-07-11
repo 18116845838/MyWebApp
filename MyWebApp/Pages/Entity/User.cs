@@ -12,5 +12,12 @@ namespace MyWebApp.Pages.Article
 		public string Captcha { get; set; }
 		public int Age { get; set; }
 		public string InvitationCode { get; set; }
+
+		public string QQ { get; set; }
+		public string Wechat { get; set; }
+		public string phone { get; set; }
+		public string postscript { get; set; }
+
+		public bool IsMale { get; set; }
 	}
 }
