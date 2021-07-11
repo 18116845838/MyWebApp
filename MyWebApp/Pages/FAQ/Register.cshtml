@@ -33,29 +33,29 @@
                             <div style="background-color:#ffffe0;border-radius:5px 5px 5px 5px;padding-top:5px;border:dashed #eeeeee">
                                 <a href="#" style="float:right"> <i class="fa fa-question-circle"></i> 为什么需要邀请人</a>
                                 <div class="form-group" style="clear:both">
-                                    <label for="formGroupExampleInput">邀请人：（* 必填，<a href="#">没有邀请人</a>）</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="他的用户名，模糊查询只能从头开始">
+                                    <label for="formGroupExampleInput" >邀请人：（* 必填，<a href="#">没有邀请人</a>）</label>
+                                    <input asp-for="NewUser.Name" class="form-control"  placeholder="他的用户名，模糊查询只能从头开始">
                                 </div>
                                 <div class="form-group">
                                     <label for="formGroupExampleInput2">邀请码：（* 必填）</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="4位数字">
+                                    <input asp-for="NewUser.InvitationCode" class="form-control"  placeholder="4位数字">
                                 </div>
                                 <i style="visibility:hidden">1</i>
                             </div>
 
                             <div class="form-group">
                                 <label for="formGroupExampleInput2">用户名：（* 必填）</label>
-                                <input type="text" class="form-control" id="userName" placeholder="登陆用户名，可修改，不能重复">
+                                <input asp-for="NewUser.Name" class="form-control"  placeholder="登陆用户名，可修改，不能重复">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">密码：（* 必填）</label>
-                                <input type="password" class="form-control" id="password" placeholder="不少于四个字符">
+                                <input asp-for="NewUser.Password" class="form-control" placeholder="不少于四个字符">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">验证密码：（* 必填）</label>
-                                <input type="password" class="form-control" id="ConfirmPassword" placeholder="和密码相同">
+                                <input asp-for="NewUser.ValidatePassword" class="form-control"  placeholder="和密码相同">
                             </div>
-                            <label for="validationDefault05">验证密码：（* 必填）</label>
+                            <label asp-for="NewUser.Captcha">验证码：（* 必填）</label>
 
                             <span class="form-row">
                                 <span class="col-md-3 mb-3" style="float:left">
