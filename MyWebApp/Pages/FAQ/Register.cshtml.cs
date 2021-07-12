@@ -8,11 +8,19 @@ using MyWebApp.Pages.Article;
 
 namespace MyWebApp.Pages.FAQ
 {
+    [BindProperties]
     public class RegisterModel : PageModel
     {
         public User NewUser { get; set; }
         public void OnGet()
         {
+        }
+        public void OnPost()
+        {
+			if (!ModelState.IsValid)
+			{
+                return;
+			}
         }
     }
 }

@@ -36,11 +36,11 @@ namespace MyWebApp.Pages.Repositories
 							Name="面向对象"
 						},
 						new Keyword
-						{ 
+						{
 							Name="继承"
 						}
 					}
-					
+
 				},
 				new Content
 				{
@@ -250,7 +250,7 @@ namespace MyWebApp.Pages.Repositories
 
 			};
 		}
-		public IList<Article.Content> Get(int pageIndex,int pageSize)
+		public IList<Article.Content> Get(int pageIndex, int pageSize)
 		{
 			return Contents.Skip((pageIndex - 1) * pageSize)
 				.Take(pageSize).ToList();
@@ -260,6 +260,20 @@ namespace MyWebApp.Pages.Repositories
 		{
 			return Contents.Count();
 		}
+		//		利用内存读写Repository，完成内容（求助/文章/意见建议）的
+
+		//   新建
+		public void Add()
+		{ 
+
+		}
+		//	修改：通过id修改正确的内容，并予以显示（提示：?id=3）。能完成基本内容（比如：标题/正文）修改就行，不需要富文本、关键字之类的附加功能
+
+		//完成消息页面的：
+
+
+		//标记已读
+		//删除
 
 	}
 }

@@ -4,8 +4,10 @@ namespace MyWebApp.Pages.Article
 {
 	public class User : Entity
 	{
+		[Required(ErrorMessage ="* 姓名不能为空")]
 		public string Name { get; set; }
 		[DataType(DataType.Password)]
+		[MinLength(4,ErrorMessage ="* 最小长度为4")]
 		public string Password { get; set; }
 		[DataType(DataType.Password)]
 		public string ValidatePassword { get; set; }

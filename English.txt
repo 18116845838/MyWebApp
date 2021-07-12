@@ -64,3 +64,9 @@ target
 process
 2021年7月11日
 verification
+token
+bind
+property
+2021年7月12日
+valid
+range
