@@ -263,14 +263,26 @@ namespace MyWebApp.Pages.Repositories
 		//		利用内存读写Repository，完成内容（求助/文章/意见建议）的
 
 		//   新建
-		public void Add()
-		{ 
-
+		public void Add(Content content)
+		{
+			Contents.Add(content);
 		}
 		//	修改：通过id修改正确的内容，并予以显示（提示：?id=3）。能完成基本内容（比如：标题/正文）修改就行，不需要富文本、关键字之类的附加功能
 
-		//完成消息页面的：
+		public void Alter(int id,string alterTitel="",string alterBody = "")
+		{
+			Content content= Contents.Where(c => c.Id == id).SingleOrDefault();
+			if (alterTitel.Length>0)
+			{
+				content.Title = alterTitel;
 
+			}//else nothing
+			if (alterBody.Length>0)
+			{
+				content.Body = alterBody;
+			}//else nothing
+		}
+		//完成消息页面的：
 
 		//标记已读
 		//删除

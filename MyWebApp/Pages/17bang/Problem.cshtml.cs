@@ -23,6 +23,8 @@ namespace MyWebApp.Pages._17bang
             PageIndex = Convert.ToInt32(Request.Query["pageIndex"][0]);
             Count = repositories.GetCount();
             Contents = repositories.Get(PageIndex, PageSize);
+            //测试修改标题，内容
+            repositories.Alter(2, "SQL语句，相关子查询");
         }
     }
 }
