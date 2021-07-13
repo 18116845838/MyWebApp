@@ -15,26 +15,25 @@
         <link href="../fons/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
         <title>注册 一起帮</title>
     }
-    @*<style>
+    <style>
         .field-validation-error {
             color: red;
-            font-size: 14px;
+            font-size: 12px;
 
 
-            display: inline-block;
+/*            display: inline-block;
             font: normal normal normal 14px/1 FontAwesome;
             font-size: 14px;
             font-size: inherit;
-            text-rendering: auto;
+            text-rendering: auto;*/
         }
 
-            .field-validation-error::before {
+/*            .field-validation-error::before {
                 content: "\f2b9";
-            }
-    </style>*@
+            }*/
+    </style>
 </head>
 <body>
-
 
     <main style="margin-top:60px;">
         <div class="container">
@@ -51,11 +50,13 @@
                             <a href="#" style="float:right"> <i class="fa fa-question-circle"></i> 为什么需要邀请人</a>
                             <div class="form-group" style="clear:both">
                                 <label for="formGroupExampleInput">邀请人：（* 必填，<a href="#">没有邀请人</a>）</label>
-                                <input asp-for="NewUser.Name" class="form-control" placeholder="他的用户名，模糊查询只能从头开始">
+                                <input asp-for="NewUser.InviterBy.Name" class="form-control" placeholder="他的用户名，模糊查询只能从头开始">
+                                <span asp-validation-for="NewUser.InviterBy.Name"></span>
                             </div>
                             <div class="form-group">
                                 <label for="formGroupExampleInput2">邀请码：（* 必填）</label>
-                                <input asp-for="NewUser.InvitationCode" class="form-control" placeholder="4位数字">
+                                <input asp-for="NewUser.InviterBy.InvitationCode" class="form-control" placeholder="4位数字">
+                                <span asp-validation-for="NewUser.InviterBy.InvitationCode"></span>
                             </div>
                             <i style="visibility:hidden">1</i>
                         </div>
@@ -74,7 +75,8 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">验证密码：（* 必填）</label>
-                            <input asp-for="NewUser.ValidatePassword" class="form-control" placeholder="和密码相同">
+                            <input asp-for="ConfirmPassword" class="form-control" placeholder="和密码相同">
+                            <span asp-validation-for="ConfirmPassword"></span>
                         </div>
                         <label asp-for="NewUser.Captcha">验证码：（* 必填）</label>
 
