@@ -14,7 +14,7 @@ namespace MyWebApp.Pages.Article
 		//public string ConfirmPassword { get; set; }
 		public string Captcha { get; set; }
 		public int Age { get; set; }
-		[Required(ErrorMessage ="* 邀请人不能为空")]
+		//[Required(ErrorMessage = "* 邀请人不能为空")]
 		public User InviterBy { get; set; }
 		public string InvitationCode { get; set; }
 
