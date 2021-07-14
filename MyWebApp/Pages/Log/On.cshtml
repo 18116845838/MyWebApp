@@ -28,6 +28,8 @@
                 <div class="row">
                     <div class="col">
                         <form class="needs-validation;novalidate" method="post">
+                            <span asp-validation-for="Hint"></span>
+
                             <div class="form-group">
                                 <label for="formGroupExampleInput2">用户名：（* 必填）</label>
                                 <input asp-for="NewUser.Name" class="form-control" placeholder="登陆用户名，可修改，不能重复">

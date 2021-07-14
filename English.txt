@@ -81,3 +81,6 @@ redirect
 permanent
 merge
 persist
+Filter
+pipeline
+instance

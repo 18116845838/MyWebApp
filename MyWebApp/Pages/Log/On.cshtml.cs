@@ -15,6 +15,7 @@ namespace MyWebApp.Pages.Log
 	public class OnModel : PageModel
 	{
 		public User NewUser { get; set; }
+		public string Hint { get; set; }
 		public UserRepositorie userRepositorie;
 		public OnModel()
 		{
@@ -27,6 +28,11 @@ namespace MyWebApp.Pages.Log
 			Rememberme = true;
 			ViewData["HasLogOn"] = Request.Cookies[Keys.UserId];
 			TempData[Keys.UrlKey] = Request.Headers["referer"];
+			if (TempData[Keys.ErrorMessage] != null)
+			{
+				ModelState.AddModelError(nameof(Hint), TempData[Keys.ErrorMessage].ToString());
+			}//else nothing
+
 		}
 		public IActionResult OnPost()
 		{

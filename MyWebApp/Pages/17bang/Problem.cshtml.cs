@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MyWebApp.Pages.Filter;
 using E = MyWebApp.Pages.Article;
 namespace MyWebApp.Pages._17bang
 {
+    [NeedLogOn]
     public class ProblemModel : PageModel
     {
         public Repositories.Repositories repositories;
