@@ -24,6 +24,7 @@ namespace MyWebApp.Pages.Repositories
 					Author=new User{
 						Id=1,
 						Name="飞哥",
+						Level=9
 					},
 					Keywords=new List<Keyword>
 					{
@@ -54,6 +55,7 @@ namespace MyWebApp.Pages.Repositories
 					Author=new User{
 						Id=1,
 						Name="小鱼",
+						Level=7
 					},
 					Keywords=new List<Keyword>
 					{
@@ -81,8 +83,10 @@ namespace MyWebApp.Pages.Repositories
 					Summary=20,
 					Reward=30,
 					Author=new User{
-						Id=1,
+						Id=3,
 						Name="小鱼",
+						Level=9
+
 					},
 					Keywords=new List<Keyword>
 					{
@@ -112,6 +116,7 @@ namespace MyWebApp.Pages.Repositories
 					Author=new User{
 						Id=1,
 						Name="飞哥",
+						Level=2
 					},
 					Keywords=new List<Keyword>
 					{
@@ -141,6 +146,7 @@ namespace MyWebApp.Pages.Repositories
 					Author=new User{
 						Id=1,
 						Name="飞哥",
+						Level=5
 					},
 					Keywords=new List<Keyword>
 					{

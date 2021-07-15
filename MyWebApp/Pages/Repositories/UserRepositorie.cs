@@ -20,6 +20,7 @@ namespace MyWebApp.Pages.Repositories
 					IsMale=true,
 					Password="123456",
 					InvitationCode="1234",
+					Level=9
 
 				}   ,
 				new User
@@ -29,6 +30,7 @@ namespace MyWebApp.Pages.Repositories
 					IsMale=true,
 					Password="123456",
 					InvitationCode="1234",
+					Level=7
 
 				} 
 				
