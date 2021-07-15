@@ -1,0 +1,21 @@
+﻿@using MyWebApp.Pages.Article;
+@model IList<List<Keyword>>
+
+@{
+    double opacity = 1.2;
+    int fontSize = 18;
+}
+<div>
+    @foreach (var item in Model)
+    {
+        opacity -= 0.2;
+        fontSize -= 2;
+        <div style="margin-top:10px;">
+            @foreach (var keyword in item)
+            {
+                <span class="badge badge-pill badge-dark" style="opacity:@(opacity);font-size:@(fontSize);margin-left:20px">@keyword.Name</span>
+            }
+        </div>
+
+    }
+</div>

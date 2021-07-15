@@ -15,7 +15,7 @@
         <link href="https://17bang.ren/Images/logo-big.ico" rel="shortcut icon" type="image/x-icon" media="screen" />
         <link href="/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
         <!--<link href="../css/MyStyle.css" rel="stylesheet" />-->
-        <link href="../fons/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+        <link href="~/fons/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
         <script>
             // 参考求助首页侧边栏关键字，实现：当鼠标移动到关键字上，显示关键字被使用次数
             window.onload = function () {
@@ -150,56 +150,16 @@
                             <hr />
 
                         </div>
+
+                        <vc:widgets></vc:widgets>
+
                         <!--关键字部分-->
-                        <div style="margin-top:10px;">
 
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400;font-size: 18px; margin-left:15px;" title="16">编程开发语言</span>
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400;font-size: 18px;  margin-left:15px;">C#</span>
-
-
-
-                        </div>
-                        <div style="margin-top:10px;">
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400;font-size: 17px;  margin-left:15px;">工具软件</span>
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400;font-size: 17px;  margin-left:15px; ">Javascript</span>
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400;font-size: 17px;  margin-left:15px;">顾问咨询</span>
-
-
-                        </div>
-                        <div style="margin-top:10px;">
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400;font-size: 16px;margin-left:15px;">Sql</span>
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400;font-size: 16px;margin-left:15px;">linq</span>
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400;font-size: 16px;margin-left:15px;">Vue</span>
-
-
-                        </div>                        <div style="margin-top:10px;">
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400;font-size: 15px;margin-left:15px;">框架</span>
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400;font-size: 15px;margin-left:15px;">数据库</span>
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400;font-size: 15px;margin-left:15px;">后端</span>
-
-
-                        </div>
-
-                        <div style="margin-top:10px;">
-
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400;font-size: 14px;margin-left:15px;">HTML</span>
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400;font-size: 14px;margin-left:15px;">VaisualStudio</span>
-
-
-                        </div>
-
-                        <div style="margin-top:10px;">
-
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400;font-size: 12px;margin-left:15px;">操作系统</span>
-                            <span class="badge rounded-pill bg-success" style=" background-color: #777 !important;color:#fff ;font-weight:400;font-size: 12px;margin-left:15px;">职场</span>
-
-
-                        </div>
                         <hr />
                         <div>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="直接输入关键字获取" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                <span style="margin-right:30px;" class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
+                                <span style="margin-right:30px;" class="input-group-text" id="basic-addon2"><i class="fa fa-search" ></i></span>
                                 <span><button type="button" class="btn btn-outline-secondary fa fa-random" style="line-height: 21px;">换一批</button></span>
                             </div>
                         </div>
@@ -350,6 +310,5 @@
 
     @*<script src="../js/Function.js"></script>*@
 </body>
-
 
 </html>
