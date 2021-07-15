@@ -87,3 +87,4 @@ instance
 partial
 2021Äê7ÔÂ15ÈÕ
 component
+idle

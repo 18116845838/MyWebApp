@@ -25,7 +25,13 @@ namespace MyWebApp.Pages.Filter
 		{
 			if (context.HttpContext.Request.Method.ToUpper()=="GET")
 			{
-				if (context.HttpContext.Request.Cookies[Keys.UserId] == null)
+				//if (context.HttpContext.Request.Cookies[Keys.UserId] == null)
+				//{
+				//	((PageModel)context.HandlerInstance).TempData[Keys.ErrorMessage]
+				//		= $"访问{context.HttpContext.Request.Path}页面需要先登录";
+				//	context.Result = new RedirectToPageResult("/Log/On");
+				//}//else nothing
+				if (context.HttpContext.Session.Keys == null)
 				{
 					((PageModel)context.HandlerInstance).TempData[Keys.ErrorMessage]
 						= $"访问{context.HttpContext.Request.Path}页面需要先登录";

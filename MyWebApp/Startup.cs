@@ -19,6 +19,15 @@ namespace MyWebApp
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddRazorPages();
+
+			services
+
+				.AddSession(
+				opt => {
+					opt.Cookie.Name = "Rememberme";
+					opt.IdleTimeout = new System.TimeSpan(14, 0, 0, 0, 0);
+				}
+				);
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +49,7 @@ namespace MyWebApp
 
 			app.UseRouting();
 
+			app.UseSession();
 			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>

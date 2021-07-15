@@ -26,7 +26,8 @@ namespace MyWebApp.Pages.Log
 		public void OnGet()
 		{
 			Rememberme = true;
-			ViewData["HasLogOn"] = Request.Cookies[Keys.UserId];
+			//ViewData["HasLogOn"] = Request.Cookies[Keys.UserId];
+			ViewData["HasLogOn"] = HttpContext.Session.GetString(Keys.Status);
 			TempData[Keys.UrlKey] = Request.Headers["referer"];
 			if (TempData[Keys.ErrorMessage] != null)
 			{
@@ -61,7 +62,8 @@ namespace MyWebApp.Pages.Log
 			CookieOptions cookie = new CookieOptions();
 			if (Rememberme)
 			{
-				cookie.Expires = DateTime.Now.AddDays(14);
+				HttpContext.Session.SetString(Keys.Status, Keys.Status);
+				//cookie.Expires = DateTime.Now.AddDays(14);
 			}//else nothing
 
 			Response.Cookies.Append(Keys.UserId, user.Id.ToString(), cookie);
