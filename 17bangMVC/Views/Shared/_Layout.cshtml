@@ -3,36 +3,113 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="https://17bang.ren/Images/logo-big.ico" rel="shortcut icon" media="screen" type="image/x-icon" />
+    <title>@ViewBag.Title</title>
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+        </div>*@
+    <footer style="vertical-align:auto">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="col-md-7 ">
+                    <img src="~/Image/logo-big.ico" style="float:left;text-align:center" />
+                    <ul class="nav navbar-nav">
+                        <li><h4 class="navbar-text">一起帮·网络互助平台</h4></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-bell"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-5 ">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#"><i class="glyphicon glyphicon-question-sign"></i>求助</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-eye-open"></i> 督促</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-duplicate"></i> 文章</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-user"></i> 用户<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-dashboard"></i> 后台<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="col-md col-md-push-1" style="margin:54px 150px;">
+            <div class="well well-sm" style="padding-left: 20px;">
+                <i class="glyphicon glyphicon-calendar"></i>
+                <i class="glyphicon glyphicon-thumbs-up"></i>
+                因为注册时使用了<a href="#">urbbr</a>的邀请码，系统赠送给 <a href="#">hanpeng</a> 
+                ① 10点 <a href="#"><i class=" glyphicon glyphicon-tint" style="color:blue"></i>帮帮点</a>帮帮点
+                <a href="#" class="pull-right"><i class="glyphicon glyphicon-hand-right"></i>全部消息</a>
             </div>
         </div>
-    </div>
+
+    </footer>
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        <footer class="margin-top-s">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8">
+                        <span><a href="#">关于我们</a></span>|
+                        <span><a href="#">源站课堂</a></span>|
+                        <span><a href="#">常见问题</a></span>|
+                        <span><a href="#">意见建议</a></span>|
+                        <span><a href="#">历史通知</a></span>|
+                        <span><a href="#" style="color:#487e49">友情捐赠</a></span>|
+                        <span><a href="#">诚邀合伙人</a></span>
+                    </div>
+
+
+                </div>
+            </div>
+            <p style="position:relative;float:right; right:120px;">
+                <a href="#">
+                    渝ICP备18007191号（备案）
+                </a>© 2021 - 自由 <img src="../Image/freeflying.ico" />
+            </p>
+            <span style="text-align:center; border-radius: 0px 5px 0px 5px; width: 50px; height: 50px; position: fixed; bottom: 113px; right: 100px; background-color: #a6ffe1 "><a href="#"><i class="glyphicon glyphicon-question-sign"></i><br />帮助</a></span>
+            <span style="text-align: center; border-radius: 0px 5px 0px 5px; width: 50px; height: 50px; position: fixed; bottom: 60px; right: 100px; background-color: #a6ffe1"><a href="#"><i class="glyphicon glyphicon-comment"></i><br />反馈</a></span>
+
         </footer>
+        @*<footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>*@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
