@@ -1,4 +1,4 @@
-﻿
+﻿@model _17bangMVC.Models.PlanNewModel
 @{
     ViewBag.Title = "发布新目标 一起帮";
 }
@@ -13,98 +13,82 @@
 </style>
 
 <div>
-    <h1><i class="glyphicon glyphicon-edit"></i>发布新目标</h1>
+    <h1>
+        <i class="glyphicon glyphicon-edit"></i>发布新目标
+    </h1>
     <hr />
 </div>
 <br />
 <div style="display:flex ;">
-    <div >
-        <form action="/" method="post"  style="width:400px">
+    @using (Html.BeginForm("PlanNew", "Index", FormMethod.Post))
+    {
+        <div style="width:400px">
+
             <label>标题（必填）:</label><br />
-            <input type="text" class="form-control" placeholder="简明扼要，多个目标请分开发布" aria-describedby="sizing-addon1">
+            @Html.TextBoxFor(m => m.Name, new { placeholder = "简明扼要，多个目标请分开发布", @class = "form-control" })
             <label>详细说明（必填）:</label><br />
-            <textarea class="form-control" placeholder="补充你认为需要说明的其他信息。比如：求温柔/凶狠好心人，最好同城/校……" aria-describedby="sizing-addon1"></textarea>
+            @Html.TextAreaFor(m => m.Specify, new { placeholder = "补充你认为需要说明的其他信息。比如：求温柔/凶狠好心人，最好同城/校……", @class = "form-control" })
             <label>标签（必填）:</label><br />
-            <input type="text" class="form-control" placeholder="多个标签之间请用空格分开" aria-describedby="sizing-addon1">
+            @Html.TextBox("Tag", null, new { placeholder = "多个标签之间请用空格分开", @class = "form-control" })
             <label>开始执行（必填）:</label><br />
-            <input type="datetime-local" class="form-control" placeholder="" aria-describedby="sizing-addon1">
+            @Html.TextBoxFor(m => m.BeginTime, new { @class = "form-control" })
             <label><i class="glyphicon glyphicon-question-sign"></i>目标结束（必填）:</label><br />
-            <input type="datetime-local" class="form-control" placeholder="" aria-describedby="sizing-addon1">
+            @Html.TextBoxFor(m => m.EndTime, new { @class = "form-control" })
             <label> <i class="glyphicon glyphicon-question-sign"></i>每周交作业时间（必填）:</label><br />
+
             <table class="table table-bordered">
                 <tr>
-                    <th>一</th>
-                    <th>二</th>
-                    <th>三</th>
-                    <th>四</th>
-                    <th>五</th>
-                    <th>六</th>
-                    <th>日</th>
+                    @for (int i = 0; i < 7; i++)
+                    {
+                        <th>@Model.DaysInWeek.Keys.ToList()[i].ToString()</th>
+                    }
                 </tr>
                 <tr>
-                    <td><input type="checkbox" name="name" value="" checked /></td>
-                    <td><input type="checkbox" name="name" value="" checked /></td>
-                    <td><input type="checkbox" name="name" value="" checked /></td>
-                    <td><input type="checkbox" name="name" value="" checked /></td>
-                    <td><input type="checkbox" name="name" value="" checked /></td>
-                    <td><input type="checkbox" name="name" value="" checked /></td>
-                    <td><input type="checkbox" name="name" value="" checked /></td>
-
+                    @for (int i = 0; i < 7; i++)
+                    {
+                        <td>@Html.CheckBoxFor(m => m.DaysInWeek.Values.ToList()[i])</td>
+                    }
                 </tr>
             </table>
             <label><i class="glyphicon glyphicon-question-sign"></i>每周可请假:</label><br />
             <div class="input-group">
-                <select type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                    <option value="value">0</option>
-                    <option value="value">1</option>
-                    <option value="value">2</option>
-                    <option value="value">3</option>
-                    <option value="value">4</option>
-                    <option value="value">5</option>
-                    <option value="value">6</option>
-                </select>
+                @Html.DropDownListFor(m => m.DaysOfLeave, new SelectList(Model.DaysOfLeaveOptions, "Key", "value"@*,3*@), new { @class = "form-control" })
+
                 <span class="input-group-addon">天</span>
             </div>
-
             <label><i class="glyphicon glyphicon-question-sign"></i>证明:</label><br />
-            <input type="text" class="form-control" placeholder="证据的文字描述" aria-describedby="sizing-addon1">
+            @Html.TextBox("Proof", null, new { @class = "form-control", placeholder = "证据的文字描述" })
+
             <br />
-            <input type="text" class="form-control" placeholder="可访问的网页，详见说明" aria-describedby="sizing-addon1">
+            @Html.TextBox("WebSite", null, new { @class = "form-control", placeholder = "可访问的网页，详见说明" })
+
             <label><i class="glyphicon glyphicon-question-sign"></i>好心人最多:</label><br />
             <div class="input-group">
-                <select type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                @Html.DropDownList("GoodSoul", new SelectList(new int[] { 1, 2, 3, 4, 5 }), new { @class = "form-control" })
 
-                    <option value="value">1</option>
-                    <option value="value">2</option>
-                    <option value="value">3</option>
-                    <option value="value">4</option>
-                    <option value="value">5</option>
-
-                </select>
                 <span class="input-group-addon">人</span>
             </div>
             <label><i class="glyphicon glyphicon-question-sign"></i>未交作业罚金（必填）:（现拥有0枚<i class="glyphicon glyphicon-refresh"></i>）</label><br />
-            @*<div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-jpy"></i></span>
 
-                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="正整数建议十枚以上" />
-                <span class="input-group-addon">枚</span>
-            </div>*@
             <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-jpy"></span></span>
-                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                @Html.TextBox("Fine", null, new { @class = "form-control" })
+
                 <span class="input-group-addon">枚</span>
             </div>
             <a href="#" class="pull-right"><i class="glyphicon glyphicon-question-sign"></i>如何获得帮帮币</a><br />
             <button type="submit" class="btn btn-primary">提交</button>
             <label style="margin-left:10px;">
-                <input type="checkbox" value="" checked>
+                @Html.CheckBox("Continue",true)
                 继续
             </label>
-        </form>
-    </div>
+        </div>
+
+    }
     <div style="margin-left:200px">
-        <h3><a href="#"><i class="glyphicon glyphicon-question-sign"></i>说明</a></h3>
+        <h3>
+            <a href="#"><i class="glyphicon glyphicon-question-sign"></i>说明</a>
+        </h3>
         <ol>
             <li>
                 简单来说，“一起督促吧”就干这三件事：
