@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "发布新目标 一起帮";
 }
-<style>
+@*<style>
     /*.container {
         display: flex;*/ /* or inline-flex */ /*\
 
@@ -10,7 +10,7 @@
     .item {
         order: 2;
     }
-</style>
+</style>*@
 
 <div>
     <h1>
@@ -26,6 +26,7 @@
 
             <label>标题（必填）:</label><br />
             @Html.TextBoxFor(m => m.Name, new { placeholder = "简明扼要，多个目标请分开发布", @class = "form-control" })
+
             <label>详细说明（必填）:</label><br />
             @Html.TextAreaFor(m => m.Specify, new { placeholder = "补充你认为需要说明的其他信息。比如：求温柔/凶狠好心人，最好同城/校……", @class = "form-control" })
             <label>标签（必填）:</label><br />
