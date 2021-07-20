@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace Entities
+namespace _17bangMVC.Models
 {
-	public class Arcticle:Entity
+	public class ArcticleModel
 	{
 		public string Title { get; set; }
 		public string Body { get; set; }

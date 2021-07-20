@@ -8,13 +8,19 @@ namespace Repositoy
 {
 	public class UserRepository : Repositorys<User>
 	{
-		public UserRepository()
+		public UserRepository(SqlDbContext context) : base(context)
 		{
-			context = new SqlDbContext<User>();
+			context = new SqlDbContext();
+		}
+
+		public User Find(int id)
+		{
+			return dbSet.Where(u => u.Id == id)
+				.SingleOrDefault();
 		}
 		public User GetByName(string name)
 		{
-			return context.Entities.Where(e => e.Name == name)
+			return dbSet.Where(e => e.Name == name)
 				.SingleOrDefault();
 		}
 	}

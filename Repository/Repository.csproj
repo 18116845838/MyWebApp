@@ -56,6 +56,10 @@
     <Compile Include="Migrations\202107190815530_Init.designer.cs">
       <DependentUpon>202107190815530_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107200135077_AlterTable.cs" />
+    <Compile Include="Migrations\202107200135077_AlterTable.designer.cs">
+      <DependentUpon>202107200135077_AlterTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,6 +79,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202107190815530_Init.resx">
       <DependentUpon>202107190815530_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107200135077_AlterTable.resx">
+      <DependentUpon>202107200135077_AlterTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

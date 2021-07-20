@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 using Entities;
 namespace Repositoy
 {
-	public class SqlDbContext<T> : SqlDbContext where T : Entity
-	{
+	//public class SqlDbContext<T> : SqlDbContext where T : Entity
+	//{
 
-		public DbSet<T> Entities { get; set; }
+	//	public DbSet<T> Entities { get; set; }
 
-	}
+	//}
 	public class SqlDbContext : DbContext
 	{
 		public SqlDbContext() : base("17bang")
