@@ -1,6 +1,5 @@
 ﻿using _17bangMVC.Models;
-using Entities;
-using Repositoy;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +11,12 @@ namespace _17bangMVC.Controllers
 	public class RegisterController : Controller
 	{
 		// GET: Register
-		Repositorys<User> repositorys;
-		public RegisterController()
-		{
-			SqlDbContext context = new SqlDbContext();
-			repositorys = new Repositorys<User>(context);
-		}
+		//Repositorys<User> repositorys;
+		//public RegisterController()
+		//{
+		//	SqlDbContext context = new SqlDbContext();
+		//	repositorys = new Repositorys<User>(context);
+		//}
 
 		public ActionResult Index()
 		{
@@ -31,12 +30,12 @@ namespace _17bangMVC.Controllers
 			{
 				return View(model);
 			}
-			User user = new User
-			{
-				Name = model.Name,
-				Password = model.Password
-			};
-			repositorys.Save(user);
+			//User user = new User
+			//{
+			//	Name = model.Name,
+			//	Password = model.Password
+			//};
+			//repositorys.Save(user);
 			return View();
 		}
 	}
