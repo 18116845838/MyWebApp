@@ -9,6 +9,10 @@ namespace Repositoy
 {
 	public class ArcticleRepository :Repositorys<Arcticle>
 	{
-
+		public ArcticleRepository()
+		{
+			context = new SqlDbContext<Arcticle>();
+		}
+		//public 
 	}
 }

@@ -12,8 +12,8 @@ namespace Repositoy
         protected SqlDbContext<T> context;
 		public Repositorys()
 		{
-            
-            //context = new SqlDbContext<T>();
+
+			context = new SqlDbContext<T>();
 		}
         public int Save(T entity)
         {
