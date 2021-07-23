@@ -10,30 +10,37 @@ using System.Threading.Tasks;
 
 namespace SRV.ProdService
 {
-    public class ArticleService : IAtricleService
+    public class ArticleService :BaseService, IAtricleService
 	{
 
 		private ArcticleRepository arcticleRepository;
 		private UserRepository userRepository;
 		public ArticleService()
 		{
-			SqlDbContext context = new SqlDbContext();
+			//SqlDbContext context = new SqlDbContext();
 			arcticleRepository = new ArcticleRepository(context);
 			userRepository = new UserRepository(context);
+
 		}
-		public void Publish(ArcticleModel model,int currentUserId)
+		public void Publish(ArcticleModel model/*,int currentUserId*/)
         {
+
+			if (GetCurrentUser()==null)
+			{
+				throw new ArgumentException("用户未登录");
+			}//else nothing
 			Arcticle arcticle = new Arcticle
 			{
 				Title = model.Title,
-				Body = model.Body
+				Body = model.Body,
+				Author=GetCurrentUser()
+			   
 			};
 
 			//可以但没必要
-			User user = userRepository.Find(currentUserId);
+			//User user = userRepository.Find(currentUserId);
 			//User user = userRepository.LoadProxy(1);
-
-			arcticle.Author = user;
+			//arcticle.Author = user;
 			arcticleRepository.Save(arcticle);
 		}
     }

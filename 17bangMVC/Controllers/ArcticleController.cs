@@ -27,13 +27,13 @@ namespace _17bangMVC.Controllers
 		[HttpPost]
 		public ActionResult Index(ArcticleModel model)
 		{
-			int? verigy = CookieHelper.CookieHelper.GetCurrentUserId();
+/*			int? verigy = BaseService.GetCurrentUserId();
 			if (verigy==null)
 			{
 				ModelState.AddModelError(nameof(model.Title), "未登录，无法发布文章");
 				return View(model);
-			}//else nothing
-			articleService.Publish(model, Convert.ToInt32(verigy));
+			}//else nothing*/
+			articleService.Publish(model/*, Convert.ToInt32(verigy)*/);
 			return View();
 		}
 	}

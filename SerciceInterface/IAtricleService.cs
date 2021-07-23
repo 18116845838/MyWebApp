@@ -9,6 +9,6 @@ namespace SRV.SerciceInterface
 {
     public interface IAtricleService
     {
-        void Publish(ArcticleModel model, int currentUserId);
+        void Publish(ArcticleModel model/*, int currentUserId*/);
     }
 }
