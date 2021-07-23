@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ArcticleController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlanNewController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
@@ -183,6 +184,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -198,6 +200,10 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Global\Global.csproj">
+      <Project>{9F8EA7EA-77F9-40AA-83C1-D58304CF60D6}</Project>
+      <Name>Global</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MockService\MockService.csproj">
       <Project>{f114290e-cccb-46b2-9942-21bc0c2ce8c6}</Project>
       <Name>MockService</Name>

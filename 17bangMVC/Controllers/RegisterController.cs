@@ -1,10 +1,13 @@
 ﻿using _17bangMVC.Models;
-
+using Global;
+using SRV.ProdService;
+using SRV.SerciceInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ViewModel;
 
 namespace _17bangMVC.Controllers
 {
@@ -17,25 +20,35 @@ namespace _17bangMVC.Controllers
 		//	SqlDbContext context = new SqlDbContext();
 		//	repositorys = new Repositorys<User>(context);
 		//}
-
+		public IUserService userService;
+		public RegisterController()
+		{
+			userService = new UserService();
+		}
 		public ActionResult Index()
 		{
 			return View();
 		}
 		[HttpPost]
-		public ActionResult Index(UserModel model)
+		public ActionResult Index(RegisterModel model)
 		{
 
+
+			int? UserId = userService.Register(model);
+			if (UserId==null)
+			{
+				ModelState.AddModelError(nameof(model.Name), "用户名重复");
+			}//else nothing
 			if (!ModelState.IsValid)
 			{
 				return View(model);
-			}
-			//User user = new User
-			//{
-			//	Name = model.Name,
-			//	Password = model.Password
-			//};
-			//repositorys.Save(user);
+			}//else nothing
+
+			HttpCookie cookie = new HttpCookie(Keys.User);
+			cookie.Values.Add(Keys.Id, UserId.ToString());
+			cookie.Values.Add(Keys.Password, model.Password.MD5Encrypt());
+			cookie.Expires = DateTime.Now.AddDays(14);
+			Response.Cookies.Add(cookie);
 			return View();
 		}
 	}

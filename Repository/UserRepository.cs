@@ -10,7 +10,7 @@ namespace Repositoy
 	{
 		public UserRepository(SqlDbContext context) : base(context)
 		{
-			context = new SqlDbContext();
+			//context = new SqlDbContext();
 		}
 
 		public User Find(int id)

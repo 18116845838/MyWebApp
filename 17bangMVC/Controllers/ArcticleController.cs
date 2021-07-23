@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace _17bangMVC.Controllers
 {
-	public class ArcticleController : Controller
+	public class ArcticleController : BaseController
 	{
 		protected IAtricleService articleService;
 		public ArcticleController()
@@ -27,7 +27,7 @@ namespace _17bangMVC.Controllers
 		[HttpPost]
 		public ActionResult Index(ArcticleModel model)
 		{
-			articleService.Publish(model, 1);
+			articleService.Publish(model, Convert.ToInt32(CurrentUserId()));
 			return View();
 		}
 	}

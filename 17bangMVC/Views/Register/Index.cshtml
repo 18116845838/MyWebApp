@@ -1,13 +1,18 @@
-﻿@model _17bangMVC.Models.UserModel
-
+﻿@*@model _17bangMVC.Models.UserModel*@
+@model ViewModel.RegisterModel
 @using (Html.BeginForm())
 {
-<label>用户名</label><br />
-@Html.TextBoxFor(m=>m.InviterBy)
-<label>邀请人</label><br />
-@Html.TextBoxFor(m=>m.Name)
-<label>密码</label><br />
-@Html.PasswordFor(m=>m.Password)
-<br />
-<button type="submit">提交</button>
+
+    <label>邀请人</label>
+    <br />
+    @Html.TextBoxFor(m => m.InviterBy)
+    <label>用户名</label>
+    <br />
+    @Html.TextBoxFor(m => m.Name)
+
+    <label>密码</label>
+    <br />
+    @Html.PasswordFor(m => m.Password)
+    <br />
+    <button type="submit">提交</button>
 }

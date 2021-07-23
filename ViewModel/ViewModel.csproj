@@ -66,6 +66,7 @@
     <Compile Include="ArcticleModel.cs" />
     <Compile Include="PlanNewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegisterModel.cs" />
     <Compile Include="UserModel.cs" />
   </ItemGroup>
   <ItemGroup>
