@@ -13,5 +13,6 @@ namespace SRV.SerciceInterface
 		UserModel GetByName(string name);
 		string GetById(int Id);
 		int? Register(RegisterModel mdodel);
+		string GetPwdById(int currentUserId);
 	}
 }

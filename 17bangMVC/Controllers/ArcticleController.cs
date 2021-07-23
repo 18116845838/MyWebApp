@@ -16,7 +16,7 @@ namespace _17bangMVC.Controllers
 		public ArcticleController()
 		{
 			articleService = new SRV.ProdService.ArticleService();
-			articleService = new SRV.MockService.ArticleService();
+			//articleService = new SRV.MockService.ArticleService();
 			//articleService = new ArticleService();
 		}
 		// GET: Arcticle
@@ -27,7 +27,13 @@ namespace _17bangMVC.Controllers
 		[HttpPost]
 		public ActionResult Index(ArcticleModel model)
 		{
-			articleService.Publish(model, Convert.ToInt32(CurrentUserId()));
+			int? verigy = CookieHelper.CookieHelper.GetCurrentUserId();
+			if (verigy==null)
+			{
+				ModelState.AddModelError(nameof(model.Title), "未登录，无法发布文章");
+				return View(model);
+			}//else nothing
+			articleService.Publish(model, Convert.ToInt32(verigy));
 			return View();
 		}
 	}

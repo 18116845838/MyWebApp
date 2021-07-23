@@ -6,10 +6,11 @@
     <label>标题</label>
     <br />
 @Html.TextBoxFor(m=>m.Title)
+   @Html.ValidationMessageFor(m => m.Title);
     <label>正文</label>
     <br />
     @Html.TextAreaFor(m => m.Body)
-    @*<label>邀请人</label>
+    @*<label>用户</label>
     <br />
     @Html.TextBoxFor(m => m.Author)
     <br />*@

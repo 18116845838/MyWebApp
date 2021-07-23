@@ -23,8 +23,6 @@ namespace SRV.ProdService
 		}
 		public void Publish(ArcticleModel model,int currentUserId)
         {
-
-
 			Arcticle arcticle = new Arcticle
 			{
 				Title = model.Title,
@@ -32,8 +30,8 @@ namespace SRV.ProdService
 			};
 
 			//可以但没必要
-			//User user = userRepository.Find(1);
-			User user = userRepository.LoadProxy(1);
+			User user = userRepository.Find(currentUserId);
+			//User user = userRepository.LoadProxy(1);
 
 			arcticle.Author = user;
 			arcticleRepository.Save(arcticle);

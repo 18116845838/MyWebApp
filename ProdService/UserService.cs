@@ -43,5 +43,11 @@ namespace SRV.ProdService
 			return user.Id;
 			//throw new NotImplementedException();
 		}
+
+		public string GetPwdById(int currentUserId)
+		{
+
+			return new UserRepository(context).Find(currentUserId).Password;
+		}
 	}
 }

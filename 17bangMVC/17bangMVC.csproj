@@ -134,6 +134,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlanNewController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="CookieHelper\CookieHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
