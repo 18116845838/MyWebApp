@@ -135,6 +135,7 @@
     <Compile Include="Controllers\PlanNewController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="CookieHelper\CookieHelper.cs" />
+    <Compile Include="Filters\ContextPerRequest.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -204,10 +205,6 @@
     <ProjectReference Include="..\Global\Global.csproj">
       <Project>{9F8EA7EA-77F9-40AA-83C1-D58304CF60D6}</Project>
       <Name>Global</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MockService\MockService.csproj">
-      <Project>{f114290e-cccb-46b2-9942-21bc0c2ce8c6}</Project>
-      <Name>MockService</Name>
     </ProjectReference>
     <ProjectReference Include="..\ProdService\ProdService.csproj">
       <Project>{9360945d-1c8b-44e3-b50a-b795b623f8d0}</Project>
