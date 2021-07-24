@@ -40,5 +40,9 @@ namespace Repositoy
 			dbSet.Attach(entity);
 			return entity;
 		}
+		public T Find(int id)
+		{
+			return dbSet.Find(id);
+		}
 	}
 }

@@ -10,5 +10,7 @@ namespace SRV.SerciceInterface
     public interface IAtricleService
     {
         void Publish(ArcticleModel model/*, int currentUserId*/);
-    }
+		ArcticleModel GetEdit(int id);
+		void Edit(int id, ArcticleModel model);
+	}
 }

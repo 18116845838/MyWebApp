@@ -1,4 +1,6 @@
-﻿using Entities;
+﻿using VM=_17bangMVC.Models;
+using AutoMapper;
+using Entities;
 using Global;
 using Repositoy;
 using System;
@@ -14,6 +16,21 @@ namespace SRV.ProdService
 {
 	public class BaseService
 	{
+		//设置唯一的MapperConfiguration
+		protected readonly static MapperConfiguration config;
+		static BaseService()
+		{
+			config = new MapperConfiguration(cfg =>
+			{
+				cfg.CreateMap<Arcticle, VM.ArcticleModel>().ReverseMap();
+			}
+			);
+		}
+		protected IMapper mapper
+		{
+			get { return config.CreateMapper(); }
+		}
+
 		private UserRepository userRepository;
 		//protected SqlDbContext _context;
 		protected SqlDbContext context
@@ -84,12 +101,13 @@ namespace SRV.ProdService
 			SqlDbContext context = GetContextFromHttp();
 			if (context != null)
 			{
+				context.SaveChanges();
 				using (context)
 				{
 					using (DbContextTransaction transaction = context.Database.CurrentTransaction)
 					{
 
-							transaction.Commit();
+						transaction.Commit();
 					}
 				}
 			}

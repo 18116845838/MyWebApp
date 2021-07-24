@@ -20,20 +20,40 @@ namespace _17bangMVC.Controllers
 			//articleService = new ArticleService();
 		}
 		// GET: Arcticle
-		public ActionResult Index()
+		//public ActionResult Index()
+		//{
+		//	return View();
+		//}
+		public ActionResult Index(int? id)
 		{
-			return View();
+			if (id.HasValue)
+			{
+				ArcticleModel model = articleService.GetEdit(id.Value);
+				return View(model);
+			}
+			else
+			{
+				return View();
+			}
+
 		}
 		[HttpPost]
-		public ActionResult Index(ArcticleModel model)
+		public ActionResult Index(int? id,ArcticleModel model)
 		{
-/*			int? verigy = BaseService.GetCurrentUserId();
-			if (verigy==null)
+			/*			int? verigy = BaseService.GetCurrentUserId();
+						if (verigy==null)
+						{
+							ModelState.AddModelError(nameof(model.Title), "未登录，无法发布文章");
+							return View(model);
+						}//else nothing*/
+			if (id.HasValue)
 			{
-				ModelState.AddModelError(nameof(model.Title), "未登录，无法发布文章");
-				return View(model);
-			}//else nothing*/
-			articleService.Publish(model/*, Convert.ToInt32(verigy)*/);
+				articleService.Edit(id.Value,model);
+			}
+			else
+			{
+				articleService.Publish(model/*, Convert.ToInt32(verigy)*/);
+			}
 			return View();
 		}
 	}

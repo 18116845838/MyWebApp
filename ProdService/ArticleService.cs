@@ -1,4 +1,5 @@
 ﻿using _17bangMVC.Models;
+using AutoMapper;
 using Entities;
 using Repositoy;
 using SRV.SerciceInterface;
@@ -22,6 +23,29 @@ namespace SRV.ProdService
 			userRepository = new UserRepository(context);
 
 		}
+
+		public void Edit(int id, ArcticleModel model)
+		{
+			Arcticle arcticle = arcticleRepository.Find(id);
+			//用传入的参数修改数据库中的参数
+			mapper.Map<ArcticleModel, Arcticle>(model, arcticle);
+			
+		}
+
+		public ArcticleModel GetById(int id)
+		{
+			Arcticle arcticle = arcticleRepository.Find(id);
+			
+			ArcticleModel model =	mapper.Map<ArcticleModel>(arcticle);
+			return model;
+		}
+
+		public ArcticleModel GetEdit(int id)
+		{
+			Arcticle arcticle = arcticleRepository.Find(id);
+			return mapper.Map<ArcticleModel>(arcticle);
+		}
+
 		public void Publish(ArcticleModel model/*,int currentUserId*/)
         {
 

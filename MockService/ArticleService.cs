@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using SRV.SerciceInterface;
 namespace SRV.MockService
 {
-	public class ArticleService : IAtricleService
+	public class ArticleService /*: IAtricleService*/
 	{
 		public void Publish(ArcticleModel model/*, int currentUserId*/)
 		{
