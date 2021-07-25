@@ -12,10 +12,11 @@ namespace _17bangMVC.Controllers
 {
 	public class ArcticleController : BaseController
 	{
-		protected IAtricleService articleService;
-		public ArcticleController()
+		protected IAtricleService atricleService;
+		public ArcticleController(IAtricleService atricleService)
 		{
-			articleService = new SRV.ProdService.ArticleService();
+			this.atricleService =atricleService;
+			//articleService = new SRV.ProdService.ArticleService();
 			//articleService = new SRV.MockService.ArticleService();
 			//articleService = new ArticleService();
 		}
@@ -28,7 +29,7 @@ namespace _17bangMVC.Controllers
 		{
 			if (id.HasValue)
 			{
-				ArcticleModel model = articleService.GetEdit(id.Value);
+				ArcticleModel model = atricleService.GetEdit(id.Value);
 				return View(model);
 			}
 			else
@@ -48,11 +49,11 @@ namespace _17bangMVC.Controllers
 						}//else nothing*/
 			if (id.HasValue)
 			{
-				articleService.Edit(id.Value,model);
+				atricleService.Edit(id.Value,model);
 			}
 			else
 			{
-				articleService.Publish(model/*, Convert.ToInt32(verigy)*/);
+				atricleService.Publish(model/*, Convert.ToInt32(verigy)*/);
 			}
 			return View();
 		}

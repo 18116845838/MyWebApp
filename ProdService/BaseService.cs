@@ -23,8 +23,23 @@ namespace SRV.ProdService
 			config = new MapperConfiguration(cfg =>
 			{
 				cfg.CreateMap<Arcticle, VM.ArcticleModel>().ReverseMap();
+
+				////这一条中的不需要验证了
+				//cfg.CreateMap<Arcticle, VM.ArcticleModel>(MemberList.None)
+				////这一个单独的成员不映射了
+				//.ForMember(a=>a.Author,opt=>opt.Ignore())
+				////配置Arctic的titlt和ArcticleModel的Id相匹配
+				//.ForMember(a=>a.Title,opt=>opt.MapFrom(vm=>vm.Id))
+				////null值替代，如果Author是null值，就可以用参数进行替换
+				//.ForMember(a=>a.Author,opt=>opt.NullSubstitute(new User()))
+				//.ReverseMap();
 			}
 			);
+#if DEBUG
+			//只在开发环境下面 检查所有配置是否有效
+			config.AssertConfigurationIsValid();
+#endif
+
 		}
 		protected IMapper mapper
 		{

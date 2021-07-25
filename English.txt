@@ -108,3 +108,7 @@ flexble
 2021Äê7ÔÂ24ÈÕ
 current
 AutoMapper
+Assert
+configuration
+isValid
+integration
