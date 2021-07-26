@@ -18,7 +18,8 @@ namespace DbFactory
 			Helper.GetContext().Database.Log = Console.WriteLine;
 			Helper.GetContext().Database.Delete();
 			Helper.GetContext().Database.Create();
-
+			UserFactory.Create();
+			ArticleFactory.Create();
 		}
 	}
 }

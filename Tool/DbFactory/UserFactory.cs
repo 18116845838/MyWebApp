@@ -10,9 +10,9 @@ namespace DbFactory
 {
 	class UserFactory
 	{
-		internal static User zhangsan ;
-		internal static User lisi ;
-		
+		internal static User zhangsan;
+		internal static User lisi;
+
 
 		internal static void Create()
 		{
@@ -22,7 +22,14 @@ namespace DbFactory
 		internal static User Register(string name)
 		{
 			const string pwd = "123456";
-			User user  = new User { Name = name, Password = pwd };
+			User user = new User
+			{
+				Name = name,
+				Password = pwd,
+
+			};
+			user.GetType().GetProperty("CreateTime")
+			.SetValue(user, Helper.BaseLine());
 
 			UserRepository repository = new UserRepository(Helper.GetContext());
 			repository.Save(user);

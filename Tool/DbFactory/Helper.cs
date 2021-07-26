@@ -14,7 +14,9 @@ namespace DbFactory
 		{
 			_context = new SqlDbContext();
 		}
+		static int n = 1;
 		internal static SqlDbContext GetContext() => _context;
+		internal static DateTime BaseLine()=>DateTime.Now.AddDays(-20).AddDays(n++);
 
 	}
 }
