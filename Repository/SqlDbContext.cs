@@ -23,7 +23,7 @@ namespace Repositoy
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<User>();
-			modelBuilder.Entity<Arcticle>();
+			modelBuilder.Entity<Article>();
 			base.OnModelCreating(modelBuilder);
 		}
 	}

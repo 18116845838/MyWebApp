@@ -22,7 +22,7 @@ namespace SRV.ProdService
 		{
 			config = new MapperConfiguration(cfg =>
 			{
-				cfg.CreateMap<Arcticle, VM.ArcticleModel>().ReverseMap();
+				cfg.CreateMap<Article, VM.ArcticleModel>().ReverseMap();
 
 				////这一条中的不需要验证了
 				//cfg.CreateMap<Arcticle, VM.ArcticleModel>(MemberList.None)

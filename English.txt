@@ -112,3 +112,8 @@ Assert
 configuration
 isValid
 integration
+Dependency
+injection
+control
+Inverse
+resolve

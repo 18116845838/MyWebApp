@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace Repositoy
 {
-	public class ArcticleRepository : Repositorys<Arcticle>
+	public class ArcticleRepository : Repositorys<Article>
 	{
 
 		public ArcticleRepository(SqlDbContext context) : base(context)
 		{
 			context = new SqlDbContext();
 		}
+
+
 	}
 }

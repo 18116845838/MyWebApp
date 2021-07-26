@@ -26,15 +26,15 @@ namespace SRV.ProdService
 
 		public void Edit(int id, ArcticleModel model)
 		{
-			Arcticle arcticle = arcticleRepository.Find(id);
+			Article arcticle = arcticleRepository.Find(id);
 			//用传入的参数修改数据库中的参数
-			mapper.Map<ArcticleModel, Arcticle>(model, arcticle);
+			mapper.Map<ArcticleModel, Article>(model, arcticle);
 			
 		}
 
 		public ArcticleModel GetById(int id)
 		{
-			Arcticle arcticle = arcticleRepository.Find(id);
+			Article arcticle = arcticleRepository.Find(id);
 			
 			ArcticleModel model =	mapper.Map<ArcticleModel>(arcticle);
 			return model;
@@ -42,7 +42,7 @@ namespace SRV.ProdService
 
 		public ArcticleModel GetEdit(int id)
 		{
-			Arcticle arcticle = arcticleRepository.Find(id);
+			Article arcticle = arcticleRepository.Find(id);
 			return mapper.Map<ArcticleModel>(arcticle);
 		}
 
@@ -53,7 +53,7 @@ namespace SRV.ProdService
 			{
 				throw new ArgumentException("用户未登录");
 			}//else nothing
-			Arcticle arcticle = new Arcticle
+			Article arcticle = new Article
 			{
 				Title = model.Title,
 				Body = model.Body,

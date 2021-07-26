@@ -8,6 +8,12 @@ namespace Entities
 {
     public class Entity
     {
+		public Entity()
+		{
+            CreateTime = DateTime.Now;
+		}
         public int Id { get; set; }
+        public DateTime CreateTime { get; set; }
+
     }
 }
