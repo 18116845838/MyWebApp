@@ -11,5 +11,6 @@ namespace ViewModel
 		public string Name { get; set; }
 		public string InviterBy { get; set; }
 		public string Password { get; set; }
+		public string Icon { get; set; }
 	}
 }

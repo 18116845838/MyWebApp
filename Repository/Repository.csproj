@@ -64,6 +64,10 @@
     <Compile Include="Migrations\202107260113118_EntityChange.designer.cs">
       <DependentUpon>202107260113118_EntityChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107271054410_AlterTable1.cs" />
+    <Compile Include="Migrations\202107271054410_AlterTable1.designer.cs">
+      <DependentUpon>202107271054410_AlterTable1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107260113118_EntityChange.resx">
       <DependentUpon>202107260113118_EntityChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107271054410_AlterTable1.resx">
+      <DependentUpon>202107271054410_AlterTable1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

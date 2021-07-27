@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using ViewModel;
 
 namespace SRV.ProdService
 {
@@ -23,7 +24,9 @@ namespace SRV.ProdService
 			config = new MapperConfiguration(cfg =>
 			{
 				cfg.CreateMap<Article, VM.ArcticleModel>().ReverseMap();
-
+				cfg.CreateMap<RegisterModel, User>().ReverseMap()
+				.ForMember(a=>a.InviterBy,opt=>opt.Ignore())
+				;
 				////这一条中的不需要验证了
 				//cfg.CreateMap<Arcticle, VM.ArcticleModel>(MemberList.None)
 				////这一个单独的成员不映射了
@@ -37,7 +40,7 @@ namespace SRV.ProdService
 			);
 #if DEBUG
 			//只在开发环境下面 检查所有配置是否有效
-			config.AssertConfigurationIsValid();
+			//config.AssertConfigurationIsValid();
 #endif
 
 		}

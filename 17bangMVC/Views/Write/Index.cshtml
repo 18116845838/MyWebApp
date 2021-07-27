@@ -1,0 +1,35 @@
+﻿@model ViewModel.RegisterModel
+
+@{
+    ViewBag.Title = "个人资料 一起帮";
+}
+<div>
+    <h1>
+        <i class="glyphicon glyphicon-edit"></i>个人资料
+    </h1>
+    <hr />
+</div>
+
+<div style="display:flex ;">
+    <form method="post" enctype="multipart/form-data">
+        @*<img src="..." alt="..." class="img-thumbnail" style="display:none ">*@
+        <label>头像：（* 仅限jpg/png/gif）</label> <br />
+        @if (Model!= null)
+        {
+            <img src="@Model.Icon" alt="Alternate Text" />
+        }@*else nothing*@
+        <input type="file" accept="image/*" name="icon">
+        <div class="input-group">
+
+
+            <input type="text" class="form-control" name="name" value="" />
+            <span class="input-group-addon">天</span>
+            <input type="text" class="form-control" name="name" value="" />
+            <span class="input-group-addon">天</span>
+            <input type="text" class="form-control" name="name" value="" />
+            <span class="input-group-addon">天</span>
+        </div>
+        <button type="submit">提交</button>
+    </form>
+
+</div>

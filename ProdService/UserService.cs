@@ -1,5 +1,6 @@
 ﻿using _17bangMVC.Models;
 using Entities;
+using Global;
 using Repositoy;
 using SRV.SerciceInterface;
 using System;
@@ -33,12 +34,8 @@ namespace SRV.ProdService
 			{
 				return null;
 			}//else nothing
-			user = new User
-			{
-				Name = model.Name,
-				Password = model.Password
-			};
-
+			user = mapper.Map<User>(model);
+			user.Password = model.Password.MD5Encrypt();
 			new Repositorys<User>(context).Save(user);
 			return user.Id;
 			//throw new NotImplementedException();
@@ -48,6 +45,11 @@ namespace SRV.ProdService
 		{
 
 			return new UserRepository(context).Find(currentUserId).Password;
+		}
+		public void Edit(int id,RegisterModel model)
+		{
+			User user = new UserRepository(context).Find(id);
+			mapper.Map<RegisterModel, User>(model, user);
 		}
 	}
 }

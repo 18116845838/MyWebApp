@@ -163,6 +163,7 @@
     <Compile Include="Controllers\PlanNewController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
+    <Compile Include="Controllers\WriteController.cs" />
     <Compile Include="CookieHelper\CookieHelper.cs" />
     <Compile Include="Filters\ContextPerRequest.cs" />
     <Compile Include="Filters\NeedLogOn.cs" />
@@ -195,6 +196,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="UploadFiles\2021\7\27\add9d924-2cfe-4fd7-bfae-d62ba64264f5.ico" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -213,6 +215,7 @@
     <Content Include="Views\Register\Index.cshtml" />
     <Content Include="Views\Arcticle\Index.cshtml" />
     <Content Include="Views\Shared\Index.cshtml" />
+    <Content Include="Views\Write\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
