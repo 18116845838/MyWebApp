@@ -162,6 +162,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlanNewController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="CookieHelper\CookieHelper.cs" />
     <Compile Include="Filters\ContextPerRequest.cs" />
     <Compile Include="Filters\NeedLogOn.cs" />
@@ -211,6 +212,7 @@
     <Content Include="Views\PlanNew\Index.cshtml" />
     <Content Include="Views\Register\Index.cshtml" />
     <Content Include="Views\Arcticle\Index.cshtml" />
+    <Content Include="Views\Shared\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,6 +14,7 @@ namespace Global
 		public const string Password = "Password";
 
 		public const string Id = "Id";
+		public const string Captcha = "Captcha";
 		//public const string UserId = "UserId";
 	}
 }

@@ -1,0 +1,8 @@
+﻿
+@model _17bangMVC.Controllers.SharedController
+
+<label>验证码</label>
+<br />
+@Html.TextBoxFor(m => m.Captchastring)
+@Html.ValidationMessageFor(m => m.Captchastring)
+<img src="~/Shared/_GetCaptcha" alt="Alternate Text" />
