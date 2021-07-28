@@ -27,7 +27,6 @@ namespace _17bangMVC.Filters
 
 		public void OnActionExecuting(ActionExecutingContext filterContext)
 		{
-			
 			if (filterContext.HttpContext.Request.HttpMethod== "POST")
 			{
 				

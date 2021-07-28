@@ -1,0 +1,15 @@
+﻿@model ViewModel.EmailModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>邮箱验证</h2>
+@using (Html.BeginForm())
+{
+    <label>邮箱：</label>
+    <br />
+    @Html.TextBoxFor(m => m.EMail);
+
+    <button type="submit">提交</button>
+}
+

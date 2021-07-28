@@ -24,6 +24,10 @@ namespace Repositoy
 		{
 			modelBuilder.Entity<User>();
 			modelBuilder.Entity<Article>();
+			modelBuilder.Entity<Email>()
+				//.HasRequired(m=>m.EMail)
+				//.WithRequiredPrincipal()
+				;
 			base.OnModelCreating(modelBuilder);
 		}
 	}

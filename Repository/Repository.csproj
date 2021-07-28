@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArcticleRepository.cs" />
+    <Compile Include="EmailRepository.cs" />
     <Compile Include="Migrations\202107190815530_Init.cs" />
     <Compile Include="Migrations\202107190815530_Init.designer.cs">
       <DependentUpon>202107190815530_Init.cs</DependentUpon>
@@ -67,6 +68,10 @@
     <Compile Include="Migrations\202107271054410_AlterTable1.cs" />
     <Compile Include="Migrations\202107271054410_AlterTable1.designer.cs">
       <DependentUpon>202107271054410_AlterTable1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107280743018_AddTableEmail.cs" />
+    <Compile Include="Migrations\202107280743018_AddTableEmail.designer.cs">
+      <DependentUpon>202107280743018_AddTableEmail.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository.cs" />
@@ -96,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107271054410_AlterTable1.resx">
       <DependentUpon>202107271054410_AlterTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107280743018_AddTableEmail.resx">
+      <DependentUpon>202107280743018_AddTableEmail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -12,5 +12,6 @@ namespace Entities
 		public string Password { get; set; }
 		public string Icon { get; set; }
 
+
 	}
 }

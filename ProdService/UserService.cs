@@ -6,6 +6,8 @@ using SRV.SerciceInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using ViewModel;
@@ -51,5 +53,7 @@ namespace SRV.ProdService
 			User user = new UserRepository(context).Find(id);
 			mapper.Map<RegisterModel, User>(model, user);
 		}
+
+
 	}
 }

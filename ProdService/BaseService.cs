@@ -27,6 +27,7 @@ namespace SRV.ProdService
 				cfg.CreateMap<RegisterModel, User>().ReverseMap()
 				.ForMember(a=>a.InviterBy,opt=>opt.Ignore())
 				;
+				cfg.CreateMap<Email, EmailModel>().ReverseMap();
 				////这一条中的不需要验证了
 				//cfg.CreateMap<Arcticle, VM.ArcticleModel>(MemberList.None)
 				////这一个单独的成员不映射了
