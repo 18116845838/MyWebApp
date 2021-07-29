@@ -10,6 +10,7 @@ namespace _17bangMVC.Models
 	public class ArcticleModel
 	{
 		public string Title { get; set; }
+		[AllowHtml]
 		public string Body { get; set; }
 		public Entities.User Author { get; set; }
 	}

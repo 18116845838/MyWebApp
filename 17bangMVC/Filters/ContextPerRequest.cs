@@ -27,7 +27,7 @@ namespace _17bangMVC.Filters
 
 		public void OnActionExecuting(ActionExecutingContext filterContext)
 		{
-			if (filterContext.HttpContext.Request.HttpMethod== "POST")
+			if (filterContext.HttpContext.Request.HttpMethod== "POST"&&filterContext.HttpContext.Request.Path=="Register")
 			{
 				
 				ViewDataDictionary viewdate = filterContext.Controller.ViewData;

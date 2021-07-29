@@ -15,7 +15,7 @@ namespace _17bangMVC.Controllers
 		protected IAtricleService atricleService;
 		public ArcticleController(IAtricleService atricleService)
 		{
-			this.atricleService =atricleService;
+			this.atricleService = atricleService;
 			//articleService = new SRV.ProdService.ArticleService();
 			//articleService = new SRV.MockService.ArticleService();
 			//articleService = new ArticleService();
@@ -39,7 +39,7 @@ namespace _17bangMVC.Controllers
 
 		}
 		[HttpPost]
-		public ActionResult Index(int? id,ArcticleModel model)
+		public ActionResult Index(int? id, ArcticleModel model)
 		{
 			/*			int? verigy = BaseService.GetCurrentUserId();
 						if (verigy==null)
@@ -49,11 +49,25 @@ namespace _17bangMVC.Controllers
 						}//else nothing*/
 			if (id.HasValue)
 			{
-				atricleService.Edit(id.Value,model);
+				atricleService.Edit(id.Value, model);
 			}
 			else
 			{
+				//			使用富文本编辑器发布文章，确保发布的文章能够显示：段落（< p >）、加粗（< strong >）、斜体（< i >）、链接（< a >）的效果
+
+				//   在后台进行过滤，保证无法利用上述发布文章的功能进行脚本注入
+
+				//   完成点赞和踩的功能：
+
+
+				//文章显示赞 / 踩的总数
+
+				//同一篇文章一个用户只能赞或踩一次
+
+				//自己不能赞 / 踩自己的文章
+
 				atricleService.Publish(model/*, Convert.ToInt32(verigy)*/);
+				return View("Article", model);
 			}
 			return View();
 		}

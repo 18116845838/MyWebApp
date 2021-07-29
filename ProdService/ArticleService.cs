@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace SRV.ProdService
@@ -57,9 +58,28 @@ namespace SRV.ProdService
 			{
 				Title = model.Title,
 				Body = model.Body,
-				Author=GetCurrentUser()
-			   
+				Author = GetCurrentUser()
+
 			};
+			string pattern = @"<[\s\S]*?>";
+			string[] array = new string[] {"p","/p", "strong","/strong","i","/i","a","/a" };
+			string result = Regex.Replace(model.Body, pattern,
+				match =>
+				{
+					string oldValue = match.Value;
+					Match groupMatch = Regex.Match(oldValue, @"<(?<tag>[\S]*)[\s\S]*?>");
+					//Match groupMatch = Regex.Match(oldValue, @"<(?<tag>[\S]*)[\s\S]*?>*</\1>");
+					string tagName = groupMatch.Groups["tag"].Value;
+					if (Array.IndexOf(array,tagName)<=0)
+					{
+						return "";
+					}
+					else
+					{
+						return tagName;
+					}
+				}
+				);
 
 			//可以但没必要
 			//User user = userRepository.Find(currentUserId);

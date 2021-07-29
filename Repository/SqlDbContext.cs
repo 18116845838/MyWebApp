@@ -25,6 +25,7 @@ namespace Repositoy
 			modelBuilder.Entity<User>();
 			modelBuilder.Entity<Article>();
 			modelBuilder.Entity<Email>()
+				//.HasIndex(m=>m.EMail)
 				//.HasRequired(m=>m.EMail)
 				//.WithRequiredPrincipal()
 				;

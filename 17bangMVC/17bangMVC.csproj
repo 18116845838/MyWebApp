@@ -219,6 +219,7 @@
     <Content Include="Views\Write\Index.cshtml" />
     <Content Include="Views\Email\Index.cshtml" />
     <Content Include="Views\Email\SaveEmail.cshtml" />
+    <Content Include="Views\Arcticle\Article.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

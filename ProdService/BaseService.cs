@@ -93,11 +93,14 @@ namespace SRV.ProdService
 			}//else nothing
 
 			User current = userRepository.Find(currentUserId);
-
-			if (pwdInCookie != current.Password.MD5Encrypt())
+			if (current!=null)
 			{
-				throw new ArgumentException("");
-			}
+				if (pwdInCookie != current.Password)
+				{
+					throw new ArgumentException("");
+				}
+			}//else nothing
+
 			return current;
 		}
 
