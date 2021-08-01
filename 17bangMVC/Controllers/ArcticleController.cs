@@ -39,6 +39,8 @@ namespace _17bangMVC.Controllers
 
 		}
 		[HttpPost]
+		//配置缓存时常 ：秒
+		[OutputCache(Duration = 30)]
 		public ActionResult Index(int? id, ArcticleModel model)
 		{
 			/*			int? verigy = BaseService.GetCurrentUserId();
@@ -69,6 +71,14 @@ namespace _17bangMVC.Controllers
 				atricleService.Publish(model/*, Convert.ToInt32(verigy)*/);
 				return View("Article", model);
 			}
+
+			//		将求助 / 文章 / 意见建议列表页进行output cache，注意：
+
+			//   上述列表页面都有分页和过滤筛选参数
+			//在缓存页上能即时的反映用户的登录情况
+
+			//保证发布新的求助 / 文章 / 意见建议后跳转到列表首页，能看到新发布的内容
+
 			return View();
 		}
 	}
