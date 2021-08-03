@@ -7,15 +7,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ViewModel;
 
 namespace _17bangMVC.Controllers
 {
 	public class ArcticleController : BaseController
 	{
 		protected IAtricleService atricleService;
+		protected KeywordsService keywords;
 		public ArcticleController(IAtricleService atricleService)
 		{
 			this.atricleService = atricleService;
+			keywords = new KeywordsService();
 			//articleService = new SRV.ProdService.ArticleService();
 			//articleService = new SRV.MockService.ArticleService();
 			//articleService = new ArticleService();
@@ -80,6 +83,11 @@ namespace _17bangMVC.Controllers
 			//保证发布新的求助 / 文章 / 意见建议后跳转到列表首页，能看到新发布的内容
 
 			return View();
+		}
+		public ActionResult Keywords(KeywordsService keywords)
+		{
+
+			return PartialView("Keywords");
 		}
 	}
 }

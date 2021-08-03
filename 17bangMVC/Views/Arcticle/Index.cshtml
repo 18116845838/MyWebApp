@@ -1,18 +1,21 @@
 ﻿
 @model _17bangMVC.Models.ArcticleModel
 
+
 @using (Html.BeginForm())
 {
     <label>标题</label>
     <br />
-@Html.TextBoxFor(m=>m.Title)
-   @Html.ValidationMessageFor(m => m.Title);
+    @Html.TextBoxFor(m => m.Title)
+    @Html.ValidationMessageFor(m => m.Title);
     <label>正文</label>
     <br />
     @Html.TextAreaFor(m => m.Body)
     @*<label>用户</label>
-    <br />
-    @Html.TextBoxFor(m => m.Author)
-    <br />*@
+        <br />
+        @Html.TextBoxFor(m => m.Author)
+        <br />*@
     <button type="submit">提交</button>
 }
+
+<iframe src="file.html" id="keywords"></iframe>

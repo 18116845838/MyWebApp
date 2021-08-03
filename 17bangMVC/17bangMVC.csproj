@@ -221,6 +221,7 @@
     <Content Include="Views\Email\SaveEmail.cshtml" />
     <Content Include="Views\Arcticle\Article.cshtml" />
     <Content Include="Views\Home\_Navbar.cshtml" />
+    <Content Include="Views\Shared\Keywords.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

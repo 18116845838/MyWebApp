@@ -29,6 +29,7 @@ namespace Repositoy
 				//.HasRequired(m=>m.EMail)
 				//.WithRequiredPrincipal()
 				;
+			modelBuilder.Entity<Keywords>();
 			base.OnModelCreating(modelBuilder);
 		}
 	}
