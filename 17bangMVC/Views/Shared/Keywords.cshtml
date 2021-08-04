@@ -1,27 +1,13 @@
 ﻿@model  List<ViewModel.KeywordsModel>
-@{    double opacity = 1.2;
-    int fontSize = 18;
-}
 
-@foreach (var item in Model)
-{
-    opacity -= 0.2;
-    fontSize -= 2;
-    <span style="margin-top:10px;">
-        @*@foreach (var keyword in item)
-        {
-            <span class="badge badge-pill badge-dark" style="opacity:@(opacity);font-size:@(fontSize);margin-left:20px">@keyword.Name</span>
-        }*@
-    </span>
 
-}
+<div id="keywords">
+    @foreach (var item in Model)
+    {
+        <span class="badge badge-pill badge-dark" style="margin-top:10px;" margin-left:20px">@item.Keyword</span>
+    }
+    <hr />
 
-<hr />
-<div>
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="直接输入关键字获取" aria-label="Recipient's username" aria-describedby="basic-addon2">
-        <span style="margin-right:30px;" class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
-        <span><button type="button" class="btn btn-outline-secondary fa fa-random" style="line-height: 21px;">换一批</button></span>
-    </div>
 </div>
-                
+
+

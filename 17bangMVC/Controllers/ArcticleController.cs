@@ -11,7 +11,7 @@ using ViewModel;
 
 namespace _17bangMVC.Controllers
 {
-	public class ArcticleController : BaseController
+	public class ArcticleController : Controller
 	{
 		protected IAtricleService atricleService;
 		protected KeywordsService keywords;
@@ -84,10 +84,10 @@ namespace _17bangMVC.Controllers
 
 			return View();
 		}
-		public ActionResult Keywords(KeywordsService keywords)
+		public ActionResult Keywords()
 		{
-
-			return PartialView("Keywords");
+			IList<KeywordsModel> keywords1 = keywords.Get();
+			return PartialView("Keywords",keywords1);
 		}
 	}
 }

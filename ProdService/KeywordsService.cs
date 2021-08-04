@@ -6,19 +6,30 @@ using System.Threading.Tasks;
 using Entities;
 using Repository;
 using Repositoy;
+using ViewModel;
 
 namespace SRV.ProdService
 {
-	public class KeywordsService:BaseService
+	public class KeywordsService : BaseService
 	{
 		public KeywordRepository keywordRepository;
 		public KeywordsService()
 		{
 			keywordRepository = new KeywordRepository(context);
 		}
-		public IList<Keywords> Get()
+		public IList<KeywordsModel> Get()
 		{
-			return keywordRepository.Get();
+			IList<Keywords> key = keywordRepository.GetRandom();
+			IList<KeywordsModel> keywords = new List<KeywordsModel>();
+			KeywordsModel model = new KeywordsModel();
+
+			foreach (var item in key)
+			{
+				model = new KeywordsModel();
+				model.Keyword= item.Keyword;
+				keywords.Add(model);
+			}
+			return keywords;
 		}
 	}
 }
