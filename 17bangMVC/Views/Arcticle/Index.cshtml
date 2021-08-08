@@ -17,28 +17,6 @@
         <br />*@
     <button type="submit">提交</button>
 }
+
 @Html.Action("Keywords", "Arcticle")
-@*<iframe src="ArcticleController/Keywords" id="keywords"></iframe>*@
-<div>
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="直接输入关键字获取" aria-label="Recipient's username" aria-describedby="basic-addon2">
-        <span style="margin-right:30px;" class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
-        <span><button id="nextBatch" type="button" class="btn btn-outline-secondary fa fa-random" style="line-height: 21px;">换一批</button></span>
-    </div>
-</div>
-<script>
 
-    document.getElementById("nextBatch").addEventListener("click", function () {
-        var xHttp = new XMLHttpRequest();
-        xHttp.open("GET", "Arcticle/Keywords");
-        //xHttp.open("POST",)
-
-        xHttp.send(@*keywords*@);
-        xHttp.onload = function ()
-        {
-
-            document.getElementById("keywords").innerHTML = this.response;
-        }
-
-        })
-</script>

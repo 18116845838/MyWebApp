@@ -1,13 +1,61 @@
 ﻿@model  List<ViewModel.KeywordsModel>
 
-
+@{
+    int i = 0;
+    double opacity = 1.2;
+    int fontSize = 18;
+}
 <div id="keywords">
-    @foreach (var item in Model)
-    {
-        <span class="badge badge-pill badge-dark" style="margin-top:10px;" margin-left:20px">@item.Keyword</span>
-    }
-    <hr />
+    <div class="col-lg">
+        <div style="border-radius:5px 5px 5px 5px;padding-top:5px;border:1px dashed #eeeeee">
+            <div>
+                <h4> <span class="fa fa-tags">关键字</span></h4>
+                <hr />
+
+            </div>
+            @foreach (var item in Model)
+            {
+
+                <span class="badge badge-pill badge-dark" style="opacity:@(opacity);font-size:@(fontSize); margin-left:20px">@item.Keyword</span>
+                i++;
+                if (i % 4 == 0)
+                {
+                    opacity -= 0.2;
+                    fontSize -= 2;
+                    <br />
+                }//else nothing
+            }
+
+            <hr />
+            <div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="直接输入关键字获取" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <span style="margin-right:30px;" class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
+                    <span><button id="nextBatch" type="button" class="btn btn-outline-secondary fa fa-random" style="line-height: 21px;">换一批</button></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </div>
+<script>
+
+    document.getElementById("nextBatch").addEventListener("click", Refresh);
+
+    function Refresh() {
+        var xHttp = new XMLHttpRequest();
+        xHttp.open("GET", "Arcticle/Keywords");
+        //xHttp.open("POST",)
+
+        xHttp.send(@* keywords *@);
+        xHttp.onload = function () {
+
+            document.getElementById("keywords").innerHTML = this.response;
+            document.getElementById("nextBatch").addEventListener("click", Refresh);
+        }
+
+    }
+</script>
 
 

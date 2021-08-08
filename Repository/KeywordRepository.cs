@@ -19,7 +19,7 @@ namespace Repository
 		{
 			Random random = new Random();
 			List<Keywords> keywords = dbSet.SqlQuery("SELECT * FROM KEYWORDS ").ToList();
-			return keywords.Skip(random.Next(keywords.Count)).Take(4).ToList();
+			return keywords.Skip(random.Next(keywords.Count)).Take(20).ToList();
 		}
 	}
 }
