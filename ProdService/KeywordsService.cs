@@ -19,14 +19,14 @@ namespace SRV.ProdService
 		}
 		public IList<KeywordsModel> Get()
 		{
-			IList<Keywords> key = keywordRepository.GetRandom();
+			IList<Keyword> key = keywordRepository.GetRandom();
 			IList<KeywordsModel> keywords = new List<KeywordsModel>();
 			KeywordsModel model = new KeywordsModel();
 
 			foreach (var item in key)
 			{
 				model = new KeywordsModel();
-				model.Keyword= item.Keyword;
+				model.Keyword= item.Name;
 				keywords.Add(model);
 			}
 			return keywords;

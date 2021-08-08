@@ -28,7 +28,10 @@ namespace SRV.ProdService
 				.ForMember(a=>a.InviterBy,opt=>opt.Ignore())
 				;
 				cfg.CreateMap<Email, EmailModel>().ReverseMap();
-				cfg.CreateMap<Keywords, KeywordsModel>().ReverseMap();
+				cfg.CreateMap<Keyword, KeywordsModel>().ReverseMap();
+				//看看继承可不可以映射
+				cfg.CreateMap<Content, ProblemModel>().ReverseMap();
+				//cfg.CreateMap<Problem, ProblemModel>().ReverseMap();
 				////这一条中的不需要验证了
 				//cfg.CreateMap<Arcticle, VM.ArcticleModel>(MemberList.None)
 				////这一个单独的成员不映射了

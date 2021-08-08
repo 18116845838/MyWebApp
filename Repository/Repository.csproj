@@ -78,6 +78,10 @@
     <Compile Include="Migrations\202108030855568_Add-table.designer.cs">
       <DependentUpon>202108030855568_Add-table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202108080800269_AlterTableProblem.cs" />
+    <Compile Include="Migrations\202108080800269_AlterTableProblem.designer.cs">
+      <DependentUpon>202108080800269_AlterTableProblem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202108030855568_Add-table.resx">
       <DependentUpon>202108030855568_Add-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108080800269_AlterTableProblem.resx">
+      <DependentUpon>202108080800269_AlterTableProblem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -162,6 +162,7 @@
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlanNewController.cs" />
+    <Compile Include="Controllers\ProblemController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\WriteController.cs" />
@@ -222,6 +223,7 @@
     <Content Include="Views\Arcticle\Article.cshtml" />
     <Content Include="Views\Home\_Navbar.cshtml" />
     <Content Include="Views\Shared\Keywords.cshtml" />
+    <Content Include="Views\Problem\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

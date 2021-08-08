@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
-	public  class KeywordRepository : Repositorys<Keywords>
+	public  class KeywordRepository : Repositorys<Keyword>
 	{
 		public KeywordRepository(SqlDbContext context) : base(context)
 		{
 
 		}
 
-		public List<Keywords> GetRandom()
+		public List<Keyword> GetRandom()
 		{
 			Random random = new Random();
-			List<Keywords> keywords = dbSet.SqlQuery("SELECT * FROM KEYWORDS ").ToList();
+			List<Keyword> keywords = dbSet.SqlQuery("SELECT * FROM KEYWORDS ").ToList();
 			return keywords.Skip(random.Next(keywords.Count)).Take(20).ToList();
 		}
 	}

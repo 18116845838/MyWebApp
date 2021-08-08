@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-	public  class Keyword :Entity
+	public  class Problem :Content
 	{
-		public string Name { get; set; }
+		public int Answer { get; set; }
+		public int Summary { get; set; }
+		public int Reward { get; set; }
+
 	}
 }
