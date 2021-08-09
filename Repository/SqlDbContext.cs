@@ -20,6 +20,7 @@ namespace Repositoy
 		{
 			Database.Log = s => Debug.WriteLine(s);
 		}
+		public DbSet<Content> Contents { get; set; }
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<User>();

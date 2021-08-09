@@ -9,5 +9,6 @@ namespace Entities
 	public  class Keyword :Entity
 	{
 		public string Name { get; set; }
+		public List<Content> Contents { get; set; }
 	}
 }

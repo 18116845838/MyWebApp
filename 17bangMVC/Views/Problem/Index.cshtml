@@ -1,7 +1,278 @@
-﻿
+﻿@model IList<ViewModel.ProblemModel>
 @{
     ViewBag.Title = "一起帮·求助";
 }
 
 <h2>求助</h2>
 
+<main style="margin-top: 60px;">
+    <div class="container">
+        <div class="row">
+            <!--正文部分-->
+            <div class="col-lg-8">
+                <form action="/" method="post">
+                    <span class="font-size-s">
+                        <label><i class="fa fa-eye-slash"></i>不显示&emsp;</label>
+                        <label>
+                            <input type="checkbox" name="name" />已酬谢&emsp;
+                        </label>
+                        <label>
+                            <input type="checkbox" name="name" />
+                            已撤销 &emsp;
+                        </label>
+                        <label>
+                            <input type="checkbox" name="name" />
+                            协助中&emsp;
+                        </label>
+                    </span>
+                    <span class="font-size-d">
+                        <label><i class="fa fa-eye"></i>只显示&emsp;</label>
+                        <label>
+                            <input type="checkbox" name="name" />
+                            我的关注 &emsp;
+                        </label>
+                        <label>
+                            <input type="checkbox" name="name" />
+                            有总结&emsp;
+                        </label>
+                    </span>
+                </form>
+                <!--内容部分-->
+                @*按课堂演示，继续完成：
+                    求助/文章/意见建议单页的呈现
+                    根据总的数据和每页显示多少页，计算出一共应有多少页，并以此显示实际应有多少个的分页链接
+                    分页连接中添加一个“上一页”和“下一页”链接，点击可转到当前页面的上一页/下一页*@
+                @foreach (var item in Model)
+                {
+                    <div style="margin-top:20px;" class="font-size-d">
+                        <span>  <small class="font-size-s"><i class="fa fa-calendar "></i>@item.PublishTime.ToString("yyyy年mm月dd日 hh时mm分")</small></span>
+                        <span class="pull-right">
+                            <a href="#"><i class="fa fa-user-circle-o"></i>@item.Author.Name</a>
+                            <partial name="/pages/views/_user.cshtml" model="item.author" />
+                            <span>②</span>
+                        </span>
+                    </div>
+                    <h4>
+                        <span class="badge rounded-pill bg-success" style=" background-color: #5bc0de !important;color:#fff ;font-weight:400">协助中</span>
+                        <a href="#" style="color:black">@item.Title</a>
+                    </h4>
+                    //正文部分
+                    <p>@item.Body</p>
+                    <div>
+                        <span class="reaward">
+                            <svg style="color:#858508" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentcolor" class="bi bi-coin" viewbox="0 0 16 16">
+                                <path d="m5.5 9.511c.076.954.83 1.697 2.182 1.785v12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112v5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716v4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9h5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982v8.518l.087.02z" />
+                                <path fill-rule="evenodd" d="m8 15a7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1a8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                <path fill-rule="evenodd" d="m8 13.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0 .5a6 6 0 1 0 8 2a6 6 0 0 0 0 12z" />
+                            </svg>
+                            悬赏:@item.Reward
+                        </span>
+                        <span class="fa fa-heart" style="color:red; margin-left:16px">
+                            <a href="#">应答</a>
+                            <span style="color:black">@item.Answer</span>
+                        </span>
+                        <span class="fa fa-key" style=" margin-left:16px">
+                            <span><a href="#">总结</a></span>
+                            <span>@item.Summary</span>
+                        </span>
+                    </div>
+                    @foreach (var keyword in item.Keywords)
+                    {
+                        <span class="badge badge-dark">@keyword.Keyword</span>
+                    }
+                }
+                @*<div style="margin-top:30px">
+                    <div class="btn-group me-2" role="group" aria-label="first group">
+
+                        @if (model.pageindex > 1)
+                        {
+                            previous = model.pageindex - 1;
+                        }
+                        <a class="btn btn-outline-primary" href="/17bang/problem?pageindex=@previous" role="button">上一页</a>
+
+                        @for (int i = 0; i < model.count / model.pagesize; i++)
+                        {
+                            <a class="btn btn-outline-primary" href="/17bang/problem?pageindex=@(i+1)" role="button">@(i+1)</a>
+
+                        }
+
+                        <a class="btn btn-outline-primary" href="/17bang/problem?pageindex=@(model.pageindex+1)" id="next" role="button">下一页</a>
+                        @if (model.pageindex == next)
+                        {
+                            <script>
+                                    document.getelementbyid("next").remove();
+                            </script>
+                        }
+                    </div>*@
+                @*</div>*@
+
+
+
+
+
+            </div>
+            <!--侧边栏-->
+            <div class="col-lg">
+                <div style="border-radius:5px 5px 5px 5px;padding-top:5px;border:1px dashed #eeeeee">
+                    <div>
+                        <h4> <span class="fa fa-tags">关键字</span></h4>
+                        <hr />
+
+                    </div>
+
+                    <vc:widgets></vc:widgets>
+
+                    <!--关键字部分-->
+
+                    <hr />
+                    <div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="直接输入关键字获取" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <span style="margin-right:30px;" class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
+                            <span><button type="button" class="btn btn-outline-secondary fa fa-random" style="line-height: 21px;">换一批</button></span>
+                        </div>
+                    </div>
+                </div>
+                <!--每日督促-->
+                <div style="margin-top:15px;">
+                    <ul class="nav nav-tabs " style="border-collapse: collapse ">
+
+                        <li class="nav-item" style="line-height: 28px;">
+                            <a class="nav-link active" aria-current="page" href="#"><i class="fa fa-eye"></i>每日督促&nbsp;&nbsp;&nbsp;</a>
+
+                        </li>
+                        <li class="nav-item" style="border:1px dashed #ddd">
+                            <a class="nav-link" href="#"><i class="fa fa-heart" style="color:red;"></i>排行榜&nbsp;&nbsp;</a>
+                        </li>
+                        <li class="nav-item" style="border:1px dashed #ddd">
+                            <a class="nav-link" href="#"><i class="fa fa-user-circle-o"> </i>新注册&nbsp;&nbsp;</a>
+                        </li>
+                    </ul>
+                    <div style="border-style:  none  ridge  ridge  ridge ;">
+                        <table class="table table-borderless">
+                            <thead>
+                                <tr>
+
+                                    <th scope="col" colspan="2" style="margin-left:7px; float:left"><span class="fa fa-calendar-check-o"></span>2021年06月03日</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">共扫描目标：</th>
+                                    <td><span class="fa fa-flag-o"></span>9个</td>
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">当天休息：</th>
+                                    <td><span class="fa fa-ban"></span>6人</td>
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">已交作业：</th>
+                                    <td><span class="fa fa-check" style="color:darkgreen"></span>0份</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">请假：</th>
+                                    <td><span class="fa fa-coffee"></span>0人</td>
+
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">未交作业：</th>
+                                    <td><a href="#"><span class="fa fa-remove"></span>3人</a></td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!--精品文章-->
+                    <div style="margin-top:30px; border:1px dashed #eeeeee;padding:20px;">
+                        <h4>
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-journals" viewBox="0 0 16 16">
+                                    <path d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2z" />
+                                    <path d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0z" />
+                                </svg>
+                            </span>精品文章
+                        </h4>
+                        <hr />
+                        <div style="margin-bottom:10px;">
+                            <div>
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journals" viewBox="0 0 16 16">
+                                        <path d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2z" />
+                                        <path d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0z" />
+                                    </svg>
+                                </span>
+                                <a href="/Article/777">面向函数：函数做变量 / 回调 / 委托 / Lamda / 箭头函数……</a>
+                            </div>
+                        </div><div style="margin-bottom:10px;">
+                            <div>
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journals" viewBox="0 0 16 16">
+                                        <path d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2z" />
+                                        <path d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0z" />
+                                    </svg>
+                                </span>
+                                <a href="/Article/777">关于一起帮·源栈的发展思考</a>
+                            </div>
+                        </div><div style="margin-bottom:10px;">
+                            <div>
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journals" viewBox="0 0 16 16">
+                                        <path d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2z" />
+                                        <path d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0z" />
+                                    </svg>
+                                </span>
+                                <a href="/Article/777">面向过程-3：分支 / 调试 / 模糊需求</a>
+                            </div>
+                        </div><div style="margin-bottom:10px;">
+                            <div>
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journals" viewBox="0 0 16 16">
+                                        <path d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2z" />
+                                        <path d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0z" />
+                                    </svg>
+                                </span>
+                                <a href="/Article/777">做程序员一年后的感受</a>
+                            </div>
+
+                        </div>
+                        <div style="margin-bottom:10px;">
+                            <div>
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journals" viewBox="0 0 16 16">
+                                        <path d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2z" />
+                                        <path d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0z" />
+                                    </svg>
+                                </span>
+                                <a href="/Article/777">做程序员一年后的感受</a>
+                            </div>
+                            <div style="float:right;clear:both">
+
+                                <a href="#">
+                                    <span class="fa fa-hand-o-right"></span>更多
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div style="margin-top:30px; border:1px dashed #eeeeee;padding:20px;">
+                        <div style="margin-top:10px;"><span style="background-color:#000000;padding:0px 8px;border-radius:3px 3px 3px 3px;color:aliceblue;margin-right:10px;">1</span><a href="#"> 免费广告位，抢到就是赚到！</a></div>
+                        <div style="margin-top:10px;"><span style="background-color:#696969;padding:0px 8px;border-radius:3px 3px 3px 3px;margin-right:10px;">2</span><a href="#"> 免费广告位，抢到就是赚到！</a></div>
+                        <div style="margin-top:10px;"><span style="background-color:#808080;padding:0px 8px;border-radius:3px 3px 3px 3px;margin-right:10px;">3</span><a href="#"> 免费广告位，抢到就是赚到！</a></div>
+                        <div style="margin-top:10px;"><span style="background-color:#a9a9a9;padding:0px 8px;border-radius:3px 3px 3px 3px;margin-right:10px;">4</span><a href="#"> 免费广告位，抢到就是赚到！</a></div>
+                        <div style="margin-top:10px;"><span style="background-color:#a9a9a9;padding:0px 8px;border-radius:3px 3px 3px 3px;margin-right:10px;">5</span><a href="#"> 免费广告位，抢到就是赚到！</a></div>
+                        <div style="margin-top:10px;"><span style="background-color:#a9a9a9;padding:0px 8px;border-radius:3px 3px 3px 3px;margin-right:10px;">6</span>本站主机由<a href="#"> 西部数码</a>提供 ！</div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</main>
