@@ -16,7 +16,7 @@ namespace UI.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Index(RegisterModel model)
+        public ActionResult Index(UserModel model)
         {
 
             return View();

@@ -1,4 +1,4 @@
-﻿@model ViewModel.RegisterModel
+﻿@model NewViewModel.UserModel
 
 @{
     ViewBag.Title = "一起帮·注册";
@@ -13,6 +13,11 @@
     <br />
     @Html.TextBoxFor(m => m.InviterBy)
     <br />
+
+    <label>邀请码</label>
+    <br />
+    @Html.TextBoxFor(m => m.InviterByCode)
+    <br />
     <label>用户名</label>
     <br />
 
@@ -23,7 +28,5 @@
     <br />
     @Html.PasswordFor(m => m.Password)
     <br />
-    @*<img src="~/Shared/_GetCaptcha" alt="Alternate Text" />*@
-    @*@Html.Partial("~/Views/Shared/Index.cshtml", new _17bangMVC.Controllers.SharedController());*@
     <button type="submit">提交</button>
 }
