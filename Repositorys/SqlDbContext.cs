@@ -19,7 +19,7 @@ namespace Repositorys
 		{
 			modelBuilder.Entity<User>();
 
-			base.OnModelCreating(modelBuilder);
+			//base.OnModelCreating(modelBuilder);
 		}
 	}
 }

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace NewGlobal
 {
-    public class Class1
+    public struct Keys
     {
+        public const string DbContext = "DbContext";
     }
 }

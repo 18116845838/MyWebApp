@@ -1,4 +1,5 @@
-﻿using NewViewModel;
+﻿using NewService;
+using NewViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace UI.Controllers
     public class NewRegisterController : Controller
     {
         // GET: NewRegister
+        
         public ActionResult Index()
         {
             return View();
@@ -18,7 +20,15 @@ namespace UI.Controllers
         [HttpPost]
         public ActionResult Index(UserModel model)
         {
+			if (!ModelState.IsValid)
+			{
+                return View();
+			}//else nothing
+			if (model!=null)
+			{
 
+			}
+            int? userid =new UserService().Register(model);
             return View();
         }
     }

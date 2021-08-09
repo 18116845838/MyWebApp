@@ -31,8 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,6 +47,28 @@
   <ItemGroup>
     <Compile Include="BaseService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NewEntity\NewEntity.csproj">
+      <Project>{EFE4FA5F-22A5-448E-AED0-8139B6505872}</Project>
+      <Name>NewEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NewGlobal\NewGlobal.csproj">
+      <Project>{148b0e19-c53f-4e31-9f0c-4603298c8eb6}</Project>
+      <Name>NewGlobal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NewViewModel\NewViewModel.csproj">
+      <Project>{8F8B2456-E7AC-4C7B-ABEA-EE8899C43803}</Project>
+      <Name>NewViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repositorys\NewRepositorys.csproj">
+      <Project>{04C719C0-08AB-4136-9D6D-68E97B896092}</Project>
+      <Name>NewRepositorys</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
