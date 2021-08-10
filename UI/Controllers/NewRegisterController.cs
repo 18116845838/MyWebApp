@@ -12,7 +12,14 @@ namespace UI.Controllers
     public class NewRegisterController : Controller
     {
         // GET: NewRegister
-        public string ConfirmPassword { get; set; }
+        private UserService userService;
+        private string confirmPassword;
+
+        public NewRegisterController()
+		{
+            userService = new UserService();
+
+        }
         public ActionResult Index()
         {
             return View();
@@ -20,16 +27,33 @@ namespace UI.Controllers
         [HttpPost]
         public ActionResult Index(UserModel model)
         {
-			if (!ModelState.IsValid)
+            confirmPassword = Request.Form["confirmPassword"];
+
+            if (!ModelState.IsValid)
 			{
                 return View();
 			}//else nothing
-			if (model.Password!=ConfirmPassword)
+			if (model.Password!=confirmPassword)
 			{
                 ModelState.AddModelError("ConfirmPassword", "确认密码和密码不一致");
                 return View();
 			}//else nothing
-            int? userid =new UserService().Register(model);
+            UserModel inviterBy = userService.GetByName(model.InviterBy);
+			if (inviterBy==null)
+			{
+                ModelState.AddModelError("InviterBy", "用户名不存在");
+                return View();
+			}
+			else
+			{
+				if (inviterBy.InviterByCode!=model.InviterByCode)
+				{
+                    ModelState.AddModelError("InviterByCode","邀请人的邀请码不正确");
+                    return View();
+				}//else nothing
+			}
+
+            int? userid =userService.Register(model);
 			if (userid==null)
 			{
                 ModelState.AddModelError("Name", "用户名已存在");

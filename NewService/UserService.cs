@@ -12,9 +12,14 @@ namespace NewService
 {
 	public class UserService : BaseService
 	{
+		private UserRepository userRepository;
+		public UserService()
+		{
+			userRepository = new UserRepository(context);
+		}
 		public int? Register(UserModel model)
 		{
-			User user = new UserRepository(context).GetByName(model.Name);
+			User user = userRepository.GetByName(model.Name);
 
 			if (user != null)
 			{
@@ -23,8 +28,14 @@ namespace NewService
 
 
 			user = mapper.Map<User>(model);
-			new BaseRepository<User>(context).Save(user);
+			userRepository.Save(user);
 			return user.Id;
+		}
+
+		public UserModel GetByName(string inviterBy)
+		{
+			return  mapper.Map<UserModel>(userRepository.GetByName(inviterBy));
+		
 		}
 	}
 }
