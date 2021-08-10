@@ -1,5 +1,6 @@
 ﻿
 using NewEntity;
+using NewGlobal;
 using NewViewModel;
 using Repositorys;
 using System;
@@ -28,6 +29,7 @@ namespace NewService
 
 
 			user = mapper.Map<User>(model);
+			user.Password = user.Password.MD5Encrypt();
 			userRepository.Save(user);
 			return user.Id;
 		}

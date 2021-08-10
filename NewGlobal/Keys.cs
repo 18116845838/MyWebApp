@@ -9,5 +9,8 @@ namespace NewGlobal
     public struct Keys
     {
         public const string DbContext = "DbContext";
+        public const string Cookie = "Cookie";
+        public const string UserId = "UserId";
+        public const string Password = "Password";
     }
 }

@@ -191,6 +191,10 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NewGlobal\NewGlobal.csproj">
+      <Project>{148b0e19-c53f-4e31-9f0c-4603298c8eb6}</Project>
+      <Name>NewGlobal</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NewService\NewService.csproj">
       <Project>{0610A2F2-BD7F-4046-9F5B-6B536680D790}</Project>
       <Name>NewService</Name>

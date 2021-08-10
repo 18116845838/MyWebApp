@@ -1,4 +1,6 @@
-﻿using NewService;
+﻿
+using NewGlobal;
+using NewService;
 using NewViewModel;
 using System;
 using System.Collections.Generic;
@@ -59,6 +61,11 @@ namespace UI.Controllers
                 ModelState.AddModelError("Name", "用户名已存在");
                 return View();
 			}//else nothing
+            HttpCookie cookie = new HttpCookie(Keys.Cookie);
+            cookie.Values.Add(Keys.UserId,model.Id.ToString());
+            cookie.Values.Add(Keys.Password,model.Password.MD5Encrypt());
+            cookie.Expires = DateTime.Now.AddDays(14);
+            Request.Cookies.Add(cookie);
             return View();
         }
     }
