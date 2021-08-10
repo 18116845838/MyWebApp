@@ -13,5 +13,10 @@ namespace Repositorys
 		{
 			
 		}
+
+		public User GetByName(string name)
+		{
+			return dbSet.Where(m => m.Name == name).SingleOrDefault();
+		}
 	}
 }

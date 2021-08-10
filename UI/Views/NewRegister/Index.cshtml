@@ -12,21 +12,31 @@
     <label>邀请人</label>
     <br />
     @Html.TextBoxFor(m => m.InviterBy)
+    @Html.ValidationMessageFor(m=>m.InviterBy)
     <br />
 
     <label>邀请码</label>
     <br />
     @Html.TextBoxFor(m => m.InviterByCode)
+    @Html.ValidationMessageFor(m=>m.InviterByCode)
     <br />
     <label>用户名</label>
     <br />
 
     @Html.TextBoxFor(m => m.Name)
+    @Html.ValidationMessageFor(m=>m.Name)
     <br />
 
     <label>密码</label>
     <br />
     @Html.PasswordFor(m => m.Password)
+    @Html.ValidationMessageFor(m=>m.Password)
+    <br /> 
+    <label>验证密码</label>
+    <br />
+    @*<input type="password" name="ConfirmPassword" value="" />*@
+    @Html.Password("ConfirmPassword");
+    @Html.ValidationMessage("ConfirmPassword");
     <br />
     <button type="submit">提交</button>
 }

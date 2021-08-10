@@ -12,7 +12,7 @@ namespace UI.Controllers
     public class NewRegisterController : Controller
     {
         // GET: NewRegister
-        
+        public string ConfirmPassword { get; set; }
         public ActionResult Index()
         {
             return View();
@@ -24,11 +24,17 @@ namespace UI.Controllers
 			{
                 return View();
 			}//else nothing
-			if (model!=null)
+			if (model.Password!=ConfirmPassword)
 			{
-
-			}
+                ModelState.AddModelError("ConfirmPassword", "确认密码和密码不一致");
+                return View();
+			}//else nothing
             int? userid =new UserService().Register(model);
+			if (userid==null)
+			{
+                ModelState.AddModelError("Name", "用户名已存在");
+                return View();
+			}//else nothing
             return View();
         }
     }

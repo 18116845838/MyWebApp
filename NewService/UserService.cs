@@ -10,15 +10,19 @@ using System.Threading.Tasks;
 
 namespace NewService
 {
-	public  class UserService :BaseService
+	public class UserService : BaseService
 	{
 		public int? Register(UserModel model)
 		{
-			//if (model!=null)
-			//{
-			//	return null;
-			//}//else nothing
-			User user = mapper.Map<User>(model);
+			User user = new UserRepository(context).GetByName(model.Name);
+
+			if (user != null)
+			{
+				return null;
+			}//else nothing
+
+
+			user = mapper.Map<User>(model);
 			new BaseRepository<User>(context).Save(user);
 			return user.Id;
 		}
