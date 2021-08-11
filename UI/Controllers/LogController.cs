@@ -53,5 +53,15 @@ namespace UI.Controllers
             }
             return View();
         }
+        //推出登录页面
+        public ActionResult LogOff()
+        {
+            HttpCookie httpCookie = Request.Cookies.Get(Keys.Cookie);
+			if (httpCookie!=null)
+			{
+                Response.Cookies[Keys.Cookie].Expires = DateTime.Now.AddDays(-1);
+			}//else nothing
+            return RedirectToAction("Index");
+        }
     }
 }
