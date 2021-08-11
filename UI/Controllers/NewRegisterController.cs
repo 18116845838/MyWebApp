@@ -65,7 +65,7 @@ namespace UI.Controllers
             cookie.Values.Add(Keys.UserId,model.Id.ToString());
             cookie.Values.Add(Keys.Password,model.Password.MD5Encrypt());
             cookie.Expires = DateTime.Now.AddDays(14);
-            Request.Cookies.Add(cookie);
+            Response.Cookies.Add(cookie);
             return View();
         }
     }

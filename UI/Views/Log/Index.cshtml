@@ -1,7 +1,18 @@
-﻿
+﻿@model NewViewModel.LogModel
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<h2>登录</h2>
+@using (Html.BeginForm())
+{
+    <label>用户名</label>
+    <br />
+    @Html.TextBoxFor(m => m.Name)
+    @Html.ValidationMessageFor(m=>m.Name)
+    <br />
+    <label>密码</label><br />
+    @Html.PasswordFor(m=>m.Password)
+    @Html.ValidationMessageFor(m=>m.Password)
+<button type="submit">提交</button>
+}
