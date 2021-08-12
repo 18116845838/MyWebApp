@@ -42,7 +42,11 @@ namespace UI.Controllers
                 return View();
             }//else mothing
 
-            new UserService().ChangePassword(model);
+            bool hasChange = new UserService().ChangePassword(model);
+			if (!hasChange)
+			{
+                ModelState.AddModelError("Password", "原密码输入错误");
+			}//
             return View();
         }
     }

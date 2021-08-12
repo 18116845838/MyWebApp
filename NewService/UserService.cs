@@ -40,19 +40,21 @@ namespace NewService
 		
 		}
 
-		public void ChangePassword(ChangePasswordModel model)
+		public bool ChangePassword(ChangePasswordModel model)
 		{
 			User user = GetCurrentUser();
 			if (user == null)
 			{
 				throw new ArgumentException("用户未登录");
 			}//else nothing
-			if (user.Password!=model.Password)
+			if (user.Password!=model.Password.MD5Encrypt())
 			{
-				throw new ArgumentException("原密码输入错误");
+				return false;
+				//throw new ArgumentException("原密码输入错误");
 			}//else nothing
 			user.Password = model.NewPassword;
 			new UserRepository(context).Change();
+			return true;
 		}
 	}
 }
