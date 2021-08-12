@@ -25,5 +25,9 @@ namespace Repositorys
 			context.SaveChanges();
 			return entity.Id;
 		}
+		public void Change()
+		{
+			context.SaveChanges();
+		}
 	}
 }

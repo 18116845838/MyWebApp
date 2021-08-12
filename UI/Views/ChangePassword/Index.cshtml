@@ -1,0 +1,25 @@
+﻿@model NewViewModel.ChangePasswordModel
+@{
+    ViewBag.Title = "ChangePassword";
+}
+
+<h2>修改密码</h2>
+@using (Html.BeginForm())
+{
+    <label>原密码</label>
+    <br />
+    @Html.PasswordFor(m => m.Password)
+    <br />
+    @Html.ValidationMessageFor(m => m.Password)
+    <label>新密码</label>
+    <br />
+    @Html.PasswordFor(m => m.NewPassword)
+    <br />
+    @Html.ValidationMessageFor(m => m.NewPassword)
+    <label>确认密码</label>
+    <br />
+    @Html.Password("confirmNewPassword")
+    @Html.ValidationMessage("confirmNewPassword")
+    <button type="submit">提交</button>
+
+}

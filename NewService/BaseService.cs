@@ -36,5 +36,41 @@ namespace NewService
 				
 			}
 		}
+
+		public User GetCurrentUser()
+		{
+			HttpCookie userInfo = HttpContext.Current.Request.Cookies[Keys.Cookie];
+			if (userInfo==null)
+			{
+				return null;
+			}//else nothing
+			bool hasUserId = int.TryParse(userInfo[Keys.UserId], out int currentUserId);
+			if (!hasUserId)
+			{
+				Delete(Keys.Cookie);
+				return null;
+			}//else nothing 
+			string pwdInCookie = userInfo[Keys.Password];
+			if (string.IsNullOrEmpty(pwdInCookie))
+			{
+				throw new ArgumentException("");
+			}//else nothing	
+			User user= new UserRepository(context).Find(currentUserId);
+			if (user != null)
+			{
+				if (pwdInCookie != user.Password)
+				{
+					throw new ArgumentException("");
+				}//else nothing
+			}//else nothing
+			return user;
+		}
+
+		private void Delete(string cookie)
+		{
+			HttpCookie urrentCookie = HttpContext.Current.Request.Cookies[cookie];
+			urrentCookie.Expires = DateTime.Now.AddDays(-1);
+			HttpContext.Current.Response.Cookies.Add(urrentCookie);
+		}
 	}
 }

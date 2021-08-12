@@ -12,7 +12,7 @@ namespace UI.Controllers
     public class LogController : Controller
     {
         private UserService userService;
-		public LogController()
+        public LogController()
 		{
             userService = new UserService();
 		}
@@ -53,7 +53,7 @@ namespace UI.Controllers
             }
             return View();
         }
-        //推出登录页面
+        //退出登录页面
         public ActionResult LogOff()
         {
             HttpCookie httpCookie = Request.Cookies.Get(Keys.Cookie);
@@ -63,5 +63,7 @@ namespace UI.Controllers
 			}//else nothing
             return RedirectToAction("Index");
         }
+
+
     }
 }

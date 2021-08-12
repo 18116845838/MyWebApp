@@ -18,5 +18,9 @@ namespace Repositorys
 		{
 			return dbSet.Where(m => m.Name == name).SingleOrDefault();
 		}
+		public User Find(int userId)
+		{
+			return dbSet.Find(userId);
+		}
 	}
 }
