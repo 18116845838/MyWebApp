@@ -18,6 +18,8 @@ namespace Repositorys
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<User>();
+			modelBuilder.Entity<Article>();
+			modelBuilder.Entity<Comment>();
 
 			//base.OnModelCreating(modelBuilder);
 		}

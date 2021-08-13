@@ -18,7 +18,12 @@ namespace NewService
 		static BaseService()
 		{
 			config = new MapperConfiguration(
-				cfg => cfg.CreateMap<User, UserModel>().ReverseMap()
+				cfg =>
+				{
+					cfg.CreateMap<User, UserModel>().ReverseMap();
+					cfg.CreateMap<Article, ArticleModel>().ReverseMap();
+					cfg.CreateMap<Comment, CommentModel>().ReverseMap();
+				}
 				);
 		}
 		protected IMapper mapper { get { return config.CreateMapper(); } }
@@ -32,15 +37,15 @@ namespace NewService
 					SqlDbContext cx = new SqlDbContext();
 					HttpContext.Current.Items[Keys.DbContext] = cx;
 				}//else nothing
-				return  HttpContext.Current.Items[Keys.DbContext] as SqlDbContext;
-				
+				return HttpContext.Current.Items[Keys.DbContext] as SqlDbContext;
+
 			}
 		}
 
 		public User GetCurrentUser()
 		{
 			HttpCookie userInfo = HttpContext.Current.Request.Cookies[Keys.Cookie];
-			if (userInfo==null)
+			if (userInfo == null)
 			{
 				return null;
 			}//else nothing
@@ -55,7 +60,7 @@ namespace NewService
 			{
 				throw new ArgumentException("");
 			}//else nothing	
-			User user= new UserRepository(context).Find(currentUserId);
+			User user = new UserRepository(context).Find(currentUserId);
 			if (user != null)
 			{
 				if (pwdInCookie != user.Password)
