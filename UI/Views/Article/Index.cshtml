@@ -1,0 +1,32 @@
+﻿@model NewViewModel.ArticleModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>文章</h2>
+
+<h4>@Model.Title</h4>
+<small>@Model.CreateTime</small>
+<a href="#">@Model.Author.Name</a>
+<p>@Model.Body</p>
+<span>@Model.commend</span>
+<span>@Model.notRecommend</span>
+<label>评论:</label>
+@if (Model.Comments != null)
+{
+    <div>
+        @foreach (var item in Model.Comments)
+        {
+
+            <a href="#">@item.Author.Name</a>
+
+            <p>@item.Content</p>
+            <small>@item.CreateTime</small>
+
+            <span>赞 @item.commend</span>
+            <span>踩 @item.notRecommend</span>
+            <button>回复</button>
+        }
+    </div>
+}@* else nothing*@
+
